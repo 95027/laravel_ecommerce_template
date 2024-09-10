@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Auth\AdminAuthController;
 use Illuminate\Support\Facades\Route;
 
@@ -12,4 +13,12 @@ Route::middleware('guest')->group(function () {
 Route::middleware('auth:admin')->group(function () {
     Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
     Route::post('/admin/dashboard/logout', [AdminAuthController::class, 'logout'])->name('admin.logout');
+
+
+    Route::prefix('brand')->name('brand')->group(function () {
+        Route::get('/', [ProductController::class, 'getAllBrands']);
+        Route::post('/', [ProductController::class, 'createBrand'])->name('.store');
+        Route::put('/:id', [ProductController::class, 'updateBrand']);
+        Route::delete('/:id', [ProductController::class, 'deleteBrand']);
+    });
 });

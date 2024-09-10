@@ -10,8 +10,11 @@ Route::middleware('auth')->name('profile.')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('destroy');
+    Route::post('/profile/verify-email', [ProfileController::class, 'verifyEmail'])->name('mail.verify');
+    Route::get('/profile/verify-email/{user}', [ProfileController::class, 'mailVerified'])->name('mail.verified');
 });
 
 
 require __DIR__ . '/auth.php';
 require __DIR__ . '/admin.php';
+require __DIR__ . '/vendor.php';
