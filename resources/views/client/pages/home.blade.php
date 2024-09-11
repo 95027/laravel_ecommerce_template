@@ -13,5 +13,14 @@
                 </x-responsive-nav-link>
             </form>
         @endif
+
+        <form action="{{ route('stripe.payment') }}" method="POST">
+            @csrf
+            <button type="submit">pay now</button>
+        </form>
+        <form action="{{ route('stripe.refund') }}" method="POST">
+            @csrf
+            <button type="submit">refund now</button>
+        </form>
     </div>
 @endsection
