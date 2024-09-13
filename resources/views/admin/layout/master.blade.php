@@ -8,6 +8,7 @@
     <title>Document</title>
     @notifyCss
     @yield('styles')
+    @vite(['resources/sass/app.scss', 'resources/js/app.js', 'resources/css/app.css'])
 </head>
 
 <body>
