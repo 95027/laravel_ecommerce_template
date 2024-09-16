@@ -10,7 +10,7 @@ Route::middleware('guest')->group(function () {
     Route::post('/admin/login', [AdminAuthController::class, 'login'])->name('admin.login');
 });
 
-Route::middleware('guest')->group(function () {
+Route::middleware(['auth:admin'])->group(function () {
     Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
     Route::post('/admin/dashboard/logout', [AdminAuthController::class, 'logout'])->name('admin.logout');
 
