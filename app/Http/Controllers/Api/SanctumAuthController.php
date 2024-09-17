@@ -38,6 +38,19 @@ class SanctumAuthController extends Controller
 
         $credentials = $request->only(['email', 'password']);
 
-        return response()->json(['message' => 'user login successfully']);
+        if (!Auth::attempt($credentials)) {
+            return response()->json(['message' => 'un authorized'], 401);
+        }
+
+        $user = Auth::user();
+
+        $token = $user->createToken('app')->plainTextToken;
+
+        return response()->json(['message' => 'user login successfully', 'token' => $token]);
+    }
+
+    public function getUserByToken(Request $request)
+    {
+        return response()->json(['user' => $request->user()]);
     }
 }

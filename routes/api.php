@@ -12,6 +12,15 @@ Route::middleware('guest')->prefix('/auth')->group(function(){
 
 });
 
-Route::get('/user', function (Request $request) {
-    return $request->user();
-})->middleware('auth:sanctum');
+Route::middleware('auth:sanctum')->prefix('/auth')->group(function (){
+
+    Route::get('/user', [SanctumAuthController::class, 'getUserByToken']);
+
+});
+
+Route::middleware('auth:sanctum')->group(function(){
+
+    // auth routes
+
+});
+

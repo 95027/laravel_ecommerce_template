@@ -25,17 +25,21 @@ class EmployeeAuthController extends Controller
 
         if (Auth::guard('employee')->attempt($credentials)) {
 
-            
             $employee = Auth::guard('employee')->user();
-            //dd($employee);
 
             if ($employee->hasRole('admin')) {
-                return redirect()->route('admin.dashboard');
+                return redirect()->route('employee.dashboard');
             }
         }
+        return redirect()->route('employee.login.form');
+    }
 
+    public function logout(Request $request)
+    {
+        Auth::guard('employee')->logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
 
-
-        return redirect()->route('admin.dashboard');
+        return redirect()->route('employee.login.form');
     }
 }

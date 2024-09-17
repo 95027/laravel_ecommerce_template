@@ -23,7 +23,6 @@ class EmployeeSeeder extends Seeder
         ]);
 
         $role = Role::create(['name' => 'admin', 'guard_name' => 'employee']);
-        $employeeRole = Role::create(['name' => 'employee', 'guard_name' => 'employee']);
         $role->givePermissionTo(Permission::all());
         $employee->assignRole('admin');
     }
