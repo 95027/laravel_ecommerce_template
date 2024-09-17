@@ -11,7 +11,7 @@ class Category extends Model
 
     protected $guarded = [];
 
-    public function mediable()
+    public function media()
     {
         return $this->morphOne(Media::class, 'mediable');
     }
