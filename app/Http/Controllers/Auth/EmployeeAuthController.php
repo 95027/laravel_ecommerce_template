@@ -25,12 +25,9 @@ class EmployeeAuthController extends Controller
 
         if (Auth::guard('employee')->attempt($credentials)) {
 
-            $employee = Auth::guard('employee')->user();
-
-            if ($employee->hasRole('admin')) {
-                return redirect()->route('employee.dashboard');
-            }
+            return redirect()->route('employee.dashboard');
         }
+        notify()->error('Invalid credentials');
         return redirect()->route('employee.login.form');
     }
 

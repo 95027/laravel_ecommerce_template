@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    @notifyCss
 </head>
 
 <body>
@@ -15,6 +16,9 @@
         <input type="password" name="password" value="password">
         <button type="submit">submit</button>
     </form>
+    <x-notify::notify />
+    @notifyJs
+    @yield('script')
 </body>
 
 </html>

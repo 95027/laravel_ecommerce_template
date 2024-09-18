@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ExportController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ProfileController;
@@ -26,6 +27,8 @@ Route::middleware('auth')->group(function () {
     });
     
 });
+
+Route::get('/export', [ExportController::class, 'export'])->name('export');
 
 
 require __DIR__ . '/auth.php';
