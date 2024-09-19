@@ -8,13 +8,14 @@ use App\Models\Category;
 use App\Models\Media;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class ProductController extends Controller
 {
     public function getAllProducts()
     {
-        $data['products'] = Product::with('media')->latest()->get();
+        $data['products'] = Product::with(['media', 'brand'])->latest()->get();
         return view('admin.pages.products.products', $data);
     }
 
@@ -45,7 +46,7 @@ class ProductController extends Controller
                 'mediable_type' => Brand::class,
                 'mediable_id' => $brand->id,
                 'file_name' => $filename,
-                'file_path' => $filepath,
+                'file_path' => 'storage/' . $filepath,
                 'file_type' => 'brand',
             ]);
         }
@@ -54,9 +55,7 @@ class ProductController extends Controller
         return redirect()->back();
     }
 
-    public function updateBrand()
-    {
-    }
+    public function updateBrand() {}
 
     public function deleteBrand(Request $request, $id)
     {
@@ -66,6 +65,7 @@ class ProductController extends Controller
             $media = Media::where('mediable_type', Brand::class)->where('mediable_id', $id)->first();
             if ($media) {
                 $media->delete();
+                Storage::delete($media->file_path);
             }
             notify()->success('Brand deleted successfully');
             return redirect()->back();
@@ -161,7 +161,6 @@ class ProductController extends Controller
         }
         notify()->error('Failed to create sub-category');
         return redirect()->back();
-
     }
 
     public function deleteSubCategory(Request $request, $id)
@@ -181,20 +180,18 @@ class ProductController extends Controller
     {
         $request->validate([
             'title' => 'required',
-            'description' => 'required',
-            'mrp' => 'required|numeric',
-            'price' => 'required|numeric',
-            'sku' => 'required|numeric',
-            'categoryId' => 'required|numeric',
-            'brandId' => 'required|numeric',
-            'subCategoryId' => 'required|numeric',
+            'brandId' => 'required',
+            'categoryId' => 'required',
+            'short_description' => 'required',
+            'mrp' => 'required',
+            'sku' => 'required',
+            'image' => 'required'
         ]);
-
-        dd($request);
 
         $product = Product::create([
             'title' => $request->title,
             'description' => $request->description,
+            'short_description' => $request->short_description,
             'mrp' => $request->mrp,
             'price' => $request->price,
             'sku' => $request->sku,
@@ -203,7 +200,6 @@ class ProductController extends Controller
             'subCategoryId' => $request->subCategoryId,
         ]);
 
-        dd($product);
         if ($request->hasFile('image')) {
             $file = $request->file('image');
             $filename = time() . '_' . Str::random(18) . '.' . $file->getClientOriginalExtension();
@@ -215,11 +211,11 @@ class ProductController extends Controller
                 'file_name' => $filename,
                 'file_path' => $filepath,
                 'file_type' => 'product',
+                'featured' => 1,
             ]);
         }
         notify()->success('Prodcut created successfully');
 
-        return redirect()->back();
+        return redirect()->route('product');
     }
-
 }

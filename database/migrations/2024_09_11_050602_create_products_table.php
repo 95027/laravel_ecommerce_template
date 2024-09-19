@@ -20,10 +20,12 @@ return new class extends Migration
             $table->unsignedBigInteger('subCategoryId')->nullable();
             $table->foreign('subCategoryId')->references('id')->on('categories');
             $table->string('title');
-            $table->string('description');
+            $table->string('short_description');
+            $table->string('description')->nullable();
             $table->string('sku');
             $table->integer('mrp');
-            $table->integer('price');
+            $table->integer('price')->nullable();
+            $table->integer('quantity')->default(1);
             $table->integer('status')->default(1);
             $table->timestamps();
         });

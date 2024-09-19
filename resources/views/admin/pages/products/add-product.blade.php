@@ -34,7 +34,8 @@
             </div>
         </div>
 
-        <form action="{{route('product.store')}}" method="post" enctype="multipart/form-data">
+        <form id="add-product" data-parsley-validate action="{{ route('product.store') }}" method="POST"
+            onsubmit="jsValidator('add-product')" enctype="multipart/form-data">
             @csrf
             <div class="flex p-5">
                 <div class="border-e border-gray-200 w-[15%] shadow-2xl ps-5 pt-5">
@@ -93,16 +94,16 @@
                                         Name <abbr class="text-red-600">*</abbr></label>
                                     <input type="text" name="title"
                                         class="py-3 px-4 block w-full border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-0 border"
-                                        placeholder="ABCDEFGHIJKLMNOPQRSTUVWXYZ">
+                                        placeholder="ABCDEFGHIJKLMNOPQRSTUVWXYZ" required>
                                 </div>
 
                                 <div>
                                     <label for="hs-select-label"
                                         class="block text-sm font-medium mb-2 dark:text-white">Select
                                         Brand <abbr class="text-red-600">*</abbr></label>
-                                    <select name="brandId"
+                                    <select name="brandId" required
                                         class="py-3 px-4 pe-9 block w-full border border-gray-300 rounded-lg text-sm focus:border-outline-none focus:ring-0 ">
-                                        <option selected="" hidden>Select Brand</option>
+                                        <option selected value="" hidden>Select Brand</option>
                                         @foreach ($brands as $brand)
                                             <option value="{{ $brand->id }}">{{ $brand->name }}</option>
                                         @endforeach
@@ -112,9 +113,9 @@
                                     <label for="hs-select-label"
                                         class="block text-sm font-medium mb-2 dark:text-white">Select
                                         Category <abbr class="text-red-600">*</abbr></label>
-                                    <select name="categoryId"
+                                    <select name="categoryId" required
                                         class="py-3 px-4 pe-9 block w-full border border-gray-300 rounded-lg text-sm focus:border-outline-none focus:ring-0 ">
-                                        <option selected="" hidden>Select Category</option>
+                                        <option selected value="" hidden>Select Category</option>
                                         @foreach ($categories as $category)
                                             <option value="{{ $category->id }}">{{ $category->name }}</option>
                                         @endforeach
@@ -126,7 +127,7 @@
                                         Sub-Category</label>
                                     <select name="subCategoryId"
                                         class="py-3 px-4 pe-9 block w-full border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-0 ">
-                                        <option selected="" hidden>Sub-Category</option>
+                                        <option selected value="" hidden>Sub-Category</option>
                                         @foreach ($subcategories as $subcategory)
                                             <option value="{{ $subcategory->id }}">{{ $subcategory->name }}</option>
                                         @endforeach
@@ -136,7 +137,7 @@
                                     <label for="textarea-label-with-helper-text"
                                         class="block text-sm font-medium mb-2 dark:text-white">Short Description <abbr
                                             class="text-red-600">*</abbr></label>
-                                    <textarea id="textarea-label-with-helper-text" name="desciption"
+                                    <textarea id="textarea-label-with-helper-text" required name="short_description"
                                         class="py-3 px-4 block w-full border border-gray-300 rounded-lg text-sm focus:border-outline-none focus:ring-0 "
                                         rows="3" placeholder="Say hi, we'll be happy to chat with you." aria-describedby="hs-textarea-helper-text"></textarea>
                                 </div>
@@ -145,7 +146,8 @@
                                         class="block text-sm font-medium mb-2 dark:text-white">Description</label>
                                     <textarea id="textarea-label-with-helper-text"
                                         class="py-3 px-4 block w-full border border-gray-300 rounded-lg text-sm focus:border-outline-none focus:ring-0 "
-                                        rows="3" placeholder="Say hi, we'll be happy to chat with you." aria-describedby="hs-textarea-helper-text"></textarea>
+                                        rows="3" placeholder="Say hi, we'll be happy to chat with you." aria-describedby="hs-textarea-helper-text"
+                                        name="description"></textarea>
                                 </div>
                             </div>
                         </div>
@@ -157,7 +159,7 @@
                                 <label for="input-label" class="block text-sm font-medium mb-2 dark:text-white">Product
                                     Image <abbr class="text-red-600">*</abbr></label>
                                 <label for="file-input-medium" class="sr-only">Choose file</label>
-                                <input type="file" name="file-input-medium" id="file-input-medium"
+                                <input type="file" name="image" id="image" required
                                     class="block w-full border border-gray-300 shadow-sm rounded-lg text-sm focus:z-10 focus:border-outline-none focus:ring-0 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400
                                   file:bg-gray-50 file:border-0
                                   file:me-4
@@ -275,18 +277,18 @@
                             <div class="max-w-full mb-4">
                                 <label for="input-label" class="block text-sm font-medium mb-2 dark:text-white">SKU <abbr
                                         class="text-red-600">*</abbr></label>
-                                <input type="text" id="input-label"
+                                <input type="text" id="input-label" required
                                     class="py-3 px-4 block w-full border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-0"
-                                    placeholder="SKU123">
+                                    placeholder="SKU123" name="sku">
                             </div>
-                            {{-- <div class="max-w-full mb-4">
-                                <label for="input-label" class="block text-sm font-medium mb-2 dark:text-white">Price <abbr
-                                        class="text-red-600">*</abbr></label>
-                                <input type="number" id="input-label"
+                            <div class="max-w-full mb-4">
+                                <label for="input-label" class="block text-sm font-medium mb-2 dark:text-white">Stock
+                                    <abbr class="text-red-600">*</abbr></label>
+                                <input type="number" id="input-label" required
                                     class="py-3 px-4 block w-full border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-0"
-                                    placeholder="999">
+                                    placeholder="10" name="quantity">
                             </div>
-                            <div class="max-w-full">
+                            {{-- <div class="max-w-full">
                                 <label for="textarea-label" class="block text-sm font-medium mb-2 dark:text-white">Sale
                                     Price</label>
                                 <input type="number" id="input-label"
@@ -301,7 +303,7 @@
                             <div class="max-w-full mb-4">
                                 <label for="input-label" class="block text-sm font-medium mb-2 dark:text-white">Price
                                     <abbr class="text-red-600">*</abbr></label>
-                                <input type="number" name="mrp" id="input-label"
+                                <input type="number" name="mrp" id="input-label" required
                                     class="py-3 px-4 block w-full border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-0"
                                     placeholder="999">
                             </div>
@@ -328,14 +330,14 @@
                                     Title</label>
                                 <input type="text" id="input-label"
                                     class="py-3 px-4 block w-full border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-0"
-                                    placeholder="Product Meta Title">
+                                    placeholder="Product Meta Title" name="product_meta_title">
                             </div>
                             <div class="max-w-full">
                                 <label for="textarea-label"
                                     class="block text-sm font-medium mb-2 dark:text-white">Comment</label>
                                 <textarea id="textarea-label"
                                     class="py-3 px-4 block w-full border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-0"
-                                    rows="3" placeholder="Say hi..."></textarea>
+                                    rows="3" placeholder="Say hi..." name="product_meta_description"></textarea>
                             </div>
                         </div>
                     </div>
