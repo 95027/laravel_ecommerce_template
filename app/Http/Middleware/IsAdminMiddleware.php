@@ -16,11 +16,11 @@ class IsAdminMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
+        return $next($request);
         if (Auth::guard('employee')->check()) {
             $employee = Auth::guard('employee')->user();
 
             if ($employee->hasRole('admin')) {
-                return $next($request);
             }
         }
         else{

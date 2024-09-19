@@ -15,26 +15,30 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
         integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 </head>
 
-<body class="overflow-hidden">
+{{-- <div class="page-loader">
+    <div class="spinner"></div>
+    <div class="txt">Cargando<br>vacaciones</div>
+</div> --}}
 
+<body class="">
     <main>
-        <div class="flex ">
-
-            <div class="w-[21%]">
+        <div class="flex h-screen">
+            <div class="w-[22%]">
                 @include('admin.layout.sidebar')
             </div>
-            <div class="w-full m-3">
+            <div class="w-full m-3 flex flex-col">
                 <div>
                     @include('admin.layout.topbar')
                 </div>
-                <div class="min-h-[83vh]">
+                <div class="flex-1 overflow-y-auto main-content">
                     @yield('content')
                 </div>
-                <div>
+                {{-- <div>
                     @include('admin.layout.footer')
-                </div>
+                </div> --}}
             </div>
         </div>
     </main>
@@ -42,11 +46,14 @@
     <x-notify::notify />
     @notifyJs
     @yield('script')
+    {{-- <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script> --}}
     <script src="{{ asset('assets/admin/js/main.js') }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.21/lodash.min.js"
         integrity="sha512-WFN04846sdKMIP5LKNphMaWzU7YpMyCU245etK3g/2ARYbPK9Ub18eG+ljU96qKRCWh+quCY7yefSmlkQw1ANQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.7.2/min/dropzone.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+
     <script>
         // Function to update greeting and time
         function updateGreeting() {
@@ -74,7 +81,6 @@
         window.onload = updateGreeting;
         setInterval(updateGreeting, 1000);
     </script>
-
 </body>
 
 </html>

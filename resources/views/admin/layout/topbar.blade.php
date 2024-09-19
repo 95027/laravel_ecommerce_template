@@ -1,4 +1,4 @@
-<div class="bg-gray-100 p-3 rounded-sm shadow-lg flex justify-between items-center">
+<div class="bg-white p-3 rounded-sm shadow-lg flex justify-between items-center">
     <div>
         <h1 id="greeting" class="text-2xl font-semibold">Good Morning </h1>
         <p id="dateTime" class="text-xs"></p>

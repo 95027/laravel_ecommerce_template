@@ -30,4 +30,12 @@ class AdminPageController extends Controller
     public function allOrders(){
         return view('admin.pages.orders');
     }
+
+    public function couponPage(){
+        return view('admin.pages.create-coupon');
+    }
+
+    public function employeePage(){
+        return view('admin.pages.employees');
+    }
 }

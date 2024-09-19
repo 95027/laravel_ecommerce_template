@@ -57,5 +57,7 @@ Route::middleware(['auth:admin'])->group(function () {
     Route::get('/reviews', [AdminPageController::class, 'reviewsPage'])->name('reviewPage');
     Route::get('/contact-form', [AdminPageController::class, 'contactForm'])->name('contactForm');
     Route::get('/all-orders',[AdminPageController::class, 'allOrders'])->name('allOrders');
+    Route::get('/coupons',[AdminPageController::class, 'couponPage'])->name('coupons');
+    Route::get('/employees',[AdminPageController::class, 'employeePage'])->name('employees');
 
 });

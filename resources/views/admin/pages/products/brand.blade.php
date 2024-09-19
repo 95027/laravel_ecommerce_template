@@ -1,8 +1,5 @@
 @extends('admin.layout.master')
 @section('content')
-
-    @extends('admin.layout.master')
-@section('content')
     <div class="container mx-auto mt-3">
         <div class="card shadow-lg p-2 rounded-lg">
             <div class="card-header flex justify-between items-center py-4 border-b-2 mb-2">
@@ -156,22 +153,4 @@
             </form>
         </div>
     </div>
-@endsection
-
-{{-- <form action="{{ route('brand.store') }}" method="POST" enctype="multipart/form-data">
-        @csrf
-        <div>
-            <label for="name">Brand Name:</label>
-            <input type="text" id="name" name="name" required>
-        </div>
-
-        <div>
-            <label for="image">Brand Image:</label>
-            <input type="file" id="image" name="image" accept="image/*" required>
-        </div>
-
-        <div>
-            <button type="submit">Create Brand</button>
-        </div>
-    </form> --}}
 @endsection
