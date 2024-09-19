@@ -22,9 +22,6 @@ return Application::configure(basePath: dirname(__DIR__))
             'role_or_permission' => RoleOrPermissionMiddleware::class,
         ]);
 
-        $middleware->use([
-            IsAdminMiddleware::class,
-        ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //

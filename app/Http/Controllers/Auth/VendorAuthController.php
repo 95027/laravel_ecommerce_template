@@ -3,14 +3,35 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Vendor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class VendorAuthController extends Controller
 {
     public function vendorLogin()
     {
         return view('vendor.auth.vendor-login');
+    }
+
+    public function register(Request $request)
+    {
+
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required',
+            'password' => 'required',
+        ]);
+
+        Vendor::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->name),
+        ]);
+
+        notify()->success('Vendor registration successful');
+        return redirect()->route('vendor.login.form');
     }
 
     public function login(Request $request)
