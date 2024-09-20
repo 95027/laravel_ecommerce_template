@@ -7,14 +7,16 @@ use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Media;
 use App\Models\Product;
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class ProductController extends Controller
 {
     public function getAllProducts()
     {
-        $data['products'] = Product::with('media')->latest()->get();
+        $data['products'] = Product::with(['media', 'brand'])->latest()->get();
         return view('admin.pages.products.products', $data);
     }
 
@@ -54,24 +56,34 @@ class ProductController extends Controller
         return redirect()->back();
     }
 
-    public function updateBrand()
-    {
+    public function editBrand(){
+        
     }
 
-    public function deleteBrand(Request $request, $id)
+    public function updateBrand() {}
+
+
+    public function deleteBrand($id)
     {
-        $brand = Brand::find($id);
-        if ($brand) {
-            $brand->delete();
-            $media = Media::where('mediable_type', Brand::class)->where('mediable_id', $id)->first();
-            if ($media) {
-                $media->delete();
+        try {
+            $brand = Brand::find($id);
+            if ($brand) {
+                $brand->delete();
+                $media = Media::where('mediable_type', Brand::class)->where('mediable_id', $brand->id)->first();
+                if ($media) {
+                    $media->delete();
+                    Storage::delete('public/' . $media->file_path);
+                }
+                notify()->success('Brand deleted successfully');
+                return redirect()->back();
             }
-            notify()->success('Brand deleted successfully');
-            return redirect()->back();
+        } catch (QueryException $e) {
+            if ($e->getCode() == "23000") {
+                notify()->warning('This brand is associated with other products');
+                return redirect()->back();
+            }
+            throw $e;
         }
-        notify()->error('Brand not found!');
-        return redirect()->back();
     }
 
     public function getAllCategories()
@@ -110,35 +122,77 @@ class ProductController extends Controller
         return redirect()->back();
     }
 
-    public function updateCategory($id)
+    public function editCategory($id)
     {
         $category = Category::findOrFail($id);
-        return response()->json($category);
+
+        if ($category) {
+            return response()->json(['category' => $category]);
+        }
+    }
+
+    public function updateCategory(Request $request, $id)
+    {
+
+        $request->validate(['name' => 'required']);
+
+        $category = Category::find($id);
+        if ($category) {
+            $category->update(['name' => $request->name]);
+        }
+
+        if ($request->hasFile('image')) {
+
+            $media = Media::where('mediable_type', Category::class)->where('mediable_id', $category->id)->first();
+
+            if ($media) {
+                $media->delete();
+                Storage::delete('public/' . $media->file_path);
+            }
+
+            $file = $request->file('image');
+            $filename = time() . '_' . Str::random(18) . '.' . $file->getClientOriginalExtension();
+            $filepath = $file->storeAs('categories', $filename, 'public');
+
+            Media::create([
+                'mediable_type' => Category::class,
+                'mediable_id' => $category->id,
+                'file_name' => $filename,
+                'file_path' => $filepath,
+                'file_type' => 'category',
+            ]);
+        }
+        notify()->success('Category updated successfully');
+        return redirect()->route('category');
     }
 
     public function deleteCategory(Request $request, $id)
     {
+        try {
+            $category = Category::find($id);
+            if ($category) {
+                $category->delete();
 
-        $category = Category::find($id);
+                $media = Media::where('mediable_type', Category::class)->where('mediable_id', $category->id)->first();
 
-        if ($category) {
-            $category->delete();
-
-            $media = Media::where('mediable_type', Category::class)->where('mediable_id', $id)->first();
-
-            if ($media) {
-                $media->delete();
+                if ($media) {
+                    $media->delete();
+                    Storage::delete('public/' . $media->file_path);
+                }
+                notify()->success('Category deleted successfully');
+                return redirect()->back();
             }
-            notify()->success('Category deleted successfully');
-            return redirect()->back();
+        } catch (QueryException $e) {
+            if ($e->getCode() == "23000") {
+                notify()->warning('This category is associated with other products');
+                return redirect()->back();
+            }
+            throw $e;
         }
-        notify()->error('Category not found');
-        return redirect()->back();
     }
 
     public function getSubCategory()
     {
-        // $data['parentCategorys'] = Category::where('parentId', null)->get();
         $data['SubCategorys'] = Category::where('parentId', '!=', null)->latest()->get();
         $data['categorys'] = Category::where('parentId', null)->latest()->get();
         return view('admin.pages.products.sub-category', $data);
@@ -161,7 +215,6 @@ class ProductController extends Controller
         }
         notify()->error('Failed to create sub-category');
         return redirect()->back();
-
     }
 
     public function deleteSubCategory(Request $request, $id)
@@ -181,20 +234,18 @@ class ProductController extends Controller
     {
         $request->validate([
             'title' => 'required',
-            'description' => 'required',
-            'mrp' => 'required|numeric',
-            'price' => 'required|numeric',
-            'sku' => 'required|numeric',
-            'categoryId' => 'required|numeric',
-            'brandId' => 'required|numeric',
-            'subCategoryId' => 'required|numeric',
+            'brandId' => 'required',
+            'categoryId' => 'required',
+            'short_description' => 'required',
+            'mrp' => 'required',
+            'sku' => 'required',
+            'image' => 'required'
         ]);
-
-        dd($request);
 
         $product = Product::create([
             'title' => $request->title,
             'description' => $request->description,
+            'short_description' => $request->short_description,
             'mrp' => $request->mrp,
             'price' => $request->price,
             'sku' => $request->sku,
@@ -203,7 +254,6 @@ class ProductController extends Controller
             'subCategoryId' => $request->subCategoryId,
         ]);
 
-        dd($product);
         if ($request->hasFile('image')) {
             $file = $request->file('image');
             $filename = time() . '_' . Str::random(18) . '.' . $file->getClientOriginalExtension();
@@ -215,11 +265,11 @@ class ProductController extends Controller
                 'file_name' => $filename,
                 'file_path' => $filepath,
                 'file_type' => 'product',
+                'featured' => 1,
             ]);
         }
         notify()->success('Prodcut created successfully');
 
-        return redirect()->back();
+        return redirect()->route('product');
     }
-
 }

@@ -11,14 +11,14 @@ class Product extends Model
 
     protected $guarded = [];
 
-    public function mediable()
+    public function media()
     {
-        return $this->hasMany(Media::class, 'mediable');
+        return $this->hasMany(Media::class, 'mediable_id');
     }
 
     public function brand()
     {
-        return $this->belongsTo(Brand::class);
+        return $this->belongsTo(Brand::class, 'brandId');
     }
 
     public function category()

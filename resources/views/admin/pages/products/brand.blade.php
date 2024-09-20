@@ -44,14 +44,13 @@
                         </tr>
                     </thead>
                     <tbody class="text-gray-600 text-md font-light">
-                        @foreach ($brands as $brand)
+                        @foreach ($brands as $i => $brand)
                             <tr class="">
-                                <td class="py-3 px-6">{{ $brand->id }}</td>
+                                <td class="py-3 px-6">{{ $i + 1 }}</td>
                                 <td class="py-3 px-6">{{ $brand->name }}</td>
                                 <td class="py-3 px-6">
                                     <img class="max-w-10 rounded-full"
-                                        src="{{ asset('storage/brands/' . $brand->media?->file_name) }}"
-                                        alt="categorie image">
+                                        src="{{ asset('storage/' . $brand->media?->file_path) }}" alt="categorie image">
                                 </td>
                                 <td class="py-3 px-6"><span
                                         class="rounded-md bg-green-50 px-2 py-1 text-xs font-medium text-green-700 ring-1 ring-inset ring-green-600/20">Active</span>
@@ -82,7 +81,8 @@
                                                 <i class='bx bx-edit-alt text-lg'></i>
                                                 Edit
                                             </a>
-                                            <form action="{{route('brand.delete', $brand->id)}}" method="POST">
+                                            <form action="{{ route('brand.delete', $brand->id) }}" method="POST"
+                                                onsubmit="return confirm('Are You sure to delete it?')">
                                                 @csrf
                                                 @method('DELETE')
                                                 <input type="hidden" name="id" value="{{ $brand->id }}">
@@ -112,7 +112,7 @@
             </h3>
             <button type="button"
                 class="size-8 inline-flex justify-center items-center gap-x-2 rounded-full border border-transparent bg-gray-100 text-gray-800 hover:bg-gray-200 focus:outline-none focus:bg-gray-200 disabled:opacity-50 disabled:pointer-events-none"
-                aria-label="Close" data-hs-overlay="#hs-offcanvas-right">
+                data-hs-overlay="#add-category-offcanvas" aria-label="Close" data-hs-overlay="#hs-offcanvas-right">
                 <span class="sr-only">Close</span>
                 <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                     viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -123,12 +123,13 @@
             </button>
         </div>
         <div class="p-4">
-            <form action="{{ route('brand.store') }}" method="POST" enctype="multipart/form-data">
+            <form id="add-brand" data-parsley-validate action="{{ route('brand.store') }}"
+                onsubmit="jsValidator('add-brand')" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="max-w-sm mb-4">
                     <label for="input-label" class="block text-sm font-medium mb-2 dark:text-white">Brand
                         Name <abbr class="text-red-600">*</abbr></label>
-                    <input type="text" name="name"
+                    <input type="text" name="name" required
                         class="py-3 px-4 block w-full border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-0"
                         placeholder="Enter brand name">
                 </div>
@@ -136,7 +137,7 @@
                     <label for="input-label" class="block text-sm font-medium mb-2 dark:text-white">Brand
                         Image <abbr class="text-red-600">*</abbr></label>
                     <label for="file-input-medium" class="sr-only">Choose file</label>
-                    <input type="file" name="image" accept="image/*"
+                    <input type="file" name="image" accept="image/*" required
                         class="block w-full border border-gray-200 shadow-sm rounded-lg text-sm focus:z-10 focus:outline-none focus:ring-0
                           file:bg-gray-50 file:border-0
                           file:me-4
@@ -144,7 +145,7 @@
                 </div>
                 <div class="">
                     <button type="submit" aria-haspopup="dialog" aria-expanded="false"
-                        aria-controls="add-category-offcanvas" data-hs-overlay="#add-category-offcanvas"
+                        aria-controls="add-category-offcanvas"
                         class="py-2 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-blue-100 text-blue-800 hover:bg-blue-200 focus:outline-none focus:bg-blue-200 disabled:opacity-50 disabled:pointer-events-none dark:text-blue-400 dark:bg-blue-800/30 dark:hover:bg-blue-800/20 dark:focus:bg-blue-800/20">
                         Add Brand
                     </button>
@@ -153,4 +154,7 @@
             </form>
         </div>
     </div>
+@endsection
+
+@section('script')
 @endsection

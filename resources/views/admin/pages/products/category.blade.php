@@ -43,16 +43,15 @@
                             <th class="py-3 px-6 text-center">Actions</th>
                         </tr>
                     </thead>
-                    <tbody class="text-gray-600 text-xs font-light">
-                        @foreach ($categorys as $category)
+                    <tbody class="text-gray-600 text-s font-light">
+                        @foreach ($categorys as $i => $category)
                             {{-- {{$category}} --}}
                             <tr class="">
-                                <td class="py-3 px-6">{{ $category->id }}</td>
+                                <td class="py-3 px-6">{{ $i + 1 }}</td>
                                 <td class="py-3 px-6">{{ $category->name }}</td>
                                 <td class="py-3 px-6">
                                     <img class="max-w-16 rounded-full"
-                                        src="{{ asset('storage/categories/' . $category->media?->file_name) }}"
-                                        alt="categorie image">
+                                        src="{{ asset('storage/' . $category->media?->file_path) }}" alt="categorie image">
                                 </td>
                                 <td class="py-3 px-6"><span
                                         class="rounded-md bg-green-50 px-2 py-1 text-xs font-medium text-green-700 ring-1 ring-inset ring-green-600/20">Active</span>
@@ -76,17 +75,16 @@
                                             role="menu" aria-orientation="vertical"
                                             aria-labelledby="hs-dropdown-custom-icon-trigger">
                                             <a class="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 dark:text-neutral-400 dark:hover:bg-neutral-700 dark:hover:text-neutral-300 dark:focus:bg-neutral-700 edit-category"
-                                                href="javascript:void(0);" data-id="{{ $category->id }}"
                                                 aria-haspopup="dialog" aria-expanded="false"
                                                 aria-controls="edit-category-offcanvas"
-                                                data-hs-overlay="#edit-category-offcanvas">
+                                                data-hs-overlay="#edit-category-offcanvas" data-id={{ $category->id }}>
                                                 <i class='bx bx-edit-alt text-lg'></i>
                                                 Edit
                                             </a>
-                                            <form action="{{ route('category.delete', $category->id) }}" method="POST">
+                                            <form action="{{ route('category.delete', $category->id) }}" method="POST"
+                                                onsubmit="return confirm('Are you sure to delete it?')">
                                                 @csrf
                                                 @method('DELETE')
-                                                <input type="hidden" name="id" value="{{ $category->id }}">
                                                 <button type="submit"
                                                     class="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100">
                                                     <i class="bx bx-trash text-lg"></i>
@@ -114,7 +112,7 @@
             </h3>
             <button type="button"
                 class="size-8 inline-flex justify-center items-center gap-x-2 rounded-full border border-transparent bg-gray-100 text-gray-800 hover:bg-gray-200 focus:outline-none focus:bg-gray-200 disabled:opacity-50 disabled:pointer-events-none"
-                aria-label="Close" data-hs-overlay="#hs-offcanvas-right">
+                aria-label="Close" data-hs-overlay="#add-category-offcanvas">
                 <span class="sr-only">Close</span>
                 <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                     viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -125,12 +123,13 @@
             </button>
         </div>
         <div class="p-4">
-            <form action="{{ route('category.store') }}" method="POST" enctype="multipart/form-data">
+            <form id="add-category" data-parsley-validate action="{{ route('category.store') }}"
+                onsubmit="jsValidator('add-category')" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="max-w-sm mb-4">
                     <label for="input-label" class="block text-sm font-medium mb-2 dark:text-white">Category
                         Name <abbr class="text-red-600">*</abbr></label>
-                    <input type="text" name="name"
+                    <input type="text" name="name" required
                         class="py-3 px-4 block w-full border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-0"
                         placeholder="Enter category name">
                 </div>
@@ -138,7 +137,7 @@
                     <label for="input-label" class="block text-sm font-medium mb-2 dark:text-white">Category
                         Image <abbr class="text-red-600">*</abbr></label>
                     <label for="file-input-medium" class="sr-only">Choose file</label>
-                    <input type="file" name="image" accept="image/*"
+                    <input type="file" name="image" required accept="image/*"
                         class="block w-full border border-gray-200 shadow-sm rounded-lg text-sm focus:z-10 focus:outline-none focus:ring-0
                           file:bg-gray-50 file:border-0
                           file:me-4
@@ -146,7 +145,7 @@
                 </div>
                 <div class="">
                     <button type="submit" aria-haspopup="dialog" aria-expanded="false"
-                        aria-controls="add-category-offcanvas" data-hs-overlay="#add-category-offcanvas"
+                        aria-controls="add-category-offcanvas"
                         class="py-2 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-blue-100 text-blue-800 hover:bg-blue-200 focus:outline-none focus:bg-blue-200 disabled:opacity-50 disabled:pointer-events-none dark:text-blue-400 dark:bg-blue-800/30 dark:hover:bg-blue-800/20 dark:focus:bg-blue-800/20">
                         Add Category
                     </button>
@@ -176,7 +175,7 @@
             </button>
         </div>
         <div class="p-4">
-            <form id="edit-category-form" action="" method="POST" enctype="multipart/form-data">
+            <form id="edit-category-form" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
                 <div class="max-w-sm mb-4">
@@ -192,7 +191,6 @@
                     <input type="file" name="image" id="edit-category-image" accept="image/*"
                         class="block w-full border border-gray-200 shadow-sm rounded-lg text-sm focus:z-10 focus:outline-none focus:ring-0
                   file:bg-gray-50 file:border-0 file:me-4 file:py-3 file:px-4">
-                    <img id="edit-category-thumbnail" class="max-w-16 rounded-full mt-2" alt="Category image preview" />
                 </div>
                 <div class="">
                     <button type="submit"
@@ -210,21 +208,22 @@
         $(document).ready(function() {
             $('.edit-category').on('click', function() {
                 var categoryId = $(this).data('id');
+                const form = document.getElementById('edit-category-form');
+                var editUrl = '{{ route('category.edit', ':id') }}';
+                editUrl = editUrl.replace(':id', categoryId);
                 $.ajax({
-                    url: '/category/' + categoryId + '/edit',
+                    url: editUrl,
                     type: 'GET',
                     success: function(data) {
-                        $('#edit-category-name').val(data.name);
-                        $('#edit-category-form').attr('action', '/category/' +
-                            categoryId);
-                        $('#edit-category-thumbnail').attr('src', '/storage/categories/' + data
-                            .media.file_name);
-                        HSOverlay.open('#edit-category-offcanvas');
+                        $('#edit-category-name').val(data.category.name);
                     },
                     error: function() {
                         alert('Failed to fetch category data');
                     }
                 });
+                var updateUrl = '{{ route('category.update', ':id') }}';
+                updateUrl = updateUrl.replace(':id', categoryId);
+                form.action = updateUrl;
             });
         });
     </script>

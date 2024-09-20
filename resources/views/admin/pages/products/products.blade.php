@@ -21,7 +21,7 @@
                     </li>
                 </ol>
             </div>
-            <a type="button" href="{{route('product.add-product-page')}}"
+            <a type="button" href="{{ route('product.add-product-page') }}"
                 class="py-2 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-blue-100 text-blue-800 hover:bg-blue-200 focus:outline-none focus:bg-blue-200 disabled:opacity-50 disabled:pointer-events-none dark:text-blue-400 dark:bg-blue-800/30 dark:hover:bg-blue-800/20 dark:focus:bg-blue-800/20">
                 <i class="bx bx-plus"></i>
                 Add Product
@@ -85,70 +85,79 @@
                             <th class="py-3">Sl.No</th>
                             {{-- <th class="py-3 px-8">Product id</th> --}}
                             <th class="py-3 px-6">Image</th>
-                            <th class="py-3 px-6">Name</th>
+                            <th class="py-3 px-6">Title</th>
                             <th class="py-3 px-6">Brand</th>
                             <th class="py-3 px-6">Category</th>
-                            <th class="py-3 px-6">Sub Category</th>
-                            <th class="py-3 px-6">Price</th>
+                            <th class="py-3 px-6">MRP</th>
                             <th class="py-3 px-6">Offred Price</th>
                             <th class="py-3 px-6">Stock</th>
                             <th class="py-3 px-6">Status</th>
                             <th class="py-3 text-center">Actions</th>
                         </tr>
                     </thead>
-                    <tbody class="text-gray-600 text-xs font-light">
-                        {{-- @foreach ($categorys as $category) --}}
-                        <tr class="">
-                            <td class="py-3 px-6"></td>
-                            <td class="py-3 px-6"></td>
-                            <td class="py-3 px-6">
-                                {{-- <img class="max-w-16 rounded-full"
-                                        src="{{ asset('storage/categories/' . $category->media?->file_name) }}"
-                                        alt="categorie image"> --}}
-                            </td>
-                            {{-- <td class="py-3 px-6"><span
-                                    class="rounded-md bg-green-50 px-2 py-1 text-xs font-medium text-green-700 ring-1 ring-inset ring-green-600/20">Active</span>
-                            </td> --}}
-                            {{-- <td class="py-3 px-6 text-center">
-                                <div class="hs-dropdown relative inline-flex">
-                                    <button id="hs-dropdown-custom-icon-trigger" type="button"
-                                        class="hs-dropdown-toggle flex justify-center items-center size-9 text-sm font-semibold rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 focus:outline-none focus:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-white dark:hover:bg-neutral-800 dark:focus:bg-neutral-800"
-                                        aria-haspopup="menu" aria-expanded="false" aria-label="Dropdown">
-                                        <svg class="flex-none size-4 text-gray-600 dark:text-neutral-500"
-                                            xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                            stroke-linecap="round" stroke-linejoin="round">
-                                            <circle cx="12" cy="12" r="1" />
-                                            <circle cx="12" cy="5" r="1" />
-                                            <circle cx="12" cy="19" r="1" />
-                                        </svg>
-                                    </button>
+                    <tbody class="text-gray-600 text-s font-light">
+                        @foreach ($products as $i => $product)
+                            <tr class="">
+                                <td class="py-3 px-6">{{ $i + 1 }}</td>
+                                <td class="py-3 px-6">
+                                    <img class="max-w-16 rounded-full"
+                                        src="{{ asset('storage/products/' . $product->media->where('featured', 1)->first()->file_name) }}"
+                                        alt="{{ $product->id }}">
+                                </td>
+                                <td class="py-3 px-6">{{ $product->title }}</td>
+                                <td class="py-3 px-6">{{ $product->brand->name }}</td>
+                                <td class="py-3 px-6">{{ $product->categoryId }}</td>
+                                <td class="py-3 px-6">{{ $product->mrp }}</td>
+                                <td class="py-3 px-6">{{ $product->price }}</td>
+                                <td class="py-3 px-6">{{ $product->quantity }}</td>
+                                <td class="py-3 px-6">
+                                    @php
+                                        $color = $product->status === 1 ? 'green' : 'red';
+                                        $status = $product->status === 1 ? 'Active' : 'In Active';
+                                    @endphp
+                                    <span
+                                        class="rounded-md bg-{{ $color }}-50 px-2 py-1 text-xs font-medium text-{{ $color }}-700 ring-1 ring-inset ring-green-600/20">{{ $status }}</span>
+                                </td>
+                                <td class="py-3 px-6 text-center">
+                                    <div class="hs-dropdown relative inline-flex">
+                                        <button id="hs-dropdown-custom-icon-trigger" type="button"
+                                            class="hs-dropdown-toggle flex justify-center items-center size-9 text-sm font-semibold rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 focus:outline-none focus:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-white dark:hover:bg-neutral-800 dark:focus:bg-neutral-800"
+                                            aria-haspopup="menu" aria-expanded="false" aria-label="Dropdown">
+                                            <svg class="flex-none size-4 text-gray-600 dark:text-neutral-500"
+                                                xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                                stroke-linecap="round" stroke-linejoin="round">
+                                                <circle cx="12" cy="12" r="1" />
+                                                <circle cx="12" cy="5" r="1" />
+                                                <circle cx="12" cy="19" r="1" />
+                                            </svg>
+                                        </button>
 
-                                    <div class="hs-dropdown-menu transition-[opacity,margin] duration hs-dropdown-open:opacity-100 opacity-0 hidden w-30 bg-white shadow-md rounded-lg p-1 space-y-0.5 mt-2 dark:bg-neutral-800 dark:border dark:border-neutral-700 z-10"
-                                        role="menu" aria-orientation="vertical"
-                                        aria-labelledby="hs-dropdown-custom-icon-trigger">
-                                        <a class="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 dark:text-neutral-400 dark:hover:bg-neutral-700 dark:hover:text-neutral-300 dark:focus:bg-neutral-700 edit-category"
-                                            href="javascript:void(0);" data-id="" aria-haspopup="dialog"
-                                            aria-expanded="false" aria-controls="edit-category-offcanvas"
-                                            data-hs-overlay="#edit-category-offcanvas">
-                                            <i class='bx bx-edit-alt text-lg'></i>
-                                            Edit
-                                        </a>
-                                        <form action="" method="POST">
-                                            @csrf
-                                            @method('DELETE')
-                                            <input type="hidden" name="id" value="">
-                                            <button type="submit"
-                                                class="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100">
-                                                <i class="bx bx-trash text-lg"></i>
-                                                Delete
-                                            </button>
-                                        </form>
+                                        <div class="hs-dropdown-menu transition-[opacity,margin] duration hs-dropdown-open:opacity-100 opacity-0 hidden w-30 bg-white shadow-md rounded-lg p-1 space-y-0.5 mt-2 dark:bg-neutral-800 dark:border dark:border-neutral-700 z-10"
+                                            role="menu" aria-orientation="vertical"
+                                            aria-labelledby="hs-dropdown-custom-icon-trigger">
+                                            <a class="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 dark:text-neutral-400 dark:hover:bg-neutral-700 dark:hover:text-neutral-300 dark:focus:bg-neutral-700 edit-category"
+                                                href="javascript:void(0);" data-id="" aria-haspopup="dialog"
+                                                aria-expanded="false" aria-controls="edit-category-offcanvas"
+                                                data-hs-overlay="#edit-category-offcanvas">
+                                                <i class='bx bx-edit-alt text-lg'></i>
+                                                Edit
+                                            </a>
+                                            <form action="" method="POST">
+                                                @csrf
+                                                @method('DELETE')
+                                                <input type="hidden" name="id" value="">
+                                                <button type="submit"
+                                                    class="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100">
+                                                    <i class="bx bx-trash text-lg"></i>
+                                                    Delete
+                                                </button>
+                                            </form>
+                                        </div>
                                     </div>
-                                </div>
-                            </td> --}}
-                        </tr>
-                        {{-- @endforeach --}}
+                                </td>
+                            </tr>
+                        @endforeach
                         <!-- Additional rows go here -->
                     </tbody>
                 </table>
