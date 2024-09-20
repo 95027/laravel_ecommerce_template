@@ -12,8 +12,7 @@ class AdminPageController extends Controller
 {
     public function addProductPage()
     {
-        $data['brands'] = Brand::latest()->get();
-        return view('admin.pages.products.add-product', $data);
+        return view('admin.pages.products.add-product');
     }
 
     // Review Page
