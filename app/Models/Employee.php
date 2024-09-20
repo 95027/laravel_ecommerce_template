@@ -14,4 +14,15 @@ class Employee extends Authenticatable
 
 
     protected $hidden = ['password', 'remember_token'];
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($employee) {
+            if (empty($employee->employeeId)) {
+                $employee->employeeId = 'EMP' . time();
+            }
+        });
+    }
 }

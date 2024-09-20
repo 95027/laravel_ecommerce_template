@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Brand;
 use App\Models\Category;
+use App\Models\Employee;
 use Illuminate\Http\Request;
 
 class AdminPageController extends Controller
@@ -36,6 +37,11 @@ class AdminPageController extends Controller
     }
 
     public function employeePage(){
-        return view('admin.pages.employees');
+        $data['employees'] = Employee::latest()->get();
+        return view('admin.pages.employees', $data);
+    }
+
+    public function rolePage(){
+        return view('admin.pages.roles');
     }
 }

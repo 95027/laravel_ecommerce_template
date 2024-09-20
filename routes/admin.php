@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\AdminPageController;
+use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Auth\AdminAuthController;
 use App\Http\Controllers\UserController;
@@ -54,10 +55,21 @@ Route::middleware(['auth:admin'])->group(function () {
         Route::put('/{id}', [ProductController::class, 'updateOrder'])->name('.update');
     });
 
+    Route::prefix('employee')->name('employee')->group(function () {
+        Route::get('/employees', [AdminPageController::class, 'employeePage'])->name('.employees');
+        Route::post('/', [AdminController::class, 'createEmployee'])->name('.store');
+        Route::get('/employee-deatils/{id}', [AdminPageController::class, 'employeeDetails'])->name('.details');
+        Route::put('/{id}', [AdminController::class, 'updateEmployee'])->name('.update');
+        Route::delete('/{id}', [AdminController::class, 'deleteEmployee'])->name('.delete');
+    });
+
     Route::get('/reviews', [AdminPageController::class, 'reviewsPage'])->name('reviewPage');
     Route::get('/contact-form', [AdminPageController::class, 'contactForm'])->name('contactForm');
-    Route::get('/all-orders',[AdminPageController::class, 'allOrders'])->name('allOrders');
-    Route::get('/coupons',[AdminPageController::class, 'couponPage'])->name('coupons');
-    Route::get('/employees',[AdminPageController::class, 'employeePage'])->name('employees');
+    Route::get('/all-orders', [AdminPageController::class, 'allOrders'])->name('allOrders');
+    Route::get('/coupons', [AdminPageController::class, 'couponPage'])->name('coupons');
+
+    Route::get('/', [AdminPageController::class, 'rolePage'])->name('rolePage');
+
+    Route::get('/orders', [OrderController::class, 'orderSearch'])->name('orders.search');
 
 });

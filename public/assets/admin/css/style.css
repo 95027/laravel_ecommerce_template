@@ -164,3 +164,68 @@ body{
         opacity: 0;
     }
 }
+
+
+
+/* Custom Select Option style */
+.select-menu{
+    width: 180px;
+    margin: 150px auto;
+
+}
+
+.select-menu .select-btn{
+    display: flex;
+    height: 55px;
+    background: #ddd;
+    padding: 20px;
+    font-weight: 400;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    box-shadow:0 0 5px rgba(0, 0, 0, 0.1) ;
+
+}
+
+.select-btn i{
+    font-size: 25px;
+
+}
+
+.select-menu .options{
+    position: relative;
+    padding: 20px;
+    margin-top: 5px;
+    background: #ddd;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    box-shadow:0 0 3px rgba(0, 0, 0, 0.1) ;
+
+
+}
+
+.options .option{
+    display: flex;
+    cursor: pointer;
+    align-items: center;
+    /* padding: 0 16px; */
+    border-radius: 8px;
+    background: #ddd;
+}
+
+.options .option:hover{
+    background: #fff;
+}
+
+.option i{
+    font-size: 25px;
+    margin-right: 12px;
+
+}
+
+.option .option-text{
+    font-size: 18px;
+    color: #333;
+}

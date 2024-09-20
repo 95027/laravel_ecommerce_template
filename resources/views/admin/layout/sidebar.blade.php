@@ -19,9 +19,9 @@
             <div class="">
                 <span class="text-gray-400 text-sm">All Employees</span>
                 <li
-                    class="relative m-1 {{ request()->routeIs('employees') ? 'bg-blue-200 bg-opacity-60 rounded-br-md rounded-se-md text-blue-600 shadow-2xl font-bold active-tab' : '' }}">
-                    <a href="{{ route('employees') }}" class="text-md flex items-center hover:text-blue-700 p-2">
-                        <i class='bx bxs-dashboard me-2 text-2xl'></i>All Employees
+                    class="relative m-1 {{ request()->routeIs('employee.employees') ? 'bg-blue-200 bg-opacity-60 rounded-br-md rounded-se-md text-blue-600 shadow-2xl font-bold active-tab' : '' }}">
+                    <a href="{{ route('employee.employees') }}" class="text-md flex items-center hover:text-blue-700 p-2">
+                        <i class="fa-solid fa-users me-2 text-lg"></i>All Employees
                     </a>
                 </li>
             </div>
@@ -36,8 +36,8 @@
 
                     <!-- Dropdown Menu -->
                     <ul class="dropdown-menu marker:text-blue-400 list-disc" role="list">
-                        <li class=""><a href="{{-- {{ route('') }} --}}"
-                                class="p-2 {{-- {{ request()->routeIs('') ? 'text-blue-700' : 'hover:text-blue-700' }} --}}">Add Role</a>
+                        <li class=""><a href="{{ route('rolePage') }}"
+                                class="p-2 {{ request()->routeIs('rolePage') ? 'text-blue-700' : 'hover:text-blue-700' }}">Add Role</a>
                         </li>
                         <li class=""><a href="{{-- {{ route('') }} --}}"
                                 class="p-2 {{-- {{ request()->routeIs('') ? 'text-blue-700' : 'hover:text-blue-700' }} --}}">Assign Permissions</a>

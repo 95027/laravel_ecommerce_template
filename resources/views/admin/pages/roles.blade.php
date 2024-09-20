@@ -3,7 +3,7 @@
     <div class="container mx-auto mt-3">
         <div class="flex justify-between items-center mt-6 mb-3">
             <div>
-                <h4>All Employees</h4>
+                <h4>All Roles</h4>
                 <ol class="flex items-center whitespace-nowrap">
                     <li class="inline-flex items-center">
                         <a class="flex items-center text-xs text-gray-500 hover:text-blue-600 focus:outline-none focus:text-blue-600 dark:text-neutral-500 dark:hover:text-blue-500 dark:focus:text-blue-500"
@@ -17,7 +17,7 @@
                     </li>
                     <li class="inline-flex items-center text-xs font-semibold text-gray-800 truncate dark:text-neutral-200"
                         aria-current="page">
-                        Employees
+                        Roles
                     </li>
                 </ol>
             </div>
@@ -25,7 +25,7 @@
                 data-hs-overlay="#add-employee-offcanvas"
                 class="py-2 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-blue-100 text-blue-800 hover:bg-blue-200 focus:outline-none focus:bg-blue-200 cursor-pointer">
                 <i class="bx bx-plus"></i>
-                Add Employee
+                Add Role
             </a>
         </div>
         <div
@@ -42,7 +42,7 @@
                     </tr>
                 </thead>
                 <tbody class="text-gray-600 text-sm font-light">
-                    @foreach ($employees as $employee)
+                    {{-- @foreach ($employees as $employee)
                         <tr>
                             <td class="py-3"><a href=""
                                     class="hover:text-blue-600 font-bold">{{ $employee->employeeId }}</a></td>
@@ -73,9 +73,9 @@
                                 <a
                                     class="bg-blue-300 bg-opacity-60 hover:text-blue-600 p-1 w-8 h-8 rounded-lg flex justify-center items-center cursor-pointer"><i
                                         class="fa-regular fa-eye"></i></a>
-                                <a href="javascript:;" aria-haspopup="dialog" aria-expanded="false" aria-controls="edit-employee-offcanvas"
-                                    data-hs-overlay="#edit-employee-offcanvas"  data-employee-id="{{ $employee->id }}" 
-                                    class="bg-yellow-200 bg-opacity-60 hover:text-yellow-600 p-1 w-8 h-8 rounded-lg flex justify-center items-center cursor-pointer edit-employee-button"><i
+                                <a aria-haspopup="dialog" aria-expanded="false" aria-controls="edit-employee-offcanvas"
+                                    data-hs-overlay="#edit-employee-offcanvas"
+                                    class="bg-yellow-200 bg-opacity-60 hover:text-yellow-600 p-1 w-8 h-8 rounded-lg flex justify-center items-center cursor-pointer"><i
                                         class="fa-regular fa-pen-to-square"></i></a>
                                 <form action="{{ route('employee.delete', $employee->id) }}" method="POST"
                                     id="delete-form-{{ $employee->id }}">
@@ -90,7 +90,7 @@
                                 </form>
                             </td>
                         </tr>
-                    @endforeach
+                    @endforeach --}}
 
                 </tbody>
             </table>
@@ -163,12 +163,12 @@
     </div>
 </div>
 {{-- Edit Employee Offcanvas --}}
-<div id="edit-employee-offcanvas"
+{{-- <div id="edit-employee-offcanvas"
     class="hs-overlay hs-overlay-open:translate-x-0 hidden translate-x-full fixed top-0 end-0 transition-all duration-300 transform h-full max-w-sm w-full z-[80] bg-white border-s dark:bg-neutral-800 dark:border-neutral-700"
     role="dialog" tabindex="-1" aria-labelledby="edit-employee-offcanvas-label">
     <div class="flex justify-between items-center py-3 px-4 border-b dark:border-neutral-700">
         <h3 id="add-employee-offcanvas-label" class="font-bold text-gray-800 dark:text-white">
-            Edit Employee {{$employee}}
+            Edit Employee
         </h3>
         <button type="button"
             class="size-8 inline-flex justify-center items-center gap-x-2 rounded-full border border-transparent bg-gray-100 text-gray-800 hover:bg-gray-200 focus:outline-none focus:bg-gray-200 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-700 dark:hover:bg-neutral-600 dark:text-neutral-400 dark:focus:bg-neutral-600"
@@ -183,34 +183,33 @@
         </button>
     </div>
     <div class="p-4">
-        <form id="editEmployeeForm" method="POST">
+        <form action="" method="POST">
             @csrf
-            @method('PUT')
             <div class="max-w-sm mb-4">
                 <label for="input-label" class="block text-sm font-medium mb-2 dark:text-white">Employee
                     Name <abbr class="text-red-600">*</abbr></label>
-                <input type="text" name="name" id="employeName"
+                <input type="text" name="name"
                     class="py-3 px-4 block w-full border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-0"
-                    placeholder="Enter employee name" value="{{$employee->name}}">
+                    placeholder="Enter employee name">
             </div>
             <div class="max-w-sm mb-4">
                 <label for="input-label" class="block text-sm font-medium mb-2 dark:text-white">Employee
                     Email <abbr class="text-red-600">*</abbr></label>
-                <input type="email" name="email" id="employeeEmail"
+                <input type="email" name="email"
                     class="py-3 px-4 block w-full border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-0"
                     placeholder="Enter employee email">
             </div>
             <div class="max-w-sm mb-4">
                 <label for="input-label" class="block text-sm font-medium mb-2 dark:text-white">Employee
                     Mobile <abbr class="text-red-600">*</abbr></label>
-                <input type="number" name="mobile" id="employeeMobile"
+                <input type="number" name="mobile"
                     class="py-3 px-4 block w-full border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-0"
                     placeholder="Enter employee mobile">
             </div>
             <div class="max-w-sm mb-4">
                 <label for="hs-select-label" class="block text-sm font-medium mb-2 dark:text-white">Select
                     Role</label>
-                <select id="hs-select-label" name="role" id="employeeRole"
+                <select id="hs-select-label" name="role"
                     class="py-3 px-4 pe-9 block w-full border border-gray-300 rounded-lg text-sm focus:border-outline-none focus:ring-0">
                     <option selected="" hidden>Select One</option>
                     <option value="owner">Owner</option>
@@ -219,14 +218,15 @@
                 </select>
             </div>
             <div class="">
-                <button type="submit"
+                <button type="submit" aria-haspopup="dialog" aria-expanded="false"
+                    aria-controls="add-category-offcanvas" data-hs-overlay="#add-category-offcanvas"
                     class="py-2 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-blue-100 text-blue-800 hover:bg-blue-200 focus:outline-none focus:bg-blue-200">
-                    Update Employee
+                    Add Employee
                 </button>
             </div>
         </form>
     </div>
-</div>
+</div> --}}
 
 
 @section('script')
