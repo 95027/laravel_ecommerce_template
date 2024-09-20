@@ -1,7 +1,7 @@
 <div class="bg-white sidebar h-auto">
     <div class="logo flex items-center p-3">
-        <img src="{{ asset('assets/admin/images/logo/logo.png') }}" width="45" height="45" alt="logo">
-        <span class="font-bold text-orange-400 text-3xl ms-2">Shopify</span>
+        <img src="{{ asset('assets/admin/images/logo/logo.png') }}" width="100" height="45" alt="logo">
+        <span class="font-bold text-orange-400 text-3xl ms-2">Estore</span>
     </div>
 
 

@@ -49,8 +49,8 @@
                                 <td class="py-3 px-6">{{ $i + 1 }}</td>
                                 <td class="py-3 px-6">{{ $brand->name }}</td>
                                 <td class="py-3 px-6">
-                                    <img class="max-w-10 rounded-full" src="{{ $brand->media?->file_path }}"
-                                        alt="categorie image">
+                                    <img class="max-w-10 rounded-full"
+                                        src="{{ asset('storage/' . $brand->media?->file_path) }}" alt="categorie image">
                                 </td>
                                 <td class="py-3 px-6"><span
                                         class="rounded-md bg-green-50 px-2 py-1 text-xs font-medium text-green-700 ring-1 ring-inset ring-green-600/20">Active</span>
