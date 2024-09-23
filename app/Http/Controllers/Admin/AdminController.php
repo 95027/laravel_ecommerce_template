@@ -40,12 +40,25 @@ class AdminController extends Controller
         return redirect()->back();
     }
 
-    public function employeeDetails($id){
+    public function updateEmployee(Request $request, $id)
+    {
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required',
+            'mobile' => 'required',
+            'role' => 'required',
+        ]);
+
         $employee = Employee::find($id);
         if ($employee) {
-            return response()->json(['employee' => $employee]);
-        }else{
-            return response()->json(['message' => 'Employee not found'], 404);
+            $employee->update([
+                'name' => $request->name,
+                'email' => $request->email,
+                'mobile' => $request->mobile,
+                'role' => $request->role,
+            ]);
+            notify()->success('Employee updated successfully!');
+            return redirect()->back();
         }
     }
 

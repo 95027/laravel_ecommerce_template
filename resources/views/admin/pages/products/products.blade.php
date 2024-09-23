@@ -48,31 +48,70 @@
 
                 <div class="flex justify-between">
                     <div class="me-3">
-                        <select
-                            class="py-3 px-4 block w-full border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-0 ">
-                            <option selected="">Filleter By Category</option>
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                        </select>
+                        <div class="select-menu py-2 px-4 w-full border border-gray-300 rounded-lg text-sm cursor-pointer">
+                            <div class="select-btn flex items-center">
+                                <span class="sBtn-text">Fillter with Category</span>
+                                <i class="bx bx-chevron-down"></i>
+                            </div>
+                            <ul class="options bg-white p-1">
+                                <li class="option">
+                                    <i class="bx bxl-github" style="color: #171515"></i>
+                                    <span class="option-text">Github</span>
+                                </li>
+                                <li class="option">
+                                    <i class="bx bxl-instagram-alt" style="color: #171515"></i>
+                                    <span class="option-text">Instagram</span>
+                                </li>
+                                <li class="option">
+                                    <i class="bx bxl-facebook" style="color: #171515"></i>
+                                    <span class="option-text">Facebook</span>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                     <div class="me-3">
-                        <select
-                            class="py-3 px-4 block w-full border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-0 ">
-                            <option selected="">Filleter By Sub-Category</option>
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                        </select>
+                        <div class="select-menu py-2 px-4 w-full border border-gray-300 rounded-lg text-sm cursor-pointer">
+                            <div class="select-btn flex items-center">
+                                <span class="sBtn-text">Fillter with Sub-Category</span>
+                                <i class="bx bx-chevron-down"></i>
+                            </div>
+                            <ul class="options bg-white p-1">
+                                <li class="option">
+                                    <i class="bx bxl-github" style="color: #171515"></i>
+                                    <span class="option-text">Github</span>
+                                </li>
+                                <li class="option">
+                                    <i class="bx bxl-instagram-alt" style="color: #171515"></i>
+                                    <span class="option-text">Instagram</span>
+                                </li>
+                                <li class="option">
+                                    <i class="bx bxl-facebook" style="color: #171515"></i>
+                                    <span class="option-text">Facebook</span>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                     <div class="me-3">
-                        <select
-                            class="py-3 px-4 block w-full border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-0 ">
-                            <option selected="">Filleter By Brand</option>
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                        </select>
+                        <div class="select-menu py-2 px-4 w-full border border-gray-300 rounded-lg text-sm cursor-pointer">
+                            <div class="select-btn flex items-center">
+                                <span class="sBtn-text">Fillter with Brand</span>
+                                <i class="bx bx-chevron-down"></i>
+                            </div>
+                            <ul class="options bg-white p-1">
+                                <li class="option">
+                                    <i class="bx bxl-github" style="color: #171515"></i>
+                                    <span class="option-text">Github</span>
+                                </li>
+                                <li class="option">
+                                    <i class="bx bxl-instagram-alt" style="color: #171515"></i>
+                                    <span class="option-text">Instagram</span>
+                                </li>
+                                <li class="option">
+                                    <i class="bx bxl-facebook" style="color: #171515"></i>
+                                    <span class="option-text">Facebook</span>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
 
                 </div>
@@ -118,15 +157,15 @@
                                     <span
                                         class="rounded-md bg-{{ $color }}-50 px-2 py-1 text-xs font-medium text-{{ $color }}-700 ring-1 ring-inset ring-green-600/20">{{ $status }}</span>
                                 </td>
-                                <td class="py-3 px-6 text-center">
+                                {{-- <td class="py-3 px-6 text-center">
                                     <div class="hs-dropdown relative inline-flex">
                                         <button id="hs-dropdown-custom-icon-trigger" type="button"
                                             class="hs-dropdown-toggle flex justify-center items-center size-9 text-sm font-semibold rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 focus:outline-none focus:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-white dark:hover:bg-neutral-800 dark:focus:bg-neutral-800"
                                             aria-haspopup="menu" aria-expanded="false" aria-label="Dropdown">
                                             <svg class="flex-none size-4 text-gray-600 dark:text-neutral-500"
                                                 xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                                stroke-linecap="round" stroke-linejoin="round">
+                                                viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                                 <circle cx="12" cy="12" r="1" />
                                                 <circle cx="12" cy="5" r="1" />
                                                 <circle cx="12" cy="19" r="1" />
@@ -155,6 +194,24 @@
                                             </form>
                                         </div>
                                     </div>
+                                </td> --}}
+                                <td class="py-3 text-center flex justify-evenly">
+                                    <a
+                                        class="bg-blue-300 bg-opacity-60 hover:text-blue-600 p-1 w-8 h-8 rounded-lg flex justify-center items-center cursor-pointer"><i
+                                            class="fa-regular fa-eye"></i></a>
+                                    <a href="javascript:;"
+                                        class="edit-employee bg-yellow-200 bg-opacity-60 hover:text-yellow-600 p-1 w-8 h-8 rounded-lg flex justify-center items-center cursor-pointer edit-employee-button"><i
+                                            class="fa-regular fa-pen-to-square"></i></a>
+                                    <form action="{{ route('product.delete', $product->id) }}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <input type="hidden" name="id" value="{{ $product->id }}">
+                                        <button type="button"
+                                            {{-- onclick="confirmDelete('{{ $product->id }}', '{{ $product->name }}')" --}}
+                                            class="bg-red-300 bg-opacity-60 hover:text-red-600 p-1 w-8 h-8 rounded-lg flex justify-center items-center cursor-pointer">
+                                            <i class="fa-solid fa-trash-can"></i>
+                                        </button>
+                                    </form>
                                 </td>
                             </tr>
                         @endforeach
@@ -165,3 +222,5 @@
         </div>
     </div>
 @endsection
+
+@section('scrip')

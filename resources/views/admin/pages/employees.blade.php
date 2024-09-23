@@ -73,9 +73,10 @@
                                 <a
                                     class="bg-blue-300 bg-opacity-60 hover:text-blue-600 p-1 w-8 h-8 rounded-lg flex justify-center items-center cursor-pointer"><i
                                         class="fa-regular fa-eye"></i></a>
-                                <a href="javascript:;" aria-haspopup="dialog" aria-expanded="false" aria-controls="edit-employee-offcanvas"
-                                    data-hs-overlay="#edit-employee-offcanvas"  data-employee-id="{{ $employee->id }}" 
-                                    class="bg-yellow-200 bg-opacity-60 hover:text-yellow-600 p-1 w-8 h-8 rounded-lg flex justify-center items-center cursor-pointer edit-employee-button"><i
+                                <a href="javascript:;" aria-haspopup="dialog" aria-expanded="false"
+                                    aria-controls="edit-employee-offcanvas" data-hs-overlay="#edit-employee-offcanvas"
+                                    data-id="{{ $employee->id }}"
+                                    class="edit-employee bg-yellow-200 bg-opacity-60 hover:text-yellow-600 p-1 w-8 h-8 rounded-lg flex justify-center items-center cursor-pointer edit-employee-button"><i
                                         class="fa-regular fa-pen-to-square"></i></a>
                                 <form action="{{ route('employee.delete', $employee->id) }}" method="POST"
                                     id="delete-form-{{ $employee->id }}">
@@ -146,7 +147,7 @@
                     Role</label>
                 <select id="hs-select-label" name="role"
                     class="py-3 px-4 pe-9 block w-full border border-gray-300 rounded-lg text-sm focus:border-outline-none focus:ring-0">
-                    <option selected="" hidden>Select One</option>
+                    <option hidden>Select One</option>
                     <option value="owner">Owner</option>
                     <option value="manager">Manager</option>
                     <option value="accountent">Accountent</option>
@@ -168,7 +169,7 @@
     role="dialog" tabindex="-1" aria-labelledby="edit-employee-offcanvas-label">
     <div class="flex justify-between items-center py-3 px-4 border-b dark:border-neutral-700">
         <h3 id="add-employee-offcanvas-label" class="font-bold text-gray-800 dark:text-white">
-            Edit Employee {{$employee}}
+            Edit Employee
         </h3>
         <button type="button"
             class="size-8 inline-flex justify-center items-center gap-x-2 rounded-full border border-transparent bg-gray-100 text-gray-800 hover:bg-gray-200 focus:outline-none focus:bg-gray-200 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-700 dark:hover:bg-neutral-600 dark:text-neutral-400 dark:focus:bg-neutral-600"
@@ -191,7 +192,7 @@
                     Name <abbr class="text-red-600">*</abbr></label>
                 <input type="text" name="name" id="employeName"
                     class="py-3 px-4 block w-full border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-0"
-                    placeholder="Enter employee name" value="{{$employee->name}}">
+                    placeholder="Enter employee name" value="">
             </div>
             <div class="max-w-sm mb-4">
                 <label for="input-label" class="block text-sm font-medium mb-2 dark:text-white">Employee
@@ -212,7 +213,7 @@
                     Role</label>
                 <select id="hs-select-label" name="role" id="employeeRole"
                     class="py-3 px-4 pe-9 block w-full border border-gray-300 rounded-lg text-sm focus:border-outline-none focus:ring-0">
-                    <option selected="" hidden>Select One</option>
+                    <option hidden>Select One</option>
                     <option value="owner">Owner</option>
                     <option value="manager">Manager</option>
                     <option value="accountent">Accountent</option>
@@ -253,5 +254,33 @@
                 }
             });
         }
+    </script>
+
+    <script>
+        $(document).ready(function() {
+            $('.edit-employee').on('click', function() {
+                var employeeId = $(this).data('id');
+                const form = document.getElementById('editEmployeeForm');
+                var editUrl = '{{ route('employee.details', ':id') }}';
+                editUrl = editUrl.replace(':id', employeeId);
+                $.ajax({
+                    url: editUrl,
+                    type: 'GET',
+                    success: function(data){
+                        $('#employeName').val(data.employee.name);
+                        $('#employeeEmail').val(data.employee.email);
+                        $('#employeeMobile').val(data.employee.mobile);
+                        $('#employeeRole').val(data.employee.role);
+                    },
+                    error: function(){
+                        alert('failed to fetech employee data');
+                    }
+                });
+
+                var updateUrl = '{{ route('employee.update', ':id')}}';
+                updateUrl = updateUrl.replace(':id', employeeId);
+                form.action = updateUrl;
+            });
+        });
     </script>
 @endsection
