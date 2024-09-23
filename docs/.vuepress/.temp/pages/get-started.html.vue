@@ -1,23 +1,66 @@
-<template><div><h1 id="get-started" tabindex="-1"><a class="header-anchor" href="#get-started"><span>Get Started</span></a></h1>
-<p>This is a normal page, which contains VuePress basics.</p>
-<h2 id="pages" tabindex="-1"><a class="header-anchor" href="#pages"><span>Pages</span></a></h2>
-<p>You can add markdown files in your vuepress directory, every markdown file will be converted to a page in your site.</p>
-<p>See <a href="https://vuejs.press/guide/page.html#routing" target="_blank" rel="noopener noreferrer">routing</a> for more details.</p>
-<h2 id="content" tabindex="-1"><a class="header-anchor" href="#content"><span>Content</span></a></h2>
-<p>Every markdown file <a href="https://vuejs.press/guide/page.html#content" target="_blank" rel="noopener noreferrer">will be rendered to HTML, then converted to a Vue SFC</a>.</p>
-<p>VuePress support basic markdown syntax and <a href="https://vuejs.press/guide/markdown.html#syntax-extensions" target="_blank" rel="noopener noreferrer">some extensions</a>, you can also <a href="https://vuejs.press/guide/markdown.html#using-vue-in-markdown" target="_blank" rel="noopener noreferrer">use Vue features</a> in it.</p>
-<h2 id="configuration" tabindex="-1"><a class="header-anchor" href="#configuration"><span>Configuration</span></a></h2>
-<p>VuePress use a <code v-pre>.vuepress/config.js</code>(or .ts) file as <a href="https://vuejs.press/guide/configuration.html#client-config-file" target="_blank" rel="noopener noreferrer">site configuration</a>, you can use it to config your site.</p>
-<p>For <a href="https://vuejs.press/guide/configuration.html#client-config-file" target="_blank" rel="noopener noreferrer">client side configuration</a>, you can create <code v-pre>.vuepress/client.js</code>(or .ts).</p>
-<p>Meanwhile, you can also add configuration per page with <a href="https://vuejs.press/guide/page.html#frontmatter" target="_blank" rel="noopener noreferrer">frontmatter</a>.</p>
-<h2 id="layouts-and-customization" tabindex="-1"><a class="header-anchor" href="#layouts-and-customization"><span>Layouts and customization</span></a></h2>
-<p>Here are common configuration controlling layout of <code v-pre>@vuepress/theme-default</code>:</p>
+<template><div><h2 id="overview" tabindex="-1"><a class="header-anchor" href="#overview"><span>Overview</span></a></h2>
+<p>This guide will help you set up and run a Laravel project integrated with VuePress for documentation. The application supports user authentication, role management, payment integration, mails sending and much more.</p>
+<h2 id="requirements" tabindex="-1"><a class="header-anchor" href="#requirements"><span>Requirements</span></a></h2>
 <ul>
-<li><a href="https://vuejs.press/reference/default-theme/config.html#navbar" target="_blank" rel="noopener noreferrer">navbar</a></li>
-<li><a href="https://vuejs.press/reference/default-theme/config.html#sidebar" target="_blank" rel="noopener noreferrer">sidebar</a></li>
+<li>
+<p><strong>PHP</strong>: Ensure you have PHP version <code v-pre>^8.1</code> or above installed on your machine.</p>
+</li>
+<li>
+<p><strong>Laravel</strong>: This project requires Laravel version <code v-pre>^11.0</code>.</p>
+</li>
+<li>
+<p><strong>Node.js</strong>: Ensure that Node.js is installed for running scripts. You can download it from <a href="https://nodejs.org/" target="_blank" rel="noopener noreferrer">nodejs.org</a>.</p>
+</li>
+<li>
+<p><strong>Composer</strong>: Composer is required for managing PHP dependencies. You can install it by following the instructions on <a href="https://getcomposer.org/download/" target="_blank" rel="noopener noreferrer">getcomposer.org</a>.</p>
+</li>
 </ul>
-<p>Check <a href="https://vuejs.press/reference/default-theme/" target="_blank" rel="noopener noreferrer">default theme docs</a> for full reference.</p>
-<p>You can <a href="https://vuejs.press/reference/default-theme/styles.html#style-file" target="_blank" rel="noopener noreferrer">add extra style</a> with <code v-pre>.vuepress/styles/index.scss</code> file.</p>
+<h2 id="installation" tabindex="-1"><a class="header-anchor" href="#installation"><span>Installation</span></a></h2>
+<ul>
+<li>
+<p><strong>Clone the repository:</strong>: git clone <code v-pre>repository-url</code> cd <code v-pre>project-directory</code></p>
+</li>
+<li>
+<p><strong>Laravel</strong>: Install PHP dependencies: <code v-pre>composer install</code>.</p>
+</li>
+<li>
+<p><strong>Install Node.js dependencies:</strong>: <code v-pre>npm install</code></p>
+</li>
+<li>
+<p><strong>Set up your environment file:</strong>: Copy the example <code v-pre>.env.example</code> file</p>
+</li>
+<li>
+<p><strong>Generate application key:</strong>: <code v-pre>php artisan key:generate</code></p>
+</li>
+</ul>
+<h2 id="configuration" tabindex="-1"><a class="header-anchor" href="#configuration"><span>Configuration</span></a></h2>
+<ul>
+<li>
+<p>Configure your <code v-pre>.env</code> file to set database connection details and other environment-specific settings.</p>
+</li>
+<li>
+<p>Go through your authentication guards and user providers as needed in <code v-pre>config/auth.php</code>.</p>
+</li>
+<li>
+<p>Set up CORS in <code v-pre>config/cors.php</code> to allow cross-origin requests for your API.</p>
+</li>
+</ul>
+<h2 id="running-the-project" tabindex="-1"><a class="header-anchor" href="#running-the-project"><span>Running the Project</span></a></h2>
+<ul>
+<li>To start the Laravel server, run: <code v-pre>php artisan serve</code>.</li>
+<li>To run the VuePress documentation server, execute: <code v-pre>npm run docs:dev</code>.</li>
+</ul>
+<h2 id="authentication" tabindex="-1"><a class="header-anchor" href="#authentication"><span>Authentication</span></a></h2>
+<p>This application uses Laravel breeze for web routes and Sanctum for API authentication. You can authenticate users through the following guards:</p>
+<ul>
+<li><strong>web:</strong> For regular users.</li>
+<li><strong>admin:</strong> For admin access.</li>
+<li><strong>vendor:</strong> For vendor access.</li>
+<li><strong>employee:</strong> For different roles and permissions using employees table.</li>
+<li><strong>api:</strong> For API requests.</li>
+</ul>
+<h2 id="payments" tabindex="-1"><a class="header-anchor" href="#payments"><span>Payments</span></a></h2>
+<p>Stripe is integrated for handling payments. You need to configure your Stripe credentials in the <code v-pre>.env</code> file and set up routes for processing payments through your application.</p>
 </div></template>
 
 

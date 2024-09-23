@@ -1,7 +1,9 @@
 <div class="bg-white sidebar h-auto">
     <div class="logo flex items-center p-3">
-        <img src="{{ asset('assets/admin/images/logo/logo.png') }}" width="100" height="45" alt="logo">
-        <span class="font-bold text-orange-400 text-3xl ms-2">Estore</span>
+        <a href="{{ route('admin.dashboard') }}" class="flex items-center justify-center">
+            <img src="{{ asset('assets/admin/images/logo/logo.png') }}" width="100" height="45" alt="logo">
+            <span class="font-bold text-orange-400 text-3xl ms-2">Estore</span>
+        </a>
     </div>
 
 
@@ -20,7 +22,8 @@
                 <span class="text-gray-400 text-sm">All Employees</span>
                 <li
                     class="relative m-1 {{ request()->routeIs('employee.employees') ? 'bg-blue-200 bg-opacity-60 rounded-br-md rounded-se-md text-blue-600 shadow-2xl font-bold active-tab' : '' }}">
-                    <a href="{{ route('employee.employees') }}" class="text-md flex items-center hover:text-blue-700 p-2">
+                    <a href="{{ route('employee.employees') }}"
+                        class="text-md flex items-center hover:text-blue-700 p-2">
                         <i class="fa-solid fa-users me-2 text-lg"></i>All Employees
                     </a>
                 </li>
@@ -30,17 +33,19 @@
                 <li class="dropdown m-1">
                     <a href="#"
                         class="dropdown-toggle   text-md flex items-center justify-between hover:text-blue-700 p-2 {{-- {{ request()->routeIs('') ? 'bg-blue-200 bg-opacity-60 rounded-br-md rounded-se-md text-blue-600 shadow-2xl font-bold active-tab' : '' }} --}}">
-                        <span class="flex items-center justify-between"><i class='bx bx-user-plus text-2xl me-2'></i> Roles & Permissions</span>
+                        <span class="flex items-center justify-between"><i class='bx bx-user-plus text-2xl me-2'></i>
+                            Roles & Permissions</span>
                         <i class='bx bx-plus'></i>
                     </a>
 
                     <!-- Dropdown Menu -->
                     <ul class="dropdown-menu marker:text-blue-400 list-disc" role="list">
                         <li class=""><a href="{{ route('rolePage') }}"
-                                class="p-2 {{ request()->routeIs('rolePage') ? 'text-blue-700' : 'hover:text-blue-700' }}">Add Role</a>
+                                class="p-2 {{ request()->routeIs('rolePage') ? 'text-blue-700' : 'hover:text-blue-700' }}">Add
+                                Role</a>
                         </li>
-                        <li class=""><a href="{{-- {{ route('') }} --}}"
-                                class="p-2 {{-- {{ request()->routeIs('') ? 'text-blue-700' : 'hover:text-blue-700' }} --}}">Assign Permissions</a>
+                        <li class=""><a href="{{-- {{ route('') }} --}}" class="p-2 {{-- {{ request()->routeIs('') ? 'text-blue-700' : 'hover:text-blue-700' }} --}}">Assign
+                                Permissions</a>
                         </li>
                     </ul>
                 </li>

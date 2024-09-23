@@ -1,46 +1,56 @@
-# Get Started
+---
+title: Get Started
+---
 
-This is a normal page, which contains VuePress basics.
+## Overview
 
-## Pages
+This guide will help you set up and run a Laravel project integrated with VuePress for documentation. The application supports user authentication, role management, payment integration, mails sending and much more.
 
-You can add markdown files in your vuepress directory, every markdown file will be converted to a page in your site.
+## Requirements
 
-See [routing][] for more details.
+-   **PHP**: Ensure you have PHP version `^8.1` or above installed on your machine.
 
-## Content
+-   **Laravel**: This project requires Laravel version `^11.0`.
 
-Every markdown file [will be rendered to HTML, then converted to a Vue SFC][content].
+-   **Node.js**: Ensure that Node.js is installed for running scripts. You can download it from [nodejs.org](https://nodejs.org/).
 
-VuePress support basic markdown syntax and [some extensions][synatex-extensions], you can also [use Vue features][vue-feature] in it.
+-   **Composer**: Composer is required for managing PHP dependencies. You can install it by following the instructions on [getcomposer.org](https://getcomposer.org/download/).
+
+## Installation
+
+-   **Clone the repository:**: git clone `repository-url` cd `project-directory`
+
+-   **Laravel**: Install PHP dependencies: `composer install`.
+
+-   **Install Node.js dependencies:**: `npm install`
+
+-   **Set up your environment file:**: Copy the example `.env.example` file
+
+-   **Generate application key:**: `php artisan key:generate`
 
 ## Configuration
 
-VuePress use a `.vuepress/config.js`(or .ts) file as [site configuration][config], you can use it to config your site.
+-   Configure your `.env` file to set database connection details and other environment-specific settings.
 
-For [client side configuration][client-config], you can create `.vuepress/client.js`(or .ts).
+-   Go through your authentication guards and user providers as needed in `config/auth.php`.
 
-Meanwhile, you can also add configuration per page with [frontmatter][].
+-   Set up CORS in `config/cors.php` to allow cross-origin requests for your API.
 
-## Layouts and customization
+## Running the Project
 
-Here are common configuration controlling layout of `@vuepress/theme-default`:
+-   To start the Laravel server, run: `php artisan serve`.
+-   To run the VuePress documentation server, execute: `npm run docs:dev`.
 
-- [navbar][]
-- [sidebar][]
+## Authentication
 
-Check [default theme docs][default-theme] for full reference.
+This application uses Laravel breeze for web routes and Sanctum for API authentication. You can authenticate users through the following guards:
 
-You can [add extra style][style] with `.vuepress/styles/index.scss` file.
+-   **web:** For regular users.
+-   **admin:** For admin access.
+-   **vendor:** For vendor access.
+-   **employee:** For different roles and permissions using employees table.
+-   **api:** For API requests.
 
-[routing]: https://vuejs.press/guide/page.html#routing
-[content]: https://vuejs.press/guide/page.html#content
-[synatex-extensions]: https://vuejs.press/guide/markdown.html#syntax-extensions
-[vue-feature]: https://vuejs.press/guide/markdown.html#using-vue-in-markdown
-[config]: https://vuejs.press/guide/configuration.html#client-config-file
-[client-config]: https://vuejs.press/guide/configuration.html#client-config-file
-[frontmatter]: https://vuejs.press/guide/page.html#frontmatter
-[navbar]: https://vuejs.press/reference/default-theme/config.html#navbar
-[sidebar]: https://vuejs.press/reference/default-theme/config.html#sidebar
-[default-theme]: https://vuejs.press/reference/default-theme/
-[style]: https://vuejs.press/reference/default-theme/styles.html#style-file
+## Payments
+
+Stripe is integrated for handling payments. You need to configure your Stripe credentials in the `.env` file and set up routes for processing payments through your application.
