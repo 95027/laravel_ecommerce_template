@@ -7,6 +7,7 @@ use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Media;
 use App\Models\Product;
+use App\Models\ProductMetaTags;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -56,9 +57,7 @@ class ProductController extends Controller
         return redirect()->back();
     }
 
-    public function editBrand(){
-        
-    }
+    public function editBrand() {}
 
     public function updateBrand() {}
 
@@ -268,15 +267,25 @@ class ProductController extends Controller
                 'featured' => 1,
             ]);
         }
+
+        if ($request->product_meta_title) {
+            ProductMetaTags::create([
+                'product_id' => $product->id,
+                'product_meta_title' => $request->product_meta_title,
+                'product_meta_description' => $request->product_meta_description,
+            ]);
+        }
+
         notify()->success('Prodcut created successfully');
 
         return redirect()->route('product');
     }
 
-    public function deleteProduct(Request $request, $id){
+    public function deleteProduct(Request $request, $id)
+    {
         $product = Product::find($id);
         dd($product);
-        if($product){
+        if ($product) {
             $product->delete();
             notify()->success('Product deleted successfully');
             return redirect()->back();

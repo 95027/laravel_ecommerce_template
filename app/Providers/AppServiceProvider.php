@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Models\SidebarSection;
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -19,6 +21,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        $sidebarSections = SidebarSection::where('parentId', null)->get();
+        View::share('sidebarSections', $sidebarSections);
     }
 }

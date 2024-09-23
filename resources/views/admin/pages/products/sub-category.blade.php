@@ -73,7 +73,7 @@
                                             <a class="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 dark:text-neutral-400 dark:hover:bg-neutral-700 dark:hover:text-neutral-300 dark:focus:bg-neutral-700 edit-category"
                                                 href="javascript:void(0);" aria-haspopup="dialog" aria-expanded="false"
                                                 aria-controls="edit-category-offcanvas"
-                                                data-hs-overlay="#edit-category-offcanvas">
+                                                data-hs-overlay="#edit-category-offcanvas" data-id={{ $SubCategory->id }}>
                                                 <i class='bx bx-edit-alt text-lg'></i>
                                                 Edit
                                             </a>
@@ -148,4 +148,81 @@
             </form>
         </div>
     </div>
+
+    {{-- edit Category Offcanvas --}}
+    <div id="edit-category-offcanvas"
+        class="hs-overlay hs-overlay-open:translate-x-0 hidden translate-x-full fixed top-0 end-0 transition-all duration-300 transform h-full max-w-xs w-full z-[80] bg-white border-s"
+        role="dialog" tabindex="-1" aria-labelledby="hs-offcanvas-right-label">
+        <div class="flex justify-between items-center py-3 px-4 border-b">
+            <h3 id="hs-offcanvas-right-label" class="font-bold text-gray-800">
+                Edit Sub-Category
+            </h3>
+            <button type="button"
+                class="size-8 inline-flex justify-center items-center gap-x-2 rounded-full border border-transparent bg-gray-100 text-gray-800 hover:bg-gray-200 focus:outline-none focus:bg-gray-200 disabled:opacity-50 disabled:pointer-events-none"
+                aria-label="Close" data-hs-overlay="#edit-category-offcanvas">
+                <span class="sr-only">Close</span>
+                <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round">
+                    <path d="M18 6 6 18"></path>
+                    <path d="m6 6 12 12"></path>
+                </svg>
+            </button>
+        </div>
+        <div class="p-4">
+            <form id="edit-sub-category" data-parsley-validate action="{{ route('category.sub-category-store') }}"
+                onsubmit="jsValidator('edit-sub-category')" method="POST" enctype="multipart/form-data">
+                @csrf
+                <label for="input-label" class="block text-sm font-medium mb-2 dark:text-white">Parent Category <abbr
+                        class="text-red-600">*</abbr></label>
+                <select name="parent_category_id" required
+                    class="mb-4 py-3 px-4 pe-9 block w-full border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-0">
+                    @foreach ($categorys as $category)
+                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                    @endforeach
+                </select>
+                <div class="max-w-sm mb-4">
+                    <label for="input-label" class="block text-sm font-medium mb-2 dark:text-white">Category
+                        Name <abbr class="text-red-600">*</abbr></label>
+                    <input type="text" name="name" required
+                        class="py-3 px-4 block w-full border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-0"
+                        placeholder="Enter category name" id="sub-category-name">
+                </div>
+                <div class="">
+                    <button type="submit" aria-haspopup="dialog" aria-expanded="false"
+                        aria-controls="edit-category-offcanvas"
+                        class="py-2 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-blue-100 text-blue-800 hover:bg-blue-200 focus:outline-none focus:bg-blue-200 disabled:opacity-50 disabled:pointer-events-none dark:text-blue-400 dark:bg-blue-800/30 dark:hover:bg-blue-800/20 dark:focus:bg-blue-800/20">
+                        Update
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+@endsection
+
+@section('script')
+    <script>
+        $(document).ready(function() {
+            $('.edit-category').on('click', function() {
+                var categoryId = $(this).data('id');
+                const form = document.getElementById('edit-sub-category');
+                var editUrl = '{{ route('category.edit', ':id') }}';
+                editUrl = editUrl.replace(':id', categoryId);
+                $.ajax({
+                    url: editUrl,
+                    type: 'GET',
+                    success: function(data) {
+                        console.log(data);
+                        $('#sub-category-name').val(data.category.name);
+                    },
+                    error: function() {
+                        alert('Failed to fetch category data');
+                    }
+                });
+                var updateUrl = '{{ route('category.update', ':id') }}';
+                updateUrl = updateUrl.replace(':id', categoryId);
+                form.action = updateUrl;
+            });
+        });
+    </script>
 @endsection

@@ -9,15 +9,20 @@
 
     <div class="menu p-3 m-0 h-screen overflow-y-auto">
         <ul class="space-y-2">
-            <div class="">
-                <span class="text-gray-400 text-sm">Main Page</span>
-                <li
-                    class="relative m-1 {{ request()->routeIs('admin.dashboard') ? 'bg-blue-200 bg-opacity-60 rounded-br-md rounded-se-md text-blue-600 shadow-2xl font-bold active-tab' : '' }}">
-                    <a href="{{ route('admin.dashboard') }}" class="text-md flex items-center hover:text-blue-700 p-2">
-                        <i class='bx bxs-dashboard me-2 text-2xl'></i>Dashboard
-                    </a>
-                </li>
-            </div>
+
+            {{-- @foreach ($sidebarSections as $section)
+                <div class="">
+                    <span class="text-gray-400 text-sm">{{$section->heading}}</span>
+                    <li
+                        class="relative m-1 {{ request()->routeIs('admin.dashboard') ? 'bg-blue-200 bg-opacity-60 rounded-br-md rounded-se-md text-blue-600 shadow-2xl font-bold active-tab' : '' }}">
+                        <a href="{{ route('admin.dashboard') }}"
+                            class="text-md flex items-center hover:text-blue-700 p-2">
+                            <i class='{{$section->icon}} me-2 text-2xl'></i>{{$section->title}}
+                        </a>
+                    </li>
+                </div>
+            @endforeach --}}
+
             <div class="">
                 <span class="text-gray-400 text-sm">All Employees</span>
                 <li
