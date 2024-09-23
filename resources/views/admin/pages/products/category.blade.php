@@ -209,7 +209,7 @@
             $('.edit-category').on('click', function() {
                 var categoryId = $(this).data('id');
                 const form = document.getElementById('edit-category-form');
-                var editUrl = '{{ route('category.edit', ':id') }}';
+                var editUrl = '{{ route('category.edit',':id') }}';
                 editUrl = editUrl.replace(':id', categoryId);
                 $.ajax({
                     url: editUrl,

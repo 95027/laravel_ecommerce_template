@@ -37,7 +37,7 @@ checkbox.addEventListener("change", () => {
 
 
 $(window).on('load', function () {
-    setTimeout(function () { 
+    setTimeout(function () {
         $('.page-loader').fadeOut('slow');
     }, 1000);
 });

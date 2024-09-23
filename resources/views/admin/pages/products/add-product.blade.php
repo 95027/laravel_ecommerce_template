@@ -41,57 +41,58 @@
                 <div class="border-e border-gray-200 w-[15%] shadow-2xl ps-5 pt-5">
                     <nav class="flex flex-col space-y-2" aria-label="Tabs" role="tablist" aria-orientation="horizontal">
                         <button type="button"
-                            class="hs-tab-active:border-blue-500 hs-tab-active:text-blue-600 py-1 pe-4 inline-flex items-center gap-x-2 border-e-2 border-transparent text-sm whitespace-nowrap text-gray-500 hover:text-blue-600 focus:outline-none focus:text-blue-600 disabled:opacity-50 disabled:pointer-events-none active"
+                            class="step-tab hs-tab-active:border-blue-500 hs-tab-active:text-blue-600 py-1 pe-4 inline-flex items-center gap-x-2 border-e-2 border-transparent text-sm whitespace-nowrap text-gray-500 hover:text-blue-600 focus:outline-none focus:text-blue-600 disabled:opacity-50 disabled:pointer-events-none active"
                             id="vertical-tab-with-border-item-1" aria-selected="true"
                             data-hs-tab="#vertical-tab-with-border-1" aria-controls="vertical-tab-with-border-1"
                             role="tab">
                             General Information
                         </button>
                         <button type="button"
-                            class="hs-tab-active:border-blue-500 hs-tab-active:text-blue-600 py-1 pe-4 inline-flex items-center gap-x-2 border-e-2 border-transparent text-sm whitespace-nowrap text-gray-500 hover:text-blue-600 focus:outline-none focus:text-blue-600 disabled:opacity-50 disabled:pointer-events-none"
+                            class="step-tab hs-tab-active:border-blue-500 hs-tab-active:text-blue-600 py-1 pe-4 inline-flex items-center gap-x-2 border-e-2 border-transparent text-sm whitespace-nowrap text-gray-500 hover:text-blue-600 focus:outline-none focus:text-blue-600 disabled:opacity-50 disabled:pointer-events-none"
                             id="vertical-tab-with-border-item-2" aria-selected="false"
                             data-hs-tab="#vertical-tab-with-border-2" aria-controls="vertical-tab-with-border-2"
-                            role="tab">
+                            role="tab" disabled>
                             Images
                         </button>
                         <button type="button"
-                            class="hs-tab-active:border-blue-500 hs-tab-active:text-blue-600 py-1 pe-4 inline-flex items-center gap-x-2 border-e-2 border-transparent text-sm whitespace-nowrap text-gray-500 hover:text-blue-600 focus:outline-none focus:text-blue-600 disabled:opacity-50 disabled:pointer-events-none"
+                            class="step-tab hs-tab-active:border-blue-500 hs-tab-active:text-blue-600 py-1 pe-4 inline-flex items-center gap-x-2 border-e-2 border-transparent text-sm whitespace-nowrap text-gray-500 hover:text-blue-600 focus:outline-none focus:text-blue-600 disabled:opacity-50 disabled:pointer-events-none"
                             id="vertical-tab-with-border-item-3" aria-selected="false"
                             data-hs-tab="#vertical-tab-with-border-3" aria-controls="vertical-tab-with-border-3"
-                            role="tab">
+                            role="tab" disabled>
                             Inventory
                         </button>
                         <button type="button"
-                            class="hs-tab-active:border-blue-500 hs-tab-active:text-blue-600 py-1 pe-4 inline-flex items-center gap-x-2 border-e-2 border-transparent text-sm whitespace-nowrap text-gray-500 hover:text-blue-600 focus:outline-none focus:text-blue-600 disabled:opacity-50 disabled:pointer-events-none"
+                            class="step-tab hs-tab-active:border-blue-500 hs-tab-active:text-blue-600 py-1 pe-4 inline-flex items-center gap-x-2 border-e-2 border-transparent text-sm whitespace-nowrap text-gray-500 hover:text-blue-600 focus:outline-none focus:text-blue-600 disabled:opacity-50 disabled:pointer-events-none"
                             id="vertical-tab-with-border-item-4" aria-selected="false"
                             data-hs-tab="#vertical-tab-with-border-4" aria-controls="vertical-tab-with-border-4"
-                            role="tab">
+                            role="tab" disabled>
                             Pricing
                         </button>
                         <button type="button"
-                            class="hs-tab-active:border-blue-500 hs-tab-active:text-blue-600 py-1 pe-4 inline-flex items-center gap-x-2 border-e-2 border-transparent text-sm whitespace-nowrap text-gray-500 hover:text-blue-600 focus:outline-none focus:text-blue-600 disabled:opacity-50 disabled:pointer-events-none"
+                            class="step-tab hs-tab-active:border-blue-500 hs-tab-active:text-blue-600 py-1 pe-4 inline-flex items-center gap-x-2 border-e-2 border-transparent text-sm whitespace-nowrap text-gray-500 hover:text-blue-600 focus:outline-none focus:text-blue-600 disabled:opacity-50 disabled:pointer-events-none"
                             id="vertical-tab-with-border-item-5" aria-selected="false"
                             data-hs-tab="#vertical-tab-with-border-5" aria-controls="vertical-tab-with-border-5"
-                            role="tab">
+                            role="tab" disabled>
                             Additional Information
                         </button>
                         <button type="button"
-                            class="hs-tab-active:border-blue-500 hs-tab-active:text-blue-600 py-1 pe-4 inline-flex items-center gap-x-2 border-e-2 border-transparent text-sm whitespace-nowrap text-gray-500 hover:text-blue-600 focus:outline-none focus:text-blue-600 disabled:opacity-50 disabled:pointer-events-none"
+                            class="step-tab hs-tab-active:border-blue-500 hs-tab-active:text-blue-600 py-1 pe-4 inline-flex items-center gap-x-2 border-e-2 border-transparent text-sm whitespace-nowrap text-gray-500 hover:text-blue-600 focus:outline-none focus:text-blue-600 disabled:opacity-50 disabled:pointer-events-none"
                             id="vertical-tab-with-border-item-6" aria-selected="false"
                             data-hs-tab="#vertical-tab-with-border-6" aria-controls="vertical-tab-with-border-6"
-                            role="tab">
+                            role="tab" disabled>
                             Product Meta
                         </button>
                     </nav>
                 </div>
 
                 <div class="ms-3 w-[85%]">
-                    <div id="vertical-tab-with-border-1" role="tabpanel" aria-labelledby="vertical-tab-with-border-item-1">
+                    <div id="vertical-tab-with-border-1" class="active step-content" role="tabpanel"
+                        aria-labelledby="vertical-tab-with-border-item-1">
                         <div class="shadow-2xl rounded-2xl p-8">
                             @livewire('admin.product.category-change')
                         </div>
                     </div>
-                    <div id="vertical-tab-with-border-2" class="hidden" role="tabpanel"
+                    <div id="vertical-tab-with-border-2" class="hidden step-content" role="tabpanel"
                         aria-labelledby="vertical-tab-with-border-item-2">
                         <div class="shadow-2xl rounded-2xl p-8">
                             <div class="mb-4">
@@ -210,7 +211,7 @@
                             </div>
                         </div>
                     </div>
-                    <div id="vertical-tab-with-border-3" class="hidden" role="tabpanel"
+                    <div id="vertical-tab-with-border-3" class="hidden step-content" role="tabpanel"
                         aria-labelledby="vertical-tab-with-border-item-3">
                         <div class="shadow-2xl rounded-2xl p-8 grid grid-cols-2 gap-2">
                             <div class="max-w-full mb-4">
@@ -236,7 +237,7 @@
                             </div> --}}
                         </div>
                     </div>
-                    <div id="vertical-tab-with-border-4" class="hidden" role="tabpanel"
+                    <div id="vertical-tab-with-border-4" class="hidden step-content" role="tabpanel"
                         aria-labelledby="vertical-tab-with-border-item-4">
                         <div class="shadow-2xl rounded-2xl p-8 grid grid-cols-2 gap-2">
                             <div class="max-w-full mb-4">
@@ -255,13 +256,13 @@
                             </div>
                         </div>
                     </div>
-                    <div id="vertical-tab-with-border-5" class="hidden" role="tabpanel"
+                    <div id="vertical-tab-with-border-5" class="hidden step-content" role="tabpanel"
                         aria-labelledby="vertical-tab-with-border-item-5">
                         <p class="text-gray-500">
                             This is the <em class="font-semibold text-gray-800">five</em> item's tab body.
                         </p>
                     </div>
-                    <div id="vertical-tab-with-border-6" class="hidden" role="tabpanel"
+                    <div id="vertical-tab-with-border-6" class="hidden step-content" role="tabpanel"
                         aria-labelledby="vertical-tab-with-border-item-6">
                         <div class="shadow-2xl rounded-2xl p-8">
                             <div class="max-w-full mb-4">
@@ -282,10 +283,26 @@
                     </div>
                 </div>
             </div>
-            <div class="flex items-center justify-end mt-4 me-5">
+            {{-- <div class="flex items-center justify-end mt-4 me-5">
                 <button type="submit"
                     class="py-2 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-blue-100 text-blue-800 hover:bg-blue-200 focus:outline-none focus:bg-blue-200 ">
                     Add Product
+                </button>
+            </div> --}}
+
+            <!-- Step Navigation Buttons -->
+            <div class="flex items-center justify-end mt-4 me-5">
+                <button type="button" id="prev-btn"
+                    class="hidden py-2 px-4 text-sm font-medium rounded-lg bg-gray-100 text-gray-800" disabled>
+                    Previous
+                </button>
+                <button type="button" id="next-btn"
+                    class="py-2 px-4 text-sm font-medium rounded-lg bg-blue-100 text-blue-800">
+                    Next
+                </button>
+                <button type="submit" id="submit-btn"
+                    class="hidden py-2 px-4 text-sm font-medium rounded-lg bg-green-100 text-green-800">
+                    Submit
                 </button>
             </div>
         </form>
@@ -464,4 +481,97 @@
             </div>
         </form> --}}
     </div>
+@endsection
+
+@section('script')
+    <script>
+        const customErrorMessages = {
+            "title": "Please enter the product name.",
+            "brandId": "Please Select Brand",
+            "categoryId": "Please Select Category",
+            "short_description":"Please enter short description",
+            "image":"Please upload product image",
+            "sku":"Please enter sku",
+            "quantity": "Please enter quantity",
+            "mrp":"Please enter mrp",
+            "price": "Please enter price",
+        };
+        document.addEventListener("DOMContentLoaded", function() {
+            let currentStep = 1;
+            const totalSteps = 6;
+
+            const steps = document.querySelectorAll(".step-content");
+            const nextBtn = document.getElementById("next-btn");
+            const prevBtn = document.getElementById("prev-btn");
+            const submitBtn = document.getElementById("submit-btn");
+
+            const stepTabs = document.querySelectorAll(".step-tab");
+
+            function showStep(step) {
+                steps.forEach((s, index) => {
+                    s.classList.toggle("hidden", index !== step - 1);
+                    s.classList.toggle("active", index === step - 1);
+                });
+
+                stepTabs.forEach((tab, index) => {
+                    tab.disabled = index >= step;
+                    tab.classList.toggle("active", index === step - 1);
+                });
+
+                prevBtn.disabled = step === 1;
+                prevBtn.classList.toggle("hidden", step === 1);
+                nextBtn.classList.toggle("hidden", step === totalSteps);
+                submitBtn.classList.toggle("hidden", step !== totalSteps);
+            }
+
+            function validateStep() {
+                const activeStep = steps[currentStep - 1];
+                const requiredFields = activeStep.querySelectorAll("[required]");
+                let isValid = true;
+
+                requiredFields.forEach(field => {
+                    const errorContainer = field
+                        .nextElementSibling;
+                    if (!field.checkValidity()) {
+                        isValid = false;
+                        showErrorMessage(field, errorContainer);
+                    } else {
+                        clearErrorMessage(field, errorContainer);
+                    }
+                });
+
+                return isValid;
+            }
+
+            function showErrorMessage(field, errorContainer) {
+                const customMessage = customErrorMessages[field.name] || "This field is required."; 
+                if (!errorContainer || !errorContainer.classList.contains('error-message')) {
+                    const errorMessage = document.createElement('div');
+                    errorMessage.classList.add('text-red-500', 'error-message');
+                    errorMessage.textContent = customMessage;
+                    field.after(errorMessage);
+                }
+            }
+
+            function clearErrorMessage(field, errorContainer) {
+                if (errorContainer && errorContainer.classList.contains('error-message')) {
+                    errorContainer.remove();
+                }
+            }
+
+            nextBtn.addEventListener("click", function() {
+                if (validateStep()) {
+                    currentStep++;
+                    showStep(currentStep);
+                }
+            });
+
+            prevBtn.addEventListener("click", function() {
+                currentStep--;
+                showStep(currentStep);
+            });
+
+            showStep(currentStep);
+        });
+    </script>
 @endsection

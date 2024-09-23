@@ -37,12 +37,23 @@ class AdminPageController extends Controller
         return view('admin.pages.create-coupon');
     }
 
-    public function employeePage(){
+    public function employeePage()
+    {
         $data['employees'] = Employee::latest()->get();
         return view('admin.pages.employees', $data);
     }
 
-    public function rolePage(){
+    public function employeeDetails($id)
+    {
+        $employee = Employee::findOrFail($id);
+        if ($employee) {
+            return response()->json(['employee' => $employee]);
+        }
+    }
+
+
+    public function rolePage()
+    {
         return view('admin.pages.roles');
     }
 }

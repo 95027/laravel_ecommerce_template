@@ -55,6 +55,34 @@
     <script src="{{ asset('assets/admin/js/greeting.js') }}"></script>
     <script src="{{ asset('assets/admin/js/parsley-validator.js') }}"></script>
     @yield('script')
+    <script>
+        document.querySelectorAll('.select-menu').forEach(menu => {
+            const selectBtn = menu.querySelector(".select-btn");
+            const options = menu.querySelectorAll(".option");
+            const sBtn_text = menu.querySelector(".sBtn-text");
+
+            // Toggle the dropdown
+            selectBtn.addEventListener("click", () => {
+                menu.classList.toggle("active");
+            });
+
+            // Handle each option click
+            options.forEach(option => {
+                option.addEventListener("click", () => {
+                    let selectedOption = option.querySelector(".option-text").innerText;
+                    sBtn_text.innerText = selectedOption;
+                    menu.classList.remove("active"); // Close the menu after selection
+                });
+            });
+
+            // Close the dropdown if clicked outside
+            document.addEventListener("click", function(e) {
+                if (!menu.contains(e.target)) {
+                    menu.classList.remove("active");
+                }
+            });
+        });
+    </script>
 </body>
 
 </html>
