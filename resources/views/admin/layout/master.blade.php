@@ -15,34 +15,26 @@
     <link rel="stylesheet" href="{{ asset('assets/admin/css/parsleyerror.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
-</head>
+    
 
-{{-- <div class="page-loader">
-    <div class="spinner"></div>
-    <div class="txt">Cargando<br>vacaciones</div>
-</div> --}}
+</head>
 
 <body class="">
     <main>
-        <div class="flex h-screen">
-            <div class="w-[22%]">
-                @include('admin.layout.sidebar')
-            </div>
-            <div class="w-full m-3 flex flex-col">
-                <div>
-                    @include('admin.layout.topbar')
-                </div>
-                <div class="flex-1 overflow-y-auto main-content">
+        <div>
+            @include('admin.layout.sidebar')
+
+            <div class="lg:pl-72">
+                @include('admin.layout.topbar')
+                <div class="px-4 sm:px-6 lg:px-8">
                     @yield('content')
                 </div>
-                {{-- <div>
-                    @include('admin.layout.footer')
-                </div> --}}
             </div>
         </div>
+
     </main>
 
-    <x-notify::notify />
+    <x-notify::notify/>
     @notifyJs
     {{-- <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script> --}}
     <!-- Add jQuery via CDN in a Blade template -->

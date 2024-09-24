@@ -1,195 +1,264 @@
-<div class="bg-white sidebar h-auto">
-    <div class="logo flex items-center p-3">
-        <img src="{{ asset('assets/admin/images/logo/logo.png') }}" width="100" height="45" alt="logo">
-        <span class="font-bold text-orange-400 text-3xl ms-2">Estore</span>
-    </div>
 
 
-    <div class="menu p-3 m-0 h-screen overflow-y-auto">
-        <ul class="space-y-2">
-            <div class="">
-                <span class="text-gray-400 text-sm">Main Page</span>
-                <li
-                    class="relative m-1 {{ request()->routeIs('admin.dashboard') ? 'bg-blue-200 bg-opacity-60 rounded-br-md rounded-se-md text-blue-600 shadow-2xl font-bold active-tab' : '' }}">
-                    <a href="{{ route('admin.dashboard') }}" class="text-md flex items-center hover:text-blue-700 p-2">
-                        <i class='bx bxs-dashboard me-2 text-2xl'></i>Dashboard
-                    </a>
-                </li>
-            </div>
-            <div class="">
-                <span class="text-gray-400 text-sm">All Employees</span>
-                <li
-                    class="relative m-1 {{ request()->routeIs('employee.employees') ? 'bg-blue-200 bg-opacity-60 rounded-br-md rounded-se-md text-blue-600 shadow-2xl font-bold active-tab' : '' }}">
-                    <a href="{{ route('employee.employees') }}" class="text-md flex items-center hover:text-blue-700 p-2">
-                        <i class="fa-solid fa-users me-2 text-lg"></i>All Employees
-                    </a>
-                </li>
-            </div>
-            <div class="mb-4">
-                <span class="text-gray-400 text-sm">Roles & Permissions</span>
-                <li class="dropdown m-1">
-                    <a href="#"
-                        class="dropdown-toggle   text-md flex items-center justify-between hover:text-blue-700 p-2 {{-- {{ request()->routeIs('') ? 'bg-blue-200 bg-opacity-60 rounded-br-md rounded-se-md text-blue-600 shadow-2xl font-bold active-tab' : '' }} --}}">
-                        <span class="flex items-center justify-between"><i class='bx bx-user-plus text-2xl me-2'></i> Roles & Permissions</span>
-                        <i class='bx bx-plus'></i>
-                    </a>
+  <div class="hidden lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:w-72 lg:flex-col">
+      <div class="flex grow flex-col gap-y-5 overflow-y-auto bg-gray-900 px-5 pb-4 menu">
+          <div class="flex h-16 shrink-0 items-center">
+              <img class="h-8 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
+                  alt="Your Company">
+              <h1 class="text-3xl ms-2 font-bold text-white">Ecommerce</h1>
+          </div>
+          <nav class="flex flex-1 flex-col">
+              <ul role="list" class="flex flex-1 flex-col -mx-0 space-y-1">
+                  <div class="mb-2">
+                      <div class="text-xs font-semibold  text-gray-400">Dashboard</div>
+                      <li
+                          class="relative m-1 {{ request()->routeIs('admin.dashboard') ? 'rounded-br-md rounded-se-md bg-gray-800 text-white shadow-2xl font-bold active-tab' : 'text-gray-400' }}">
+                          <a href="{{ route('admin.dashboard') }}"
+                              class="group flex gap-x-3 p-2 text-sm font-semibold  {{ request()->routeIs('admin.dashboard') ? 'text-white' : 'text-gray-400 hover:text-white' }}">
+                              <i class='bx bxs-dashboard text-2xl'></i>
+                              Dashboard
+                          </a>
+                      </li>
+                  </div>
+                  <div class="mb-2">
+                      <div class="text-xs font-semibold  text-gray-400">All Employees</div>
+                      <li
+                          class="relative m-1 {{ request()->routeIs('employee.employees') ? 'rounded-br-md rounded-se-md bg-gray-800 text-white shadow-2xl font-bold active-tab' : 'text-gray-400' }}">
+                          <a href="{{ route('employee.employees') }}"
+                              class="group flex gap-x-3 rounded-md p-2 text-sm font-semibold  {{ request()->routeIs('employee.employees') ? 'text-white' : 'text-gray-400 hover:text-white' }} ">
+                              <svg class="h-6 w-6 shrink-0" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                  stroke="currentColor" aria-hidden="true">
+                                  <path stroke-linecap="round" stroke-linejoin="round"
+                                      d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z" />
+                              </svg>
+                              All Employees
+                          </a>
+                      </li>
+                  </div>
+                  <div class="mb-2" x-data="{ open: false }">
+                      <div class="text-xs font-semibold  text-gray-400">Roles & Permissions</div>
+                      <li
+                          class="dropdown relative m-1 {{ request()->routeIs('rolePage') ? 'rounded-br-md rounded-se-md bg-gray-800 text-white shadow-2xl font-bold active-tab' : 'text-gray-400' }}">
+                          <!-- Dropdown Toggle -->
+                          <a href="#" @click="open = !open"
+                              class="dropdown-toggle group flex justify-between items-center gap-x-3 p-2 text-sm font-semibold  {{ request()->routeIs('rolePage') ? 'text-white' : 'text-gray-400 hover:text-white' }}">
+                              <span class="flex items-center gap-x-3">
+                                  <i class='bx bx-user-plus text-2xl'></i> Roles & Permissions
+                              </span>
+                              <i class='bx' :class="open ? 'bx-minus' : 'bx-plus'"></i>
+                          </a>
 
-                    <!-- Dropdown Menu -->
-                    <ul class="dropdown-menu marker:text-blue-400 list-disc" role="list">
-                        <li class=""><a href="{{ route('rolePage') }}"
-                                class="p-2 {{ request()->routeIs('rolePage') ? 'text-blue-700' : 'hover:text-blue-700' }}">Add Role</a>
-                        </li>
-                        <li class=""><a href="{{-- {{ route('') }} --}}"
-                                class="p-2 {{-- {{ request()->routeIs('') ? 'text-blue-700' : 'hover:text-blue-700' }} --}}">Assign Permissions</a>
-                        </li>
-                    </ul>
-                </li>
-            </div>
-            <div class="mb-4">
-                <span class="text-gray-400 text-sm">All Users</span>
-                <li class="dropdown m-1">
-                    <a href="#"
-                        class="dropdown-toggle   text-md flex items-center justify-between hover:text-blue-700 p-2 {{ request()->routeIs('admin.user') ? 'bg-blue-200 bg-opacity-60 rounded-br-md rounded-se-md text-blue-600 shadow-2xl font-bold active-tab' : '' }}">
-                        <span class="flex items-center justify-between"><i class='bx bx-user text-2xl me-2'></i> User
-                            Management</span>
-                        <i class='bx bx-plus'></i>
-                    </a>
+                          <!-- Dropdown Menu -->
+                          <ul x-show="open" x-transition
+                              class="dropdown-menu mt-2 marker:text-white list-disc bg-gray-800 p-2 rounded-md"
+                              role="list">
+                              <li>
+                                  <a href="{{ route('rolePage') }}"
+                                      class="block p-2 {{ request()->routeIs('rolePage') ? 'text-white' : 'text-gray-400 hover:text-white' }}">
+                                      Add Role
+                                  </a>
+                              </li>
+                              <li>
+                                  <a href="#" class="block p-2 text-gray-400 hover:text-white">
+                                      Assign Permissions
+                                  </a>
+                              </li>
+                          </ul>
+                      </li>
+                  </div>
 
-                    <!-- Dropdown Menu -->
-                    <ul class="dropdown-menu marker:text-blue-400 list-disc" role="list">
-                        <li class=""><a href="{{ route('admin.user') }}"
-                                class="p-2 {{ request()->routeIs('admin.user') ? 'text-blue-700' : 'hover:text-blue-700' }}">All
-                                Users</a>
-                        </li>
-                    </ul>
-                </li>
-            </div>
-            <div class="mb-4">
-                <span class="text-gray-400 text-sm">Products</span>
-                <li class="dropdown m-1">
-                    <a
-                        class="dropdown-toggle  text-md flex items-center justify-between hover:text-blue-700 p-2 {{ request()->routeIs('product', 'category', 'category.sub-category', 'brand') ? 'bg-blue-200 bg-opacity-60 rounded-br-md rounded-se-md text-blue-600 shadow-2xl font-bold active-tab' : '' }}">
-                        <span class="flex justify-between items-center">
-                            <i class='bx bxl-product-hunt text-2xl me-2'></i>
-                            Product Management
-                        </span>
-                        <i class='bx bx-plus'></i>
-                    </a>
+                  <div class="mb-2" x-data="{ open: false }">
+                      <div class="text-xs font-semibold  text-gray-400">All Users</div>
+                      <li
+                          class="dropdown relative m-1 {{ request()->routeIs('admin.user') ? 'rounded-br-md rounded-se-md bg-gray-800 text-white shadow-2xl font-bold active-tab' : 'text-gray-400' }}">
+                          <!-- Dropdown Toggle -->
+                          <a href="#" @click="open = !open"
+                              class="dropdown-toggle group flex justify-between items-center gap-x-3 p-2 text-sm font-semibold  {{ request()->routeIs('admin.user') ? 'text-white' : 'text-gray-400 hover:text-white' }}">
+                              <span class="flex items-center gap-x-3">
+                                  <i class='bx bx-user-plus text-2xl'></i> User
+                                  Management
+                              </span>
+                              <i class='bx' :class="open ? 'bx-minus' : 'bx-plus'"></i>
+                          </a>
 
-                    <!-- Dropdown Menu -->
-                    <ul class="dropdown-menu marker:text-blue-400 list-disc {{ request()->routeIs('product', 'category', 'category.sub-category', 'brand') ? 'show' : '' }}"
-                        role="list">
-                        <li>
-                            <a href="{{ route('product') }}"
-                                class="p-2 {{ request()->routeIs('product') ? 'text-blue-700' : 'hover:text-blue-700' }}">
-                                Products
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{ route('category') }}"
-                                class="p-2 {{ request()->routeIs('category') ? 'text-blue-700' : 'hover:text-blue-700' }}">
-                                Parent Category
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{ route('category.sub-category') }}"
-                                class="p-2 {{ request()->routeIs('category.sub-category') ? 'text-blue-700' : 'hover:text-blue-700' }}">
-                                Sub Category
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{ route('brand') }}"
-                                class="p-2 {{ request()->routeIs('brand') ? 'text-blue-700' : 'hover:text-blue-700' }}">
-                                Brands
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-            </div>
-            <div class="mb-4">
-                <span class="text-gray-400 text-sm">Orders</span>
-                <li class="dropdown m-1">
-                    <a href="#"
-                        class="dropdown-toggle   text-md flex items-center justify-between  hover:text-blue-700 p-2 {{ request()->routeIs('allOrders') ? 'bg-blue-200 bg-opacity-60 rounded-br-md rounded-se-md text-blue-600 shadow-2xl font-bold active-tab' : '' }}">
-                        <span class="flex justify-between items-center"><i class='bx bx-sort text-2xl me-2'></i> Order
-                            Management</span>
-                        <i class='bx bx-plus'></i>
-                    </a>
+                          <!-- Dropdown Menu -->
+                          <ul x-show="open" x-transition
+                              class="dropdown-menu mt-2 marker:text-white list-disc bg-gray-800 p-2 rounded-md"
+                              role="list">
+                              <li>
+                                  <a href="{{ route('admin.user') }}"
+                                      class="block p-2 {{ request()->routeIs('admin.user') ? 'text-white' : 'text-gray-400 hover:text-white' }}">
+                                      All Users
+                                  </a>
+                              </li>
+                          </ul>
+                      </li>
+                  </div>
 
-                    <!-- Dropdown Menu -->
-                    <ul
-                        class="dropdown-menu marker:text-blue-400 list-disc {{ request()->routeIs('allOrders') ? 'show' : '' }}">
-                        <li><a href="{{ route('allOrders') }}"
-                                class=" p-2 {{ request()->routeIs('allOrders') ? 'text-blue-700' : 'hover:text-blue-700' }}">All
-                                Orders</a>
-                        </li>
-                    </ul>
-                </li>
-            </div>
-            <div class="mb-4 ">
-                <span class="text-gray-400 text-sm">Contact Form</span>
-                <li
-                    class="relative m-1 {{ request()->routeIs('contactForm') ? 'bg-blue-200 bg-opacity-60 rounded-br-md rounded-se-md text-blue-600 shadow-2xl font-bold active-tab' : '' }}">
-                    <a href="{{ route('contactForm') }}" class="text-md flex items-center hover:text-blue-700 p-2">
-                        <i class='bx bxs-contact me-2 text-2xl'></i>Contact Forms</a>
-                </li>
-            </div>
-            <div class="mb-4">
-                <span class="text-gray-400 text-sm">Support</span>
-                <li
-                    class="m-1 {{ request()->routeIs('support-ticket') ? 'bg-blue-200 bg-opacity-60 rounded-br-md rounded-se-md text-blue-600 shadow-2xl font-bold active-tab' : '' }}">
-                    <a href="#" class="text-md flex items-center hover:text-blue-700 p-2">
-                        <i class='bx bx-support me-2 text-2xl'></i>Support Ticket</a>
-                </li>
-            </div>
-            <div class="mb-4 ">
-                <span class="text-gray-400 text-sm">Reviews</span>
-                <li
-                    class="relative m-1 {{ request()->routeIs('reviewPage') ? 'bg-blue-200 bg-opacity-60 rounded-br-md rounded-se-md text-blue-600 shadow-2xl font-bold active-tab' : '' }}">
-                    <a href="{{ route('reviewPage') }}" class="text-md flex items-center hover:text-blue-700 p-2">
-                        <i class='bx bxs-star-half me-2 text-2xl'></i>Reviews</a>
-                </li>
-            </div>
-            <div class="mb-4 ">
-                <span class="text-gray-400 text-sm">Coupons</span>
-                <li
-                    class="relative m-1 {{ request()->routeIs('coupons') ? 'bg-blue-200 bg-opacity-60 rounded-br-md rounded-se-md text-blue-600 shadow-2xl font-bold active-tab' : '' }}">
-                    <a href="{{ route('coupons') }}" class="text-md flex items-center hover:text-blue-700 p-2">
-                        <i class='bx bxs-coupon me-2 text-2xl'></i>Coupons</a>
-                </li>
-            </div>
-            <div class="mb-4">
-                <span class="text-gray-400 text-sm">All Report</span>
-                <li class="dropdown m-1">
-                    <a href="#"
-                        class="dropdown-toggle   text-md flex items-center justify-between hover:text-blue-700 p-2 {{ request()->routeIs('') ? 'bg-blue-200 bg-opacity-60 rounded-br-md rounded-se-md text-blue-600 shadow-2xl font-bold active-tab' : '' }}">
-                        <span class="flex items-center justify-between"><i class='bx bx-user text-2xl me-2'></i> All
-                            Reports</span>
-                        <i class='bx bx-plus'></i>
-                    </a>
+                  <div class="mb-2" x-data="{ open: false }">
+                      <div class="text-xs font-semibold  text-gray-400">Products</div>
+                      <li
+                          class="dropdown relative m-1 {{ request()->routeIs('product', 'category', 'category.sub-category', 'brand') ? 'rounded-br-md rounded-se-md bg-gray-800 text-white shadow-2xl font-bold active-tab' : 'text-gray-400' }}">
+                          <!-- Dropdown Toggle -->
+                          <a href="#" @click="open = !open"
+                              class="dropdown-toggle group flex justify-between items-center gap-x-3 p-2 text-sm font-semibold  {{ request()->routeIs('admin.user') ? 'text-white' : 'text-gray-400 hover:text-white' }}">
+                              <span class="flex items-center gap-x-3">
+                                  <i class='bx bxl-product-hunt text-2xl'></i> Product Management
+                              </span>
+                              <i class='bx' :class="open ? 'bx-minus' : 'bx-plus'"></i>
+                          </a>
 
-                    <!-- Dropdown Menu -->
-                    <ul class="dropdown-menu marker:text-blue-400 list-disc" role="list">
-                        <li class="">
-                            <a href="#" class="text-md flex items-center hover:text-blue-700 p-2">
-                                <i class='bx bxs-report me-2 text-2xl'></i>Transaction Report</a>
-                        </li>
-                        <li class="">
-                            <a href="#" class="text-md flex items-center hover:text-blue-700 p-2">
-                                <i class='bx bxs-report me-2 text-2xl'></i>Sales Report</a>
-                        </li>
-                        <li class="">
-                            <a href="#" class="text-md flex items-center hover:text-blue-700 p-2">
-                                <i class='bx bxs-report me-2 text-2xl'></i>Product Report</a>
-                        </li>
-                        <li class="">
-                            <a href="#" class="text-md flex items-center hover:text-blue-700 p-2">
-                                <i class='bx bxs-report me-2 text-2xl'></i>Brand Report</a>
-                        </li>
-                    </ul>
-                </li>
-            </div>
-        </ul>
+                          <!-- Dropdown Menu -->
+                          <ul x-show="open" x-transition
+                              class="dropdown-menu mt-2 marker:text-white list-disc bg-gray-800 p-2 rounded-md"
+                              role="list">
+                              <li>
+                                  <a href="{{ route('product') }}"
+                                      class="block p-2 {{ request()->routeIs('product') ? 'text-white' : 'text-gray-400 hover:text-white' }}">
+                                      Products
+                                  </a>
+                              </li>
+                              <li>
+                                  <a href="{{ route('category') }}"
+                                      class="block p-2 {{ request()->routeIs('category') ? 'text-white' : 'text-gray-400 hover:text-white' }}">
+                                      Parent Category
+                                  </a>
+                              </li>
+                              <li>
+                                  <a href="{{ route('category.sub-category') }}"
+                                      class="block p-2 {{ request()->routeIs('category.sub-category') ? 'text-white' : 'text-gray-400 hover:text-white' }}">
+                                      Sub Category
+                                  </a>
+                              </li>
+                              <li>
+                                  <a href="{{ route('brand') }}"
+                                      class="block p-2 {{ request()->routeIs('brand') ? 'text-white' : 'text-gray-400 hover:text-white' }}">
+                                      Brands
+                                  </a>
+                              </li>
+                          </ul>
+                      </li>
+                  </div>
 
-    </div>
-</div>
+                  <div class="mb-2" x-data="{ open: false }">
+                      <div class="text-xs font-semibold  text-gray-400">Orders</div>
+                      <li
+                          class="dropdown relative m-1 {{ request()->routeIs('allOrders') ? 'rounded-br-md rounded-se-md bg-gray-800 text-white shadow-2xl font-bold active-tab' : 'text-gray-400' }}">
+                          <!-- Dropdown Toggle -->
+                          <a href="#" @click="open = !open"
+                              class="dropdown-toggle group flex justify-between items-center gap-x-3 p-2 text-sm font-semibold  {{ request()->routeIs('allOrders') ? 'text-white' : 'text-gray-400 hover:text-white' }}">
+                              <span class="flex items-center gap-x-3">
+                                  <i class='bx bx-sort text-2xl'></i> Order
+                                  Management
+                              </span>
+                              <i class='bx' :class="open ? 'bx-minus' : 'bx-plus'"></i>
+                          </a>
+
+                          <!-- Dropdown Menu -->
+                          <ul x-show="open" x-transition
+                              class="dropdown-menu mt-2 marker:text-white list-disc bg-gray-800 p-2 rounded-md"
+                              role="list">
+                              <li>
+                                  <a href="{{ route('allOrders') }}"
+                                      class="block p-2 {{ request()->routeIs('allOrders') ? 'text-white' : 'text-gray-400 hover:text-white' }}">
+                                      All Orders
+                                  </a>
+                              </li>
+                          </ul>
+                      </li>
+                  </div>
+
+                  <div class="mb-2">
+                      <div class="text-xs font-semibold  text-gray-400">Contact Form</div>
+                      <li
+                          class="relative m-1 {{ request()->routeIs('contactForm') ? 'rounded-br-md rounded-se-md bg-gray-800 text-white shadow-2xl font-bold active-tab' : 'text-gray-400' }}">
+                          <a href="{{ route('contactForm') }}"
+                              class="group flex gap-x-3 p-2 text-sm font-semibold  {{ request()->routeIs('contactForm') ? 'text-white' : 'text-gray-400 hover:text-white' }}">
+                              <i class='bx bxs-contact text-2xl'></i>Contact Forms
+                          </a>
+                      </li>
+                  </div>
+
+                  <div class="mb-2">
+                      <div class="text-xs font-semibold  text-gray-400">Support</div>
+                      <li
+                          class="relative m-1 {{ request()->routeIs('') ? 'rounded-br-md rounded-se-md bg-gray-800 text-white shadow-2xl font-bold active-tab' : 'text-gray-400' }}">
+                          <a href="{{-- {{ route('') }} --}}"
+                              class="group flex gap-x-3 p-2 text-sm font-semibold  {{ request()->routeIs('') ? 'text-white' : 'text-gray-400 hover:text-white' }}">
+                              <i class='bx bx-support me-2 text-2xl'></i>Support Ticket
+                          </a>
+                      </li>
+                  </div>
+
+                  <div class="mb-2">
+                      <div class="text-xs font-semibold  text-gray-400">Reviews</div>
+                      <li
+                          class="relative m-1 {{ request()->routeIs('reviewPage') ? 'rounded-br-md rounded-se-md bg-gray-800 text-white shadow-2xl font-bold active-tab' : 'text-gray-400' }}">
+                          <a href="{{ route('reviewPage') }}"
+                              class="group flex gap-x-3 p-2 text-sm font-semibold  {{ request()->routeIs('reviewPage') ? 'text-white' : 'text-gray-400 hover:text-white' }}">
+                              <i class='bx bxs-star-half me-2 text-2xl'></i>Reviews
+                          </a>
+                      </li>
+                  </div>
+
+                  <div class="mb-2">
+                      <div class="text-xs font-semibold  text-gray-400">Coupons</div>
+                      <li
+                          class="relative m-1 {{ request()->routeIs('coupons') ? 'rounded-br-md rounded-se-md bg-gray-800 text-white shadow-2xl font-bold active-tab' : 'text-gray-400' }}">
+                          <a href="{{ route('coupons') }}"
+                              class="group flex gap-x-3 p-2 text-sm font-semibold  {{ request()->routeIs('coupons') ? 'text-white' : 'text-gray-400 hover:text-white' }}">
+                              <i class='bx bxs-coupon me-2 text-2xl'></i>All Coupons
+                          </a>
+                      </li>
+                  </div>
+
+                  <div class="mb-2" x-data="{ open: false }">
+                      <div class="text-xs font-semibold  text-gray-400">All Reports</div>
+                      <li
+                          class="dropdown relative m-1 {{ request()->routeIs('product', 'category', 'category.sub-category', 'brand') ? 'rounded-br-md rounded-se-md bg-gray-800 text-white shadow-2xl font-bold active-tab' : 'text-gray-400' }}">
+                          <!-- Dropdown Toggle -->
+                          <a href="#" @click="open = !open"
+                              class="dropdown-toggle group flex justify-between items-center gap-x-3 p-2 text-sm font-semibold  {{ request()->routeIs('admin.user') ? 'text-white' : 'text-gray-400 hover:text-white' }}">
+                              <span class="flex items-center gap-x-3">
+                                  <i class='bx bx-file text-2xl'></i> All
+                                  Reports
+                              </span>
+                              <i class='bx' :class="open ? 'bx-minus' : 'bx-plus'"></i>
+                          </a>
+
+                          <!-- Dropdown Menu -->
+                          <ul x-show="open" x-transition
+                              class="dropdown-menu mt-2 marker:text-white list-disc bg-gray-800 p-2 rounded-md"
+                              role="list">
+                              <li>
+                                  <a href="#"
+                                      class="block p-2 {{ request()->routeIs('') ? 'text-white' : 'text-gray-400 hover:text-white' }}">
+                                      Transaction Report
+                                  </a>
+                              </li>
+                              <li>
+                                  <a href="#"
+                                      class="block p-2 {{ request()->routeIs('') ? 'text-white' : 'text-gray-400 hover:text-white' }}">
+                                      Sales Report
+                                  </a>
+                              </li>
+                              <li>
+                                  <a href="#"
+                                      class="block p-2 {{ request()->routeIs('') ? 'text-white' : 'text-gray-400 hover:text-white' }}">
+                                      Product Report
+                                  </a>
+                              </li>
+                              <li>
+                                  <a href="#"
+                                      class="block p-2 {{ request()->routeIs('') ? 'text-white' : 'text-gray-400 hover:text-white' }}">
+                                      Brand Report
+                                  </a>
+                              </li>
+                          </ul>
+                      </li>
+                  </div>
+
+              </ul>
+          </nav>
+      </div>
+  </div>
