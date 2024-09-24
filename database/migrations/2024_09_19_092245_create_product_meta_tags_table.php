@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('product_meta_tags', function (Blueprint $table) {
             $table->id();
             $table->foreignId('product_id')->constrained();
-            $table->string('meta_title');
-            $table->string('meta_description')->nullable();
+            $table->string('product_meta_title');
+            $table->string('product_meta_description')->nullable();
             $table->timestamps();
         });
     }
