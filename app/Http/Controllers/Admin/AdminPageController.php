@@ -15,26 +15,9 @@ class AdminPageController extends Controller
         return view('admin.pages.products.add-product');
     }
 
-    // Review Page
-    public function reviewsPage()
-    {
-        return view('admin.pages.reviews');
-    }
-
-    // Contact Page
-    public function contactForm()
-    {
-        return view('admin.pages.contactForm');
-    }
-
     public function allOrders()
     {
         return view('admin.pages.orders');
-    }
-
-    public function couponPage()
-    {
-        return view('admin.pages.create-coupon');
     }
 
     public function employeePage()

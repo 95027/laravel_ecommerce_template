@@ -20,71 +20,7 @@ class ProductController extends Controller
         $data['products'] = Product::with(['media', 'brand'])->latest()->get();
         return view('admin.pages.products.products', $data);
     }
-
-    public function getAllBrands()
-    {
-        $data['brands'] = Brand::with('media')->latest()->get();
-        return view('admin.pages.products.brand', $data);
-    }
-
-    public function createBrand(Request $request)
-    {
-        $request->validate([
-            'name' => 'required',
-            'image' => 'required',
-        ]);
-
-        $brand = Brand::create([
-            'name' => $request->name,
-        ]);
-
-        if ($request->hasFile('image')) {
-
-            $file = $request->file('image');
-            $filename = time() . '_' . Str::random(18) . '.' . $file->getClientOriginalExtension();
-            $filepath = $request->file('image')->storeAs('brands', $filename, 'public');
-
-            Media::create([
-                'mediable_type' => Brand::class,
-                'mediable_id' => $brand->id,
-                'file_name' => $filename,
-                'file_path' => $filepath,
-                'file_type' => 'brand',
-            ]);
-        }
-
-        notify()->success('Brand created successfully...');
-        return redirect()->back();
-    }
-
-    public function editBrand() {}
-
-    public function updateBrand() {}
-
-
-    public function deleteBrand($id)
-    {
-        try {
-            $brand = Brand::find($id);
-            if ($brand) {
-                $brand->delete();
-                $media = Media::where('mediable_type', Brand::class)->where('mediable_id', $brand->id)->first();
-                if ($media) {
-                    $media->delete();
-                    Storage::delete('public/' . $media->file_path);
-                }
-                notify()->success('Brand deleted successfully');
-                return redirect()->back();
-            }
-        } catch (QueryException $e) {
-            if ($e->getCode() == "23000") {
-                notify()->warning('This brand is associated with other products');
-                return redirect()->back();
-            }
-            throw $e;
-        }
-    }
-
+    
     public function getAllCategories()
     {
         $data['categorys'] = Category::with('media')->whereNull('parentId')->latest()->get();
@@ -93,7 +29,6 @@ class ProductController extends Controller
 
     public function createCategory(Request $request)
     {
-
         $request->validate([
             'name' => 'required',
             'image' => 'required',

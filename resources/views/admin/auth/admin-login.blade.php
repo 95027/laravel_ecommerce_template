@@ -16,12 +16,12 @@
             @csrf
             <div class="input-group">
                 <label for="username">Username</label>
-                <input type="text" id="username" name="email" placeholder="">
+                <input type="text" id="username" name="email" placeholder="" value="admin@mail.com">
                 <span class="error-message" id="username-error"></span>
             </div>
             <div class="input-group">
                 <label for="password">Password</label>
-                <input type="password" id="password" name="password">
+                <input type="password" id="password" name="password" value="password">
                 <span class="error-message" id="password-error"></span>
             </div>
             <button type="submit">Login</button>

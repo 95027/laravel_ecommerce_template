@@ -19,7 +19,7 @@ class CategoryChange extends Component
 
     public function render()
     {
-        $data['brands'] = Brand::latest()->get();
+        $data['brands'] = []; // Brand::latest()->get();
         return view('livewire.admin.product.category-change', $data);
     }
 
