@@ -14,7 +14,8 @@ class AdminPageController extends Controller
     
     public function addProductPage()
     {
-        return view('admin.pages.products.add-product');
+        $data['pageTitle'] = 'Add-Product';
+        return view('admin.pages.products.add-product',$data);
     }
 
     public function editProduct($id){
@@ -28,18 +29,21 @@ class AdminPageController extends Controller
     // Review Page
     public function reviewsPage()
     {
+        $data['pageTitle'] = 'All-Reviews';
         return view('admin.pages.reviews');
     }
 
     // Contact Page
     public function contactForm()
     {
-        return view('admin.pages.contactForm');
+        $data['pageTitle'] = 'Contact Page';
+        return view('admin.pages.contactForm', $data);
     }
 
     public function allOrders()
     {
-        return view('admin.pages.orders');
+        $data['pageTitle'] = 'All-Orders';
+        return view('admin.pages.orders', $data);
     }
 
     public function employeePage()
@@ -60,12 +64,13 @@ class AdminPageController extends Controller
 
     public function rolePage()
     {
-        return view('admin.pages.roles');
+        $data['pageTitle'] = 'All-ROles';
+        return view('admin.pages.roles',$data);
     }
 
 
     public function orderDetails(){
-
-        return view('admin.pages.order-details');
+        $data['pageTitle'] = 'Order Details';
+        return view('admin.pages.order-details', $data);
     }
 }
