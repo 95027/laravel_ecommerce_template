@@ -22,15 +22,6 @@ Route::middleware(['auth:admin'])->group(function () {
         Route::get('/', [AdminUserController::class, 'allUsers'])->name('user');
     });
 
-
-    Route::prefix('brand')->name('brand')->group(function () {
-        Route::get('/', [ProductController::class, 'getAllBrands']);
-        Route::post('/', [ProductController::class, 'createBrand'])->name('.store');
-        Route::get('/{id}', [ProductController::class, 'editBrand'])->name('.edit');
-        Route::put('/{id}', [ProductController::class, 'updateBrand'])->name('.update');
-        Route::delete('/{id}', [ProductController::class, 'deleteBrand'])->name('.delete');
-    });
-
     Route::prefix('category')->name('category')->group(function () {
         Route::get('/', [ProductController::class, 'getAllCategories']);
         Route::post('/', [ProductController::class, 'createCategory'])->name('.store');
@@ -68,10 +59,7 @@ Route::middleware(['auth:admin'])->group(function () {
         Route::delete('/{id}', [AdminController::class, 'deleteEmployee'])->name('.delete');
     });
 
-    Route::get('/reviews', [AdminPageController::class, 'reviewsPage'])->name('reviewPage');
-    Route::get('/contact-form', [AdminPageController::class, 'contactForm'])->name('contactForm');
     Route::get('/all-orders', [AdminPageController::class, 'allOrders'])->name('allOrders');
-    Route::get('/coupons', [AdminPageController::class, 'couponPage'])->name('coupons');
 
     Route::get('/', [AdminPageController::class, 'rolePage'])->name('rolePage');
 
