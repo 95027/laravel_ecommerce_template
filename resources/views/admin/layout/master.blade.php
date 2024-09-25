@@ -20,14 +20,16 @@
 </head>
 
 <body class="">
+    @include('components.toast')
     <main>
         <div>
             @include('admin.layout.sidebar')
             <div class="lg:pl-72">
                 @include('admin.layout.topbar')
-                <div class="px-4 sm:px-6 lg:px-8">
+                <div class="px-4 sm:px-6 lg:px-8 min-h-[100vh]">
                     @yield('content')
                 </div>
+                @include('admin.layout.footer')
             </div>
         </div>
 
@@ -45,6 +47,7 @@
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
     {{--  <script src="{{ asset('assets/admin/js/greeting.js') }}"></script> --}}
     <script src="{{ asset('assets/admin/js/parsley-validator.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     @yield('script')
     <script>
         document.querySelectorAll('.select-menu').forEach(menu => {

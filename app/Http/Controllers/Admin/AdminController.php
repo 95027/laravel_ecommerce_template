@@ -35,7 +35,9 @@ class AdminController extends Controller
 
         $employee->save();
 
-        notify()->success('Employee created successfully!');
+        session()->flash('status', 'success');
+        session()->flash('message', 'Employee created successfully!');
+        // notify()->success('Employee created successfully!');
 
         return redirect()->back();
     }
@@ -57,7 +59,9 @@ class AdminController extends Controller
                 'mobile' => $request->mobile,
                 'role' => $request->role,
             ]);
-            notify()->success('Employee updated successfully!');
+            session()->flash('status', 'success');
+            session()->flash('message', 'Employee updated successfully!');
+            // notify()->success('Employee updated successfully!');
             return redirect()->back();
         }
     }
@@ -69,10 +73,14 @@ class AdminController extends Controller
         if ($employee) {
             // dd($employee);
             $employee->delete();
-            notify()->success('Employee deleted successfully');
+            session()->flash('status', 'success');
+            session()->flash('message', 'Employee deleted successfully');
+            // notify()->success('Employee deleted successfully');
             return redirect()->back();
         }
-        notify()->error('Employee not found');
+        session()->flash('status', 'error');
+        session()->flash('message', 'Employee not found');
+        // notify()->error('Employee not found');
         return redirect()->back();
     }
 

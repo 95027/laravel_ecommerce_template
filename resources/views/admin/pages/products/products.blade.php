@@ -27,7 +27,8 @@
                 Add Product
             </a>
         </div>
-        <div class="card p-2 rounded-lg boxShadow">
+        <div
+            class="shadow-md shadow-gray-200 p-2 relative z-10 bg-white border rounded-xl md:p-5 dark:bg-neutral-900 dark:border-neutral-800 dark:shadow-gray-900/20">
             <div class="card-header flex justify-between items-center py-4 border-b-2 mb-2">
                 <div>
                     <div class="relative">
@@ -53,19 +54,12 @@
                                 <span class="sBtn-text">Fillter with Category</span>
                                 <i class="bx bx-chevron-down"></i>
                             </div>
-                            <ul class="options bg-white p-1">
-                                <li class="option">
-                                    <i class="bx bxl-github" style="color: #171515"></i>
-                                    <span class="option-text">Github</span>
-                                </li>
-                                <li class="option">
-                                    <i class="bx bxl-instagram-alt" style="color: #171515"></i>
-                                    <span class="option-text">Instagram</span>
-                                </li>
-                                <li class="option">
-                                    <i class="bx bxl-facebook" style="color: #171515"></i>
-                                    <span class="option-text">Facebook</span>
-                                </li>
+                            <ul class="options bg-gray-300">
+                                @foreach ($categories as $category)
+                                    <li class="option hover:bg-gray-200">
+                                        <span class="option-text px-4">{{ $category->name }}</span>
+                                    </li>
+                                @endforeach
                             </ul>
                         </div>
                     </div>
@@ -75,19 +69,12 @@
                                 <span class="sBtn-text">Fillter with Sub-Category</span>
                                 <i class="bx bx-chevron-down"></i>
                             </div>
-                            <ul class="options bg-white p-1">
-                                <li class="option">
-                                    <i class="bx bxl-github" style="color: #171515"></i>
-                                    <span class="option-text">Github</span>
-                                </li>
-                                <li class="option">
-                                    <i class="bx bxl-instagram-alt" style="color: #171515"></i>
-                                    <span class="option-text">Instagram</span>
-                                </li>
-                                <li class="option">
-                                    <i class="bx bxl-facebook" style="color: #171515"></i>
-                                    <span class="option-text">Facebook</span>
-                                </li>
+                            <ul class="options bg-gray-300">
+                                @foreach ($subCategorys as $subCategory)
+                                    <li class="option hover:bg-gray-200">
+                                        <span class="option-text px-4">{{ $subCategory->name }}</span>
+                                    </li>
+                                @endforeach
                             </ul>
                         </div>
                     </div>
@@ -97,130 +84,103 @@
                                 <span class="sBtn-text">Fillter with Brand</span>
                                 <i class="bx bx-chevron-down"></i>
                             </div>
-                            <ul class="options bg-white p-1">
-                                <li class="option">
-                                    <i class="bx bxl-github" style="color: #171515"></i>
-                                    <span class="option-text">Github</span>
-                                </li>
-                                <li class="option">
-                                    <i class="bx bxl-instagram-alt" style="color: #171515"></i>
-                                    <span class="option-text">Instagram</span>
-                                </li>
-                                <li class="option">
-                                    <i class="bx bxl-facebook" style="color: #171515"></i>
-                                    <span class="option-text">Facebook</span>
-                                </li>
+                            <ul class="options bg-gray-300 shadow-inner">
+                                @foreach ($brands as $brand)
+                                    <li class="option hover:bg-gray-200">
+                                        <span class="option-text px-4">{{ $brand->name }}</span>
+                                    </li>
+                                @endforeach
                             </ul>
                         </div>
                     </div>
 
                 </div>
             </div>
-
-            <div class="card-body overflow-x-auto">
-                <table class="min-w-full table-auto bg-white ">
-                    <thead>
-                        <tr class="text-left text-gray-600 uppercase text-base leading-normal">
-                            <th class="py-3">Sl.No</th>
-                            {{-- <th class="py-3 px-8">Product id</th> --}}
-                            <th class="py-3 px-6">Image</th>
-                            <th class="py-3 px-6">Title</th>
-                            <th class="py-3 px-6">Brand</th>
-                            <th class="py-3 px-6">Category</th>
-                            <th class="py-3 px-6">MRP</th>
-                            <th class="py-3 px-6">Offred Price</th>
-                            <th class="py-3 px-6">Stock</th>
-                            <th class="py-3 px-6">Status</th>
-                            <th class="py-3 text-center">Actions</th>
+            <table class="min-w-full table-auto bg-white ">
+                <thead>
+                    <tr class="text-left text-gray-600 uppercase text-base leading-normal">
+                        <th class="py-3">Sl.No</th>
+                        {{-- <th class="py-3 px-8">Product id</th> --}}
+                        <th class="py-3 px-6">Image</th>
+                        <th class="py-3 px-6">Title</th>
+                        <th class="py-3 px-6">Brand</th>
+                        <th class="py-3 px-6">Category</th>
+                        <th class="py-3 px-6">MRP</th>
+                        <th class="py-3 px-6">Offred Price</th>
+                        <th class="py-3 px-6">Stock</th>
+                        <th class="py-3 px-6">Status</th>
+                        <th class="py-3 text-center">Actions</th>
+                    </tr>
+                </thead>
+                <tbody class="text-gray-600 text-s font-light">
+                    @foreach ($products as $i => $product)
+                        <tr class="">
+                            <td class="py-3 px-6">{{ $i + 1 }}</td>
+                            <td class="py-3 px-6">
+                                <img class="w-12 h-12 rounded-full"
+                                    src="{{ asset('storage/products/' . $product->media->where('featured', 1)->first()->file_name) }}"
+                                    alt="{{ $product->id }}">
+                            </td>
+                            <td class="py-3 px-6">{{ $product->title }}</td>
+                            <td class="py-3 px-6">{{ $product->brand->name }}</td>
+                            <td class="py-3 px-6">{{ $product->categoryId }}</td>
+                            <td class="py-3 px-6">{{ $product->mrp }}</td>
+                            <td class="py-3 px-6">{{ $product->price }}</td>
+                            <td class="py-3 px-6">{{ $product->quantity }}</td>
+                            <td class="py-3 px-6">
+                                @php
+                                    $color = $product->status === 1 ? 'green' : 'red';
+                                    $status = $product->status === 1 ? 'Active' : 'In Active';
+                                @endphp
+                                <span
+                                    class="rounded-md bg-{{ $color }}-50 px-2 py-1 text-xs font-medium text-{{ $color }}-700 ring-1 ring-inset ring-green-600/20">{{ $status }}</span>
+                            </td>
+                            <td class="py-3 text-center flex justify-evenly">
+                                <a
+                                    class="bg-blue-300 bg-opacity-60 hover:text-blue-600 p-1 w-8 h-8 rounded-lg flex justify-center items-center cursor-pointer"><i
+                                        class="fa-regular fa-eye"></i></a>
+                                <a href="{{ route('product.editProduct', $product->id) }}"
+                                    class="edit-employee bg-yellow-200 bg-opacity-60 hover:text-yellow-600 p-1 w-8 h-8 rounded-lg flex justify-center items-center cursor-pointer edit-employee-button"><i
+                                        class="fa-regular fa-pen-to-square"></i></a>
+                                <form id="delete-form-{{ $product->id }}"
+                                    action="{{ route('product.delete', $product->id) }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <input type="hidden" name="id" value="{{ $product->id }}">
+                                    <button type="button"
+                                        onclick="confirmDelete('{{ $product->id }}', '{{ $product->name }}')"
+                                        class="bg-red-300 bg-opacity-60 hover:text-red-600 p-1 w-8 h-8 rounded-lg flex justify-center items-center cursor-pointer">
+                                        <i class="fa-solid fa-trash-can"></i>
+                                    </button>
+                                </form>
+                            </td>
                         </tr>
-                    </thead>
-                    <tbody class="text-gray-600 text-s font-light">
-                        @foreach ($products as $i => $product)
-                            <tr class="">
-                                <td class="py-3 px-6">{{ $i + 1 }}</td>
-                                <td class="py-3 px-6">
-                                    <img class="max-w-16 rounded-full"
-                                        src="{{ asset('storage/products/' . $product->media->where('featured', 1)->first()->file_name) }}"
-                                        alt="{{ $product->id }}">
-                                </td>
-                                <td class="py-3 px-6">{{ $product->title }}</td>
-                                <td class="py-3 px-6">{{ $product->brand->name }}</td>
-                                <td class="py-3 px-6">{{ $product->categoryId }}</td>
-                                <td class="py-3 px-6">{{ $product->mrp }}</td>
-                                <td class="py-3 px-6">{{ $product->price }}</td>
-                                <td class="py-3 px-6">{{ $product->quantity }}</td>
-                                <td class="py-3 px-6">
-                                    @php
-                                        $color = $product->status === 1 ? 'green' : 'red';
-                                        $status = $product->status === 1 ? 'Active' : 'In Active';
-                                    @endphp
-                                    <span
-                                        class="rounded-md bg-{{ $color }}-50 px-2 py-1 text-xs font-medium text-{{ $color }}-700 ring-1 ring-inset ring-green-600/20">{{ $status }}</span>
-                                </td>
-                                {{-- <td class="py-3 px-6 text-center">
-                                    <div class="hs-dropdown relative inline-flex">
-                                        <button id="hs-dropdown-custom-icon-trigger" type="button"
-                                            class="hs-dropdown-toggle flex justify-center items-center size-9 text-sm font-semibold rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 focus:outline-none focus:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-white dark:hover:bg-neutral-800 dark:focus:bg-neutral-800"
-                                            aria-haspopup="menu" aria-expanded="false" aria-label="Dropdown">
-                                            <svg class="flex-none size-4 text-gray-600 dark:text-neutral-500"
-                                                xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                                viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                                <circle cx="12" cy="12" r="1" />
-                                                <circle cx="12" cy="5" r="1" />
-                                                <circle cx="12" cy="19" r="1" />
-                                            </svg>
-                                        </button>
-
-                                        <div class="hs-dropdown-menu transition-[opacity,margin] duration hs-dropdown-open:opacity-100 opacity-0 hidden w-30 bg-white shadow-md rounded-lg p-1 space-y-0.5 mt-2 dark:bg-neutral-800 dark:border dark:border-neutral-700 z-10"
-                                            role="menu" aria-orientation="vertical"
-                                            aria-labelledby="hs-dropdown-custom-icon-trigger">
-                                            <a class="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 dark:text-neutral-400 dark:hover:bg-neutral-700 dark:hover:text-neutral-300 dark:focus:bg-neutral-700 edit-category"
-                                                href="javascript:void(0);" data-id="" aria-haspopup="dialog"
-                                                aria-expanded="false" aria-controls="edit-category-offcanvas"
-                                                data-hs-overlay="#edit-category-offcanvas">
-                                                <i class='bx bx-edit-alt text-lg'></i>
-                                                Edit
-                                            </a>
-                                            <form action="" method="POST">
-                                                @csrf
-                                                @method('DELETE')
-                                                <input type="hidden" name="id" value="">
-                                                <button type="submit"
-                                                    class="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100">
-                                                    <i class="bx bx-trash text-lg"></i>
-                                                    Delete
-                                                </button>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </td> --}}
-                                <td class="py-3 text-center flex justify-evenly">
-                                    <a
-                                        class="bg-blue-300 bg-opacity-60 hover:text-blue-600 p-1 w-8 h-8 rounded-lg flex justify-center items-center cursor-pointer"><i
-                                            class="fa-regular fa-eye"></i></a>
-                                    <a href="javascript:;"
-                                        class="edit-employee bg-yellow-200 bg-opacity-60 hover:text-yellow-600 p-1 w-8 h-8 rounded-lg flex justify-center items-center cursor-pointer edit-employee-button"><i
-                                            class="fa-regular fa-pen-to-square"></i></a>
-                                    <form action="{{ route('product.delete', $product->id) }}" method="POST">
-                                        @csrf
-                                        @method('DELETE')
-                                        <input type="hidden" name="id" value="{{ $product->id }}">
-                                        <button type="button"
-                                            {{-- onclick="confirmDelete('{{ $product->id }}', '{{ $product->name }}')" --}}
-                                            class="bg-red-300 bg-opacity-60 hover:text-red-600 p-1 w-8 h-8 rounded-lg flex justify-center items-center cursor-pointer">
-                                            <i class="fa-solid fa-trash-can"></i>
-                                        </button>
-                                    </form>
-                                </td>
-                            </tr>
-                        @endforeach
-                        <!-- Additional rows go here -->
-                    </tbody>
-                </table>
-            </div>
+                    @endforeach
+                    <!-- Additional rows go here -->
+                </tbody>
+            </table>
         </div>
     </div>
 @endsection
 
-@section('scrip')
+@section('script')
+    <script>
+        function confirmDelete(productId, productName) {
+            Swal.fire({
+                title: 'Confirm Deletion',
+                text: "Deleting this product will permanently remove all its records. Do you wish to proceed with deleting: " +
+                    productName + "?",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Submit the form only after the user confirms
+                    document.getElementById('delete-form-' + productId).submit();
+                }
+            });
+        }
+    </script>
+@endsection

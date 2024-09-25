@@ -155,9 +155,6 @@ body {
     transition: background 0.3s;
 }
 
-.options .option:hover {
-    background: #fff;
-}
 
 .option i {
     font-size: 25px;
@@ -172,3 +169,4 @@ body {
 .error-message {
     font-size: 0.875rem;
 }
+

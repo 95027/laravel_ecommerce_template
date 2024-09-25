@@ -90,14 +90,14 @@
                             <a
                                 class="bg-blue-300 bg-opacity-60 hover:text-blue-600 p-1 w-8 h-8 rounded-lg flex justify-center items-center cursor-pointer"><i
                                     class="fa-regular fa-eye"></i></a>
-                            <a
+                            {{-- <a
                                 class="bg-yellow-200 bg-opacity-60 hover:text-yellow-600 p-1 w-8 h-8 rounded-lg flex justify-center items-center cursor-pointer edit-employee-button"><i
                                     class="fa-regular fa-pen-to-square"></i></a>
                             <button type="button"
                                 class="bg-red-300 bg-opacity-60 hover:text-red-600 p-1 w-8 h-8 rounded-lg flex justify-center items-center cursor-pointer">
                                 <i class="fa-solid fa-trash-can"></i>
-                            </button>
-                            </form>
+                            </button> --}}
+                       
                         </td>
                     </tr>
                 </tbody>
