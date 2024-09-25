@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 
 class AdminPageController extends Controller
 {
+    
     public function addProductPage()
     {
         return view('admin.pages.products.add-product');
@@ -44,6 +45,7 @@ class AdminPageController extends Controller
     public function employeePage()
     {
         $data['employees'] = Employee::latest()->get();
+        $data['pageTitle'] = 'All-Employees';
         return view('admin.pages.employees', $data);
     }
 
@@ -59,5 +61,11 @@ class AdminPageController extends Controller
     public function rolePage()
     {
         return view('admin.pages.roles');
+    }
+
+
+    public function orderDetails(){
+
+        return view('admin.pages.order-details');
     }
 }

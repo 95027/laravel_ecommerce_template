@@ -11,7 +11,14 @@ class AdminController extends Controller
 {
     public function dashboard()
     {
-        return view('admin.pages.admin-dashboard');
+        $data['pageTitle'] = 'Dashboard';
+        return view('admin.pages.admin-dashboard', $data);
+    }
+
+    public function profilePage()
+    {
+        $data['pageTitle'] = 'My-Profile';
+        return view('admin.pages.profile-page');
     }
 
 

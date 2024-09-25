@@ -5,7 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Admin Dashboard</title>
+    <title>{{$pageTitle}}</title>
+    <link rel="icon" href="{{ asset('assets/admin/favicon/cart.png') }}" type="image/x-icon">
     @notifyCss
     @yield('styles')
     @vite('resources/js/app.js')
@@ -19,7 +20,7 @@
 
 </head>
 
-<body class="">
+<body class="body-scroll">
     @include('components.toast')
     <main>
         <div>
@@ -76,6 +77,12 @@
                 }
             });
         });
+    </script>
+    <script>
+        const checkbox = document.getElementById("checkbox")
+        checkbox.addEventListener("change", () => {
+            document.body.classList.toggle("dark")
+        })
     </script>
 </body>
 

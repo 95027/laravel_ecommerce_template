@@ -18,6 +18,7 @@ class BrandController extends Controller
     public function index()
     {
         $data['brands'] = Brand::latest()->get();
+        $data['pageTitle'] = 'All-Brands';
         return view('brand::index', $data);
     }
 
@@ -58,7 +59,9 @@ class BrandController extends Controller
             ]);
         }
 
-        notify()->success('Brand created successfully...');
+        // notify()->success('Brand created successfully...');
+        session()->flash('status', 'success');
+        session()->flash('message', 'Brand created successfully!');
         return redirect()->back();
     }
 
@@ -100,12 +103,16 @@ class BrandController extends Controller
                     $media->delete();
                     Storage::delete('public/' . $media->file_path);
                 }
-                notify()->success('Brand deleted successfully');
+                // notify()->success('Brand deleted successfully');
+                session()->flash('status', 'success');
+                session()->flash('message', 'Brand deleted successfully!');
                 return redirect()->back();
             }
         } catch (QueryException $e) {
             if ($e->getCode() == "23000") {
-                notify()->warning('This brand is associated with other products');
+                // notify()->warning('This brand is associated with other products');
+                session()->flash('status', 'error');
+                session()->flash('message', 'This brand is associated with other products');
                 return redirect()->back();
             }
             throw $e;

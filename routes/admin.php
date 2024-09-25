@@ -14,8 +14,11 @@ Route::middleware('guest')->group(function () {
     Route::post('/admin/login', [AdminAuthController::class, 'login'])->name('admin.login');
 });
 
+
+
 Route::middleware(['auth:admin'])->group(function () {
     Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
+
     Route::post('/admin/dashboard/logout', [AdminAuthController::class, 'logout'])->name('admin.logout');
 
     Route::prefix('user')->name('admin.')->group(function () {
@@ -64,5 +67,10 @@ Route::middleware(['auth:admin'])->group(function () {
     Route::get('/', [AdminPageController::class, 'rolePage'])->name('rolePage');
 
     Route::get('/orders', [OrderController::class, 'orderSearch'])->name('orders.search');
+
+    Route::get('/profile', [AdminController::class, 'profilePage'])->name('profile-page');
+
+
+    Route::get('order-details', [AdminPageController::class, 'orderDetails'])->name('order-details');
 
 });
