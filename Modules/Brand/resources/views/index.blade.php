@@ -54,16 +54,16 @@
                             <td class="py-3 px-6"><span
                                     class="rounded-md bg-green-50 px-2 py-1 text-xs font-medium text-green-700 ring-1 ring-inset ring-green-600/20">Active</span>
                             </td>
-                            <td class="py-3 text-center flex justify-evenly">
-                                <a
+                            <td class="py-3 text-center flex justify-center gap-3">
+                                {{-- <a
                                     class="bg-blue-300 bg-opacity-60 hover:text-blue-600 p-1 w-8 h-8 rounded-lg flex justify-center items-center cursor-pointer"><i
-                                        class="fa-regular fa-eye"></i></a>
+                                        class="fa-regular fa-eye"></i></a> --}}
                                 <a href="javascript:;" aria-haspopup="dialog" aria-expanded="false"
                                     aria-controls="edit-brand-offcanvas" data-hs-overlay="#edit-brand-offcanvas"
                                     data-id="{{ $brand->id }}"
                                     class="editBrand bg-yellow-200 bg-opacity-60 hover:text-yellow-600 p-1 w-8 h-8 rounded-lg flex justify-center items-center cursor-pointer edit-employee-button"><i
                                         class="fa-regular fa-pen-to-square"></i></a>
-                                <form action="{{ route('brand.delete', $brand->id) }}" method="POST"
+                                <form action="{{ route('brand.destroy', $brand->id) }}" method="POST"
                                     id="delete-form-{{ $brand->id }}">
                                     @csrf
                                     @method('DELETE')
@@ -209,25 +209,25 @@
     </script>
 
     <script>
-        $(document).ready(function(){
-            $('.editBrand').on('click', function(){
+        $(document).ready(function() {
+            $('.editBrand').on('click', function() {
                 console.log('n');
                 var brandId = $(this).data('id');
                 const form = document.getElementById('editBrandForm');
-                var editUrl = '{{ route('brand.edit', ':id')}}';
+                var editUrl = '{{ route('brand.edit', ':id') }}';
                 editUrl = editUrl.replace(':id', brandId);
-                
+
                 $.ajax({
-                    url:editUrl,
-                    type:'GET',
-                    success:function(data){
+                    url: editUrl,
+                    type: 'GET',
+                    success: function(data) {
                         $('#brandName').val(data.brand.name);
                     },
-                    error:function(){
+                    error: function() {
                         alert('Failed to fetch brand data');
                     }
                 });
-                var updateUrl = '{{ route('brand.update', ':id')}}';
+                var updateUrl = '{{ route('brand.update', ':id') }}';
                 updateUrl = updateUrl.replace(':id', brandId);
                 form.action = updateUrl;
             });

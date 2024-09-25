@@ -91,7 +91,6 @@
                             </span>
                             <i class='bx' :class="open ? 'bx-minus' : 'bx-plus'"></i>
                         </a>
-
                         <!-- Dropdown Menu -->
                         <ul x-show="open" x-transition
                             class="dropdown-menu mt-2 marker:text-white list-disc bg-gray-800 p-2 rounded-md"
@@ -109,7 +108,7 @@
                 <div class="mb-2" x-data="{ open: false }">
                     <div class="text-xs font-semibold  text-gray-400">Products</div>
                     <li
-                        class="dropdown relative m-1 {{ request()->routeIs('product', 'category', 'category.sub-category', 'brand') ? 'rounded-br-md rounded-se-md bg-gray-800 text-white shadow-2xl font-bold active-tab' : 'text-gray-400' }}">
+                        class="dropdown relative m-1 {{ request()->routeIs('product.index', 'category.index', 'category.sub-category', 'brand') ? 'rounded-br-md rounded-se-md bg-gray-800 text-white shadow-2xl font-bold active-tab' : 'text-gray-400' }}">
                         <!-- Dropdown Toggle -->
                         <a href="#" @click="open = !open"
                             class="dropdown-toggle group flex justify-between items-center gap-x-3 p-2 text-sm font-semibold  {{ request()->routeIs('admin.user') ? 'text-white' : 'text-gray-400 hover:text-white' }}">
@@ -124,14 +123,14 @@
                             class="dropdown-menu mt-2 marker:text-white list-disc bg-gray-800 p-2 rounded-md"
                             role="list">
                             <li>
-                                <a href="{{ route('product') }}"
-                                    class="block p-2 {{ request()->routeIs('product') ? 'text-white' : 'text-gray-400 hover:text-white' }}">
+                                <a href="{{ route('product.index') }}"
+                                    class="block p-2 {{ request()->routeIs('product.index') ? 'text-white' : 'text-gray-400 hover:text-white' }}">
                                     Products
                                 </a>
                             </li>
                             <li>
-                                <a href="{{ route('category') }}"
-                                    class="block p-2 {{ request()->routeIs('category') ? 'text-white' : 'text-gray-400 hover:text-white' }}">
+                                <a href="{{ route('category.index') }}"
+                                    class="block p-2 {{ request()->routeIs('category.index') ? 'text-white' : 'text-gray-400 hover:text-white' }}">
                                     Parent Category
                                 </a>
                             </li>

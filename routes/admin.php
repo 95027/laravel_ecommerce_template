@@ -9,9 +9,9 @@ use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\UserController as AdminUserController;
 
-Route::middleware('guest')->group(function () {
-    Route::get('/admin/login', [AdminAuthController::class, 'loginForm'])->name('admin.login.form');
-    Route::post('/admin/login', [AdminAuthController::class, 'login'])->name('admin.login');
+Route::middleware('guest')->prefix('admin')->group(function () {
+    Route::get('/login', [AdminAuthController::class, 'loginForm'])->name('admin.login.form');
+    Route::post('/login', [AdminAuthController::class, 'login'])->name('admin.login');
 });
 
 Route::middleware(['auth:admin'])->group(function () {
@@ -23,7 +23,6 @@ Route::middleware(['auth:admin'])->group(function () {
     });
 
     Route::prefix('category')->name('category')->group(function () {
-        Route::get('/', [ProductController::class, 'getAllCategories']);
         Route::post('/', [ProductController::class, 'createCategory'])->name('.store');
         Route::get('/sub-category', [ProductController::class, 'getSubCategory'])->name('.sub-category');
         Route::post('/sub-category', [ProductController::class, 'createSubCategory'])->name('.sub-category-store');
@@ -31,15 +30,15 @@ Route::middleware(['auth:admin'])->group(function () {
         Route::get('/sub-category/{id}', [ProductController::class, 'editSubCategory'])->name('.subCategoryEdit');
         Route::put('/{id}', [ProductController::class, 'updateCategory'])->name('.update');
         Route::delete('/{id}', [ProductController::class, 'deleteCategory'])->name('.delete');
-        Route::get('/sub-category/{id}',[ProductController::class, 'editSubCategory'])->name('.editSubCategory');
+        Route::get('/sub-category/{id}', [ProductController::class, 'editSubCategory'])->name('.editSubCategory');
         Route::put('/sub-category/{id}', [ProductController::class, 'updateSubCategory'])->name('.subCategoryUpdate');
         Route::delete('/sub-category/{id}', [ProductController::class, 'deleteSubCategory'])->name('.sub-category-delete');
     });
 
     Route::prefix('product')->name('product')->group(function () {
-        Route::get('/', [ProductController::class, 'getAllProducts']);
+        //Route::get('/', [ProductController::class, 'getAllProducts']);
         Route::get('/addProductPage', [AdminPageController::class, 'addProductPage'])->name('.add-product-page');
-        Route::get('/edit-product/{id}',[AdminPageController::class, 'editProduct'])->name('.editProduct');
+        Route::get('/edit-product/{id}', [AdminPageController::class, 'editProduct'])->name('.editProduct');
         Route::post('/', [ProductController::class, 'createProduct'])->name('.store');
         Route::put('/{id}', [ProductController::class, 'updateProduct'])->name('.update');
         Route::delete('/{id}', [ProductController::class, 'deleteProduct'])->name('.delete');
@@ -64,5 +63,4 @@ Route::middleware(['auth:admin'])->group(function () {
     Route::get('/', [AdminPageController::class, 'rolePage'])->name('rolePage');
 
     Route::get('/orders', [OrderController::class, 'orderSearch'])->name('orders.search');
-
 });
