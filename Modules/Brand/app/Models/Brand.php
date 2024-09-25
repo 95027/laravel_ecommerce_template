@@ -3,9 +3,10 @@
 namespace Modules\Brand\Models;
 
 use App\Models\Media;
-use App\Models\Product;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Modules\Product\Models\Product;
+
 // use Modules\Brand\Database\Factories\BrandFactory;
 
 class Brand extends Model

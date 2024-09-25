@@ -2,5 +2,10 @@
     "ContactForm": true,
     "Review": true,
     "Coupon": true,
-    "Brand": true
+    "Brand": true,
+    "Category": true,
+    "Product": true,
+    "Address": true,
+    "Order": true,
+    "Transaction": true
 }

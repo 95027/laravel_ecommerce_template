@@ -54,10 +54,10 @@
                             <td class="py-3 px-6"><span
                                     class="rounded-md bg-green-50 px-2 py-1 text-xs font-medium text-green-700 ring-1 ring-inset ring-green-600/20">Active</span>
                             </td>
-                            <td class="py-3 text-center flex justify-evenly">
-                                <a
+                            <td class="py-3 text-center flex justify-center gap-3">
+                                {{-- <a
                                     class="bg-blue-300 bg-opacity-60 hover:text-blue-600 p-1 w-8 h-8 rounded-lg flex justify-center items-center cursor-pointer"><i
-                                        class="fa-regular fa-eye"></i></a>
+                                        class="fa-regular fa-eye"></i></a> --}}
                                 <a href="javascript:;" aria-haspopup="dialog" aria-expanded="false"
                                     aria-controls="edit-brand-offcanvas" data-hs-overlay="#edit-brand-offcanvas"
                                     data-id="{{ $brand->id }}"
