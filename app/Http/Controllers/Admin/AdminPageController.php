@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Employee;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class AdminPageController extends Controller
@@ -13,6 +14,14 @@ class AdminPageController extends Controller
     public function addProductPage()
     {
         return view('admin.pages.products.add-product');
+    }
+
+    public function editProduct($id){
+        $data['product'] = Product::with('category','brand')->findOrFail($id);
+        $data['brands'] = Brand::latest()->get();
+        $data['categories'] = Category::whereNull('parentId')->latest()->get();
+        $data['subcategories'] = Category::where('parentId', '!=', null)->latest()->get();
+        return view('admin.pages.products.edit-product', $data);
     }
 
     // Review Page

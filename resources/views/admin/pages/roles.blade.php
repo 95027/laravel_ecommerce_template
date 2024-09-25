@@ -31,7 +31,7 @@
         <div
             class="shadow-md shadow-gray-200 p-2 relative z-10 bg-white border rounded-xl md:p-5 dark:bg-neutral-900 dark:border-neutral-800 dark:shadow-gray-900/20">
             <table class="min-w-full table-auto bg-white">
-                <thead>
+                <thead class="border-b-2">
                     <tr class="text-left text-gray-600 uppercase text-sm leading-normal">
                         <th class="py-3 w-52 font-extrabold">Employee Id</th>
                         <th class="py-3 w-72 font-extrabold">Name / Email</th>

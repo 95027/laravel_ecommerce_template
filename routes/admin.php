@@ -37,16 +37,18 @@ Route::middleware(['auth:admin'])->group(function () {
         Route::get('/sub-category', [ProductController::class, 'getSubCategory'])->name('.sub-category');
         Route::post('/sub-category', [ProductController::class, 'createSubCategory'])->name('.sub-category-store');
         Route::get('/{id}', [ProductController::class, 'editCategory'])->name('.edit');
-        Route::get('/sub-category/{id}', [ProductController::class, 'editSubCategory'])->name('.sub-category-edit');
+        Route::get('/sub-category/{id}', [ProductController::class, 'editSubCategory'])->name('.subCategoryEdit');
         Route::put('/{id}', [ProductController::class, 'updateCategory'])->name('.update');
         Route::delete('/{id}', [ProductController::class, 'deleteCategory'])->name('.delete');
-        Route::put('/sub-category/{id}', [ProductController::class, 'updateSubCategory'])->name('.sub-category-update');
+        Route::get('/sub-category/{id}',[ProductController::class, 'editSubCategory'])->name('.editSubCategory');
+        Route::put('/sub-category/{id}', [ProductController::class, 'updateSubCategory'])->name('.subCategoryUpdate');
         Route::delete('/sub-category/{id}', [ProductController::class, 'deleteSubCategory'])->name('.sub-category-delete');
     });
 
     Route::prefix('product')->name('product')->group(function () {
         Route::get('/', [ProductController::class, 'getAllProducts']);
         Route::get('/addProductPage', [AdminPageController::class, 'addProductPage'])->name('.add-product-page');
+        Route::get('/edit-product/{id}',[AdminPageController::class, 'editProduct'])->name('.editProduct');
         Route::post('/', [ProductController::class, 'createProduct'])->name('.store');
         Route::put('/{id}', [ProductController::class, 'updateProduct'])->name('.update');
         Route::delete('/{id}', [ProductController::class, 'deleteProduct'])->name('.delete');

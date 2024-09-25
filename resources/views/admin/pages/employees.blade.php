@@ -31,7 +31,7 @@
         <div
             class="shadow-md shadow-gray-200 p-2 relative z-10 bg-white border rounded-xl md:p-5 dark:bg-neutral-900 dark:border-neutral-800 dark:shadow-gray-900/20">
             <table class="min-w-full table-auto bg-white">
-                <thead>
+                <thead class="border-b-2">
                     <tr class="text-left text-gray-600 uppercase text-sm leading-normal">
                         <th class="py-3 w-52 font-extrabold">Employee Id</th>
                         <th class="py-3 w-72 font-extrabold">Name / Email</th>
@@ -142,16 +142,33 @@
                     class="py-3 px-4 block w-full border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-0"
                     placeholder="Enter employee mobile">
             </div>
-            <div class="max-w-sm mb-4">
+            <div class=" mb-4">
                 <label for="hs-select-label" class="block text-sm font-medium mb-2 dark:text-white">Select
                     Role</label>
                 <select id="hs-select-label" name="role"
-                    class="py-3 px-4 pe-9 block w-full border border-gray-300 rounded-lg text-sm focus:border-outline-none focus:ring-0">
+                    class="py-3 px-4 pe-9 block w-full border border-gray-300 rounded-lg text-sm focus:border-outline-none focus:ring-0 employe-select      ">
                     <option hidden>Select One</option>
                     <option value="owner">Owner</option>
                     <option value="manager">Manager</option>
                     <option value="accountent">Accountent</option>
                 </select>
+                {{-- <div class="select-menu py-2 px-4 w-full border border-gray-300 rounded-lg text-sm cursor-pointer">
+                    <div class="select-btn flex items-center justify-between">
+                        <span class="sBtn-text">Select one role</span>
+                        <i class="bx bx-chevron-down"></i>
+                    </div>
+                    <ul class="options bg-gray-300">
+                        <li class="option hover:bg-gray-200">
+                            <span class="option-text px-4">Owner</span>
+                        </li>
+                        <li class="option hover:bg-gray-200">
+                            <span class="option-text px-4">Manager</span>
+                        </li>
+                        <li class="option hover:bg-gray-200">
+                            <span class="option-text px-4">Accountent</span>
+                        </li>
+                    </ul>
+                </div> --}}
             </div>
             <div class="">
                 <button type="submit" aria-haspopup="dialog" aria-expanded="false"
@@ -231,7 +248,6 @@
 
 
 @section('script')
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
         function confirmDelete(employeeId, employeeName) {
             Swal.fire({
@@ -266,18 +282,18 @@
                 $.ajax({
                     url: editUrl,
                     type: 'GET',
-                    success: function(data){
+                    success: function(data) {
                         $('#employeName').val(data.employee.name);
                         $('#employeeEmail').val(data.employee.email);
                         $('#employeeMobile').val(data.employee.mobile);
                         $('#employeeRole').val(data.employee.role);
                     },
-                    error: function(){
+                    error: function() {
                         alert('failed to fetech employee data');
                     }
                 });
 
-                var updateUrl = '{{ route('employee.update', ':id')}}';
+                var updateUrl = '{{ route('employee.update', ':id') }}';
                 updateUrl = updateUrl.replace(':id', employeeId);
                 form.action = updateUrl;
             });
