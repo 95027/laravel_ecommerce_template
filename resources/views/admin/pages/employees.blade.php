@@ -145,30 +145,20 @@
             <div class=" mb-4">
                 <label for="hs-select-label" class="block text-sm font-medium mb-2 dark:text-white">Select
                     Role</label>
-                <select id="hs-select-label" name="role"
-                    class="py-3 px-4 pe-9 block w-full border border-gray-300 rounded-lg text-sm focus:border-outline-none focus:ring-0 employe-select      ">
-                    <option hidden>Select One</option>
+                <select
+                    data-hs-select='{
+                "placeholder": "Select option...",
+                "toggleTag": "<button type=\"button\" aria-expanded=\"false\"></button>",
+                "toggleClasses": "hs-select-disabled:pointer-events-none hs-select-disabled:opacity-50 relative py-3 ps-4 pe-9 flex gap-x-2 text-nowrap w-full cursor-pointer bg-white border border-gray-200 rounded-lg text-start text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-neutral-600",
+                "dropdownClasses": "mt-2 z-50 w-full max-h-72 p-1 space-y-0.5 bg-white border border-gray-200 rounded-lg overflow-hidden overflow-y-auto dark:bg-neutral-900 dark:border-neutral-700",
+                "optionClasses": "py-2 px-4 w-full text-sm text-gray-800 cursor-pointer hover:bg-gray-100 rounded-lg focus:outline-none focus:bg-gray-100 dark:bg-neutral-900 dark:hover:bg-neutral-800 dark:text-neutral-200 dark:focus:bg-neutral-800",
+                "optionTemplate": "<div class=\"flex justify-between w-full\"><span data-title></span><span class=\"hidden hs-selected:block\"><svg class=\"shrink-0 size-4 text-blue-600\" xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" fill=\"currentColor\" viewBox=\"0 0 16 16\"><path d=\"M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z\"/></svg></span></div>"
+              }'>
+                    <option value="" hidden>Choose</option>
                     <option value="owner">Owner</option>
                     <option value="manager">Manager</option>
                     <option value="accountent">Accountent</option>
                 </select>
-                {{-- <div class="select-menu py-2 px-4 w-full border border-gray-300 rounded-lg text-sm cursor-pointer">
-                    <div class="select-btn flex items-center justify-between">
-                        <span class="sBtn-text">Select one role</span>
-                        <i class="bx bx-chevron-down"></i>
-                    </div>
-                    <ul class="options bg-gray-300">
-                        <li class="option hover:bg-gray-200">
-                            <span class="option-text px-4">Owner</span>
-                        </li>
-                        <li class="option hover:bg-gray-200">
-                            <span class="option-text px-4">Manager</span>
-                        </li>
-                        <li class="option hover:bg-gray-200">
-                            <span class="option-text px-4">Accountent</span>
-                        </li>
-                    </ul>
-                </div> --}}
             </div>
             <div class="">
                 <button type="submit" aria-haspopup="dialog" aria-expanded="false"

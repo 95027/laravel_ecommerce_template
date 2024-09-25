@@ -36,21 +36,22 @@
                     </tr>
                 </thead>
                 <tbody class="text-gray-600 text-xs font-light">
+                    @foreach ($users as $user)                        
                     <tr class="">
-                        <td class="py-3 px-6">1</td>
+                        <td class="py-3 px-6">{{$user->id}}</td>
                         <td class="py-3 px-6">1</td>
                         <td class="py-3 px-6">
                             <div class="flex items-center gap-2">
                                 <img src="https://picsum.photos/200/300" class="w-10 h-10 rounded-full" alt="">
                                 <div>
-                                    <p>John Doe</p>
-                                    <span class="text-opacity-75">john@example.com</span>
+                                    <p>{{$user->name}}</p>
+                                    <span class="text-opacity-75">{{$user->email}}</span>
                                 </div>
                             </div>
                         </td>
                         <td class="py-3 px-6"><a href="">9876543210</a></td>
-                        <td class="py-3 px-6"><span
-                                class="rounded-md bg-green-50 px-2 py-1 text-xs font-medium text-green-700 ring-1 ring-inset ring-green-600/20">Badge</span>
+                        <td class="py-3 px-6">
+                            <span class="rounded-md bg-green-50 px-2 py-1 text-xs font-medium text-green-700 ring-1 ring-inset ring-green-600/20">Active</span>
                         </td>
                         <td class="py-3 text-center flex justify-evenly">
                             <a
@@ -74,6 +75,7 @@
                             </form>
                         </td>
                     </tr>
+                    @endforeach
                 </tbody>
             </table>
         </div>
