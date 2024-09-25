@@ -49,6 +49,7 @@
     {{--  <script src="{{ asset('assets/admin/js/greeting.js') }}"></script> --}}
     <script src="{{ asset('assets/admin/js/parsley-validator.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="{{asset('assets/admin/js/sweet-alert.js')}}"></script>
     @yield('script')
     <script>
         document.querySelectorAll('.select-menu').forEach(menu => {

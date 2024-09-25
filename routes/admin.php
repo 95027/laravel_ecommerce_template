@@ -26,13 +26,11 @@ Route::middleware(['auth:admin'])->group(function () {
     });
 
     Route::prefix('category')->name('category')->group(function () {
-        Route::post('/', [ProductController::class, 'createCategory'])->name('.store');
         Route::get('/sub-category', [ProductController::class, 'getSubCategory'])->name('.sub-category');
         Route::post('/sub-category', [ProductController::class, 'createSubCategory'])->name('.sub-category-store');
         Route::get('/{id}', [ProductController::class, 'editCategory'])->name('.edit');
         Route::get('/sub-category/{id}', [ProductController::class, 'editSubCategory'])->name('.subCategoryEdit');
         Route::put('/{id}', [ProductController::class, 'updateCategory'])->name('.update');
-        Route::delete('/{id}', [ProductController::class, 'deleteCategory'])->name('.delete');
         Route::get('/sub-category/{id}', [ProductController::class, 'editSubCategory'])->name('.editSubCategory');
         Route::put('/sub-category/{id}', [ProductController::class, 'updateSubCategory'])->name('.subCategoryUpdate');
         Route::delete('/sub-category/{id}', [ProductController::class, 'deleteSubCategory'])->name('.sub-category-delete');
@@ -71,5 +69,4 @@ Route::middleware(['auth:admin'])->group(function () {
 
 
     Route::get('order-details', [AdminPageController::class, 'orderDetails'])->name('order-details');
-
 });

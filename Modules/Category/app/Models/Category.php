@@ -2,6 +2,7 @@
 
 namespace Modules\Category\Models;
 
+use App\Models\Media;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 // use Modules\Category\Database\Factories\CategoryFactory;
@@ -20,12 +21,12 @@ class Category extends Model
     //     // return CategoryFactory::new();
     // }
     
-    /* public function media()
+    public function media()
     {
         return $this->morphOne(Media::class, 'mediable');
     }
 
-    public function parent()
+    /* public function parent()
     {
         return $this->belongsTo(Category::class, 'parentId');
     }

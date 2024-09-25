@@ -18,7 +18,6 @@ class BrandController extends Controller
     public function index()
     {
         $data['brands'] = Brand::latest()->get();
-        $data['pageTitle'] = 'All-Brands';
         return view('brand::index', $data);
     }
 
@@ -58,10 +57,7 @@ class BrandController extends Controller
                 'file_type' => 'brand',
             ]);
         }
-
-        // notify()->success('Brand created successfully...');
-        session()->flash('status', 'success');
-        session()->flash('message', 'Brand created successfully!');
+        notify()->success('Brand created successfully...');
         return redirect()->back();
     }
 
@@ -78,7 +74,10 @@ class BrandController extends Controller
      */
     public function edit($id)
     {
-        return view('brand::edit');
+        $brand = Brand::find($id);
+        if ($brand) {
+            return response()->json(['brand' => $brand]);
+        }
     }
 
     /**
@@ -86,12 +85,41 @@ class BrandController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate(['name' => 'required']);
+
+        $brand = Brand::find($id);
+
+        if (!$brand) {
+            return notify()->error('requested brand not found');
+        }
+
+        $brand->update(['name' => $request->name]);
+
+        if ($request->hasFile('image')) {
+            $media = Media::where('mediable_type', Brand::class)->where('mediable_id', $brand->id)->first();
+
+            if ($media) {
+                $media->delete();
+                Storage::delete('public/' . $media->file_path);
+            }
+
+            $file = $request->file('image');
+            $filename = time() . '_' . Str::random(18) . '.' . $file->getClientOriginalExtension();
+            $filepath = $file->storeAs('brands', $filename, 'public');
+
+            Media::create([
+                'mediable_type' => Brand::class,
+                'mediable_id' => $brand->id,
+                'file_name' =>   $filename,
+                'file_path' =>   $filepath,
+                'file_type' =>   'brand',
+            ]);
+        }
+
+        notify()->success('Brand updated successfully');
+        return redirect()->back();
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy($id)
     {
         try {
@@ -103,16 +131,12 @@ class BrandController extends Controller
                     $media->delete();
                     Storage::delete('public/' . $media->file_path);
                 }
-                // notify()->success('Brand deleted successfully');
-                session()->flash('status', 'success');
-                session()->flash('message', 'Brand deleted successfully!');
+                notify()->success('Brand deleted successfully!');
                 return redirect()->back();
             }
         } catch (QueryException $e) {
             if ($e->getCode() == "23000") {
-                // notify()->warning('This brand is associated with other products');
-                session()->flash('status', 'error');
-                session()->flash('message', 'This brand is associated with other products');
+                notify()->warning('This brand is associated with other products...');
                 return redirect()->back();
             }
             throw $e;

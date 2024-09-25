@@ -21,7 +21,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-       // $sidebarSections = SidebarSection::where('parentId', null)->get();
+        View::share('pageTitle', '');
+
+        // $sidebarSections = SidebarSection::where('parentId', null)->get();
         //View::share('sidebarSections', $sidebarSections);
     }
 }
