@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('brandId');
-            $table->foreign('brandId')->references('id')->on('brands');
+            //$table->unsignedBigInteger('brandId')->nullable();
+            //$table->foreign('brandId')->references('id')->on('brands');
             $table->unsignedBigInteger('categoryId');
             $table->foreign('categoryId')->references('id')->on('categories');
             $table->unsignedBigInteger('subCategoryId')->nullable();
