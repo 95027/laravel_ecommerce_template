@@ -20,7 +20,7 @@ class ProductController extends Controller
         $data['products'] = Product::with(['media', 'brand'])->latest()->get();
         $data['categories'] = Category::whereNull('parentId')->latest()->get();
         $data['subCategorys'] = Category::where('parentId', '!=', null)->latest()->get();
-        $data['brands'] = Brand::latest()->get();
+        $data['brands'] = [];
         return view('admin.pages.products.products', $data);
     }
     
