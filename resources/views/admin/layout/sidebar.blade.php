@@ -37,11 +37,7 @@
                         class="relative m-1 {{ request()->routeIs('employee.employees') ? 'rounded-br-md rounded-se-md bg-gray-800 text-white shadow-2xl font-bold active-tab' : 'text-gray-400' }}">
                         <a href="{{ route('employee.employees') }}"
                             class="group flex gap-x-3 rounded-md p-2 text-sm font-semibold  {{ request()->routeIs('employee.employees') ? 'text-white' : 'text-gray-400 hover:text-white' }} ">
-                            <svg class="h-6 w-6 shrink-0" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                                stroke="currentColor" aria-hidden="true">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z" />
-                            </svg>
+                            <i class="fa-solid fa-users text-lg"></i>
                             All Employees
                         </a>
                     </li>
@@ -178,6 +174,32 @@
                     </li>
                 </div>
 
+                <div class="mb-2" x-data="{ open: false }">
+                    <div class="text-xs font-semibold  text-gray-400">Transations</div>
+                    <li
+                        class="dropdown relative m-1 {{ request()->routeIs('transations') ? 'rounded-br-md rounded-se-md bg-gray-800 text-white shadow-2xl font-bold active-tab' : 'text-gray-400' }}">
+                        <!-- Dropdown Toggle -->
+                        <a href="#" @click="open = !open"
+                            class="dropdown-toggle group flex justify-between items-center gap-x-3 p-2 text-sm font-semibold  {{ request()->routeIs('transations') ? 'text-white' : 'text-gray-400 hover:text-white' }}">
+                            <span class="flex items-center gap-x-3">
+                                <i class="fa-solid fa-money-bill-transfer text-lg"></i> Transations
+                            </span>
+                            <i class='bx' :class="open ? 'bx-minus' : 'bx-plus'"></i>
+                        </a>
+                        <!-- Dropdown Menu -->
+                        <ul x-show="open" x-transition
+                            class="dropdown-menu mt-2 marker:text-white list-disc bg-gray-800 p-2 rounded-md"
+                            role="list">
+                            <li>
+                                <a href="{{ route('transations') }}"
+                                    class="block p-2 {{ request()->routeIs('transations') ? 'text-white' : 'text-gray-400 hover:text-white' }}">
+                                    All Transations
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </div>
+
                 <div class="mb-2">
                     <div class="text-xs font-semibold  text-gray-400">Contact Form</div>
                     <li
@@ -225,7 +247,7 @@
                 <div class="mb-2" x-data="{ open: false }">
                     <div class="text-xs font-semibold  text-gray-400">All Reports</div>
                     <li
-                        class="dropdown relative m-1 {{ request()->routeIs('product', 'category', 'category.sub-category', 'brand') ? 'rounded-br-md rounded-se-md bg-gray-800 text-white shadow-2xl font-bold active-tab' : 'text-gray-400' }}">
+                        class="dropdown relative m-1 {{ request()->routeIs('') ? 'rounded-br-md rounded-se-md bg-gray-800 text-white shadow-2xl font-bold active-tab' : 'text-gray-400' }}">
                         <!-- Dropdown Toggle -->
                         <a href="#" @click="open = !open"
                             class="dropdown-toggle group flex justify-between items-center gap-x-3 p-2 text-sm font-semibold  {{ request()->routeIs('admin.user') ? 'text-white' : 'text-gray-400 hover:text-white' }}">

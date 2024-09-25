@@ -125,8 +125,13 @@
                     role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
                     <a href="{{route('profile-page')}}" class="block px-3 py-1 text-sm leading-6 text-gray-900 hover:bg-gray-100 "
                         role="menuitem" tabindex="-1" id="user-menu-item-0">Your profile</a>
-                    <a href="#" class="block px-3 py-1 text-sm leading-6 text-gray-900 hover:bg-gray-100"
-                        role="menuitem" tabindex="-1" id="user-menu-item-1">Sign out</a>
+                        <form action="{{ route('admin.logout') }}" method="POST">
+                            @csrf
+                            <button
+                                class="w-full flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 dark:text-neutral-400 dark:hover:bg-neutral-700 dark:hover:text-neutral-300 dark:focus:bg-neutral-700">
+                                Log Out
+                            </button>
+                        </form>
                 </div>
             </div>
         </div>

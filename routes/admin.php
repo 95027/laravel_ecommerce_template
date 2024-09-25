@@ -70,6 +70,9 @@ Route::middleware(['auth:admin'])->group(function () {
     Route::get('/profile', [AdminController::class, 'profilePage'])->name('profile-page');
 
 
-    Route::get('order-details', [AdminPageController::class, 'orderDetails'])->name('order-details');
+    Route::get('/order-details', [AdminPageController::class, 'orderDetails'])->name('order-details');
+
+
+    Route::get('/transations', [AdminPageController::class, 'transations'])->name('transations');
 
 });

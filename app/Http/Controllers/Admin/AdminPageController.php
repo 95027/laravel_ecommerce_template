@@ -73,4 +73,9 @@ class AdminPageController extends Controller
         $data['pageTitle'] = 'Order Details';
         return view('admin.pages.order-details', $data);
     }
+
+    public function transations(){
+        $data['pageTitle'] = 'All-Transactions';
+        return view('admin.pages.transation', $data);
+    }
 }

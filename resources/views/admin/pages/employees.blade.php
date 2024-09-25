@@ -145,7 +145,7 @@
             <div class=" mb-4">
                 <label for="hs-select-label" class="block text-sm font-medium mb-2 dark:text-white">Select
                     Role</label>
-                <select
+                <select name="role"
                     data-hs-select='{
                 "placeholder": "Select option...",
                 "toggleTag": "<button type=\"button\" aria-expanded=\"false\"></button>",
@@ -248,7 +248,7 @@
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
                 cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes, delete it!'
+                confirmButtonText: 'Yes, delete it!',
             }).then((result) => {
                 if (result.isConfirmed) {
                     document.getElementById('delete-form-' + employeeId).submit();
@@ -256,6 +256,7 @@
                         title: "Deleted!",
                         text: "Your file has been deleted.",
                         icon: "success",
+                        height: '300px'
                     });
                 }
             });

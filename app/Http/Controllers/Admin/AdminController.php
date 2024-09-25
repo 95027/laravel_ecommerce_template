@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Admin;
 use App\Models\Employee;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -18,7 +19,8 @@ class AdminController extends Controller
     public function profilePage()
     {
         $data['pageTitle'] = 'My-Profile';
-        return view('admin.pages.profile-page');
+        $data['admins'] = Admin::first();
+        return view('admin.pages.profile-page', $data);
     }
 
 
