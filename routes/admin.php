@@ -63,7 +63,7 @@ Route::middleware(['auth:admin'])->group(function () {
 
     Route::get('/all-orders', [AdminPageController::class, 'allOrders'])->name('allOrders');
 
-    Route::get('/', [AdminPageController::class, 'rolePage'])->name('rolePage');
+    Route::get('/role', [AdminPageController::class, 'rolePage'])->name('rolePage');
 
     Route::get('/orders', [OrderController::class, 'orderSearch'])->name('orders.search');
 
