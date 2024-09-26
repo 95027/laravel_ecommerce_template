@@ -49,27 +49,26 @@
                             <td class="py-3 px-6">{{ $category->name }}</td>
                             <td class="py-3 px-6">
                                 <img class="w-12 h-12 rounded-full"
-                                    src="{{ asset('storage/' . $category->media?->file_path) }}" alt="categorie image">
+                                    src="{{ asset('storage/' . $category->media?->file_path) }}" alt="{{ $category->id }}">
                             </td>
                             <td class="py-3 px-6"><span
                                     class="rounded-md bg-green-50 px-2 py-1 text-xs font-medium text-green-700 ring-1 ring-inset ring-green-600/20">Active</span>
                             </td>
-                            <td class="py-3 text-center flex justify-evenly">
-                                <a
+                            <td class="py-3 text-center flex justify-center gap-3">
+                                {{-- <a
                                     class="bg-blue-300 bg-opacity-60 hover:text-blue-600 p-1 w-8 h-8 rounded-lg flex justify-center items-center cursor-pointer"><i
-                                        class="fa-regular fa-eye"></i></a>
+                                        class="fa-regular fa-eye"></i></a> --}}
                                 <a href="javascript:;" aria-haspopup="dialog" aria-expanded="false"
                                     aria-controls="edit-category-offcanvas" data-hs-overlay="#edit-category-offcanvas"
                                     data-id="{{ $category->id }}"
                                     class="edit-category bg-yellow-200 bg-opacity-60 hover:text-yellow-600 p-1 w-8 h-8 rounded-lg flex justify-center items-center cursor-pointer edit-employee-button"><i
                                         class="fa-regular fa-pen-to-square"></i></a>
-                                <form id="delete-form-{{ $category->id }}"
-                                    action="{{ route('category.delete', $category->id) }}" method="POST">
+                                <form id="deleteModal" action="{{ route('category.destroy', $category->id) }}"
+                                    method="POST">
                                     @csrf
                                     @method('DELETE')
                                     <input type="hidden" name="id" value="{{ $category->id }}">
-                                    <button type="button"
-                                        onclick="confirmDelete('{{ $category->id }}', '{{ $category->name }}')"
+                                    <button type="button" onclick="confirmDelete()"
                                         class="bg-red-300 bg-opacity-60 hover:text-red-600 p-1 w-8 h-8 rounded-lg flex justify-center items-center cursor-pointer">
                                         <i class="fa-solid fa-trash-can"></i>
                                     </button>
@@ -186,30 +185,6 @@
 @endsection
 
 @section('script')
-    <script>
-        function confirmDelete(categoryId, categoryName) {
-            Swal.fire({
-                title: 'Confirm Deletion',
-                text: "Deleting this category will permanently remove all its records. Do you wish to proceed with deleting: " +
-                    categoryName + "?",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes, delete it!'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    document.getElementById('delete-form-' + categoryId).submit();
-                    Swal.fire({
-                        title: "Deleted!",
-                        text: "The category has been deleted successfully.",
-                        icon: "success",
-                    });
-                }
-            });
-        }
-    </script>
-
     <script>
         $(document).ready(function() {
             $('.edit-category').on('click', function() {

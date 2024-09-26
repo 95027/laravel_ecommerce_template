@@ -3,8 +3,10 @@
 namespace Modules\Category\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Media;
 use Illuminate\Http\Request;
 use Modules\Category\Models\Category;
+use Illuminate\Support\Str;
 
 class CategoryController extends Controller
 {
@@ -13,7 +15,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $data['categories'] = Category::where('parentId', null)->get();
+        $data['categories'] = Category::where('parentId', null)->latest()->get();
         return view('category::index', $data);
     }
 
@@ -30,7 +32,29 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'image' => 'required',
+        ]);
+
+        $category = Category::create(['name' => $request->name]);
+
+        if ($request->hasFile('image')) {
+            $file = $request->file('image');
+            $filename = time() . '_' . Str::random(18) . '.' . $file->getClientOriginalExtension();
+            $filepath = $file->storeAs('categories', $filename, 'public');
+
+            Media::create([
+                'mediable_type' => Category::class,
+                'mediable_id' => $category->id,
+                'file_name' => $filename,
+                'file_path' => $filepath,
+                'file_type' => 'category',
+            ]);
+        }
+
+        notify()->success('Category created successfully');
+        return back();
     }
 
     /**

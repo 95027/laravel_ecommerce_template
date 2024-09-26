@@ -63,13 +63,11 @@
                                     data-id="{{ $brand->id }}"
                                     class="editBrand bg-yellow-200 bg-opacity-60 hover:text-yellow-600 p-1 w-8 h-8 rounded-lg flex justify-center items-center cursor-pointer edit-employee-button"><i
                                         class="fa-regular fa-pen-to-square"></i></a>
-                                <form action="{{ route('brand.destroy', $brand->id) }}" method="POST"
-                                    id="delete-form-{{ $brand->id }}">
+                                <form action="{{ route('brand.destroy', $brand->id) }}" method="POST" id="deleteModal">
                                     @csrf
                                     @method('DELETE')
                                     <input type="hidden" name="id" value="{{ $brand->id }}">
-                                    <button type="button"
-                                        onclick="confirmDelete('{{ $brand->id }}', '{{ $brand->name }}')"
+                                    <button type="button" onclick="confirmDelete()"
                                         class="bg-red-300 bg-opacity-60 hover:text-red-600 p-1 w-8 h-8 rounded-lg flex justify-center items-center cursor-pointer">
                                         <i class="fa-solid fa-trash-can"></i>
                                     </button>
@@ -155,13 +153,14 @@
             </button>
         </div>
         <div class="p-4">
-            <form id="editBrandForm" method="POST" enctype="multipart/form-data">
+            <form id="editBrandForm" data-parsley-validate onsubmit="jsValidator('editBrandForm')" method="POST"
+                enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
                 <div class="max-w-sm mb-4">
                     <label for="input-label" class="block text-sm font-medium mb-2 dark:text-white">Brand Name
                         <abbr class="text-red-600">*</abbr></label>
-                    <input id="brandName" type="text" name="name"
+                    <input id="brandName" type="text" name="name" required
                         class="py-3 px-4 block w-full border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-0"
                         placeholder="Enter category name">
                 </div>
@@ -185,33 +184,8 @@
 
 @section('script')
     <script>
-        function confirmDelete(brandId, brandName) {
-            Swal.fire({
-                title: 'Confirm Deletion',
-                text: "Deleting this brand will permanently remove all its records. Do you wish to proceed with deleting: " +
-                    brandName + "?",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes, delete it!'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    document.getElementById('delete-form-' + brandId).submit();
-                    Swal.fire({
-                        title: "Deleted!",
-                        text: "The brand has been deleted successfully.",
-                        icon: "success",
-                    });
-                }
-            });
-        }
-    </script>
-
-    <script>
         $(document).ready(function() {
             $('.editBrand').on('click', function() {
-                console.log('n');
                 var brandId = $(this).data('id');
                 const form = document.getElementById('editBrandForm');
                 var editUrl = '{{ route('brand.edit', ':id') }}';
