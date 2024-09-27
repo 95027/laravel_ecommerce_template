@@ -14,8 +14,6 @@ Route::middleware('guest')->prefix('admin')->group(function () {
     Route::post('/login', [AdminAuthController::class, 'login'])->name('admin.login');
 });
 
-
-
 Route::middleware(['auth:admin'])->group(function () {
     Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
 
@@ -25,25 +23,6 @@ Route::middleware(['auth:admin'])->group(function () {
         Route::get('/', [AdminUserController::class, 'allUsers'])->name('user');
     });
 
-    Route::prefix('category')->name('category')->group(function () {
-        Route::get('/sub-category', [ProductController::class, 'getSubCategory'])->name('.sub-category');
-        Route::post('/sub-category', [ProductController::class, 'createSubCategory'])->name('.sub-category-store');
-        Route::get('/{id}', [ProductController::class, 'editCategory'])->name('.edit');
-        Route::get('/sub-category/{id}', [ProductController::class, 'editSubCategory'])->name('.subCategoryEdit');
-        Route::put('/{id}', [ProductController::class, 'updateCategory'])->name('.update');
-        Route::get('/sub-category/{id}', [ProductController::class, 'editSubCategory'])->name('.editSubCategory');
-        Route::put('/sub-category/{id}', [ProductController::class, 'updateSubCategory'])->name('.subCategoryUpdate');
-        Route::delete('/sub-category/{id}', [ProductController::class, 'deleteSubCategory'])->name('.sub-category-delete');
-    });
-
-    Route::prefix('product')->name('product')->group(function () {
-        //Route::get('/', [ProductController::class, 'getAllProducts']);
-        Route::get('/addProductPage', [AdminPageController::class, 'addProductPage'])->name('.add-product-page');
-        Route::get('/edit-product/{id}', [AdminPageController::class, 'editProduct'])->name('.editProduct');
-        Route::post('/', [ProductController::class, 'createProduct'])->name('.store');
-        Route::put('/{id}', [ProductController::class, 'updateProduct'])->name('.update');
-        Route::delete('/{id}', [ProductController::class, 'deleteProduct'])->name('.delete');
-    });
 
     Route::prefix('order')->name('order')->group(function () {
         Route::get('/', [ProductController::class, 'getAllOrders']);

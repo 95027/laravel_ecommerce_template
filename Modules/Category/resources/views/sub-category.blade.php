@@ -33,7 +33,7 @@
             </div>
 
             <div class="card-body overflow-x-auto">
-          
+
             </div>
         </div>
     </div> --}}
@@ -81,7 +81,7 @@
                     </tr>
                 </thead>
                 <tbody class="text-gray-600 text-md font-light">
-                    @foreach ($SubCategorys as $i => $SubCategory)
+                    @foreach ($subCategories as $i => $SubCategory)
                         <tr class="">
                             <td class="py-3 px-6">{{ $i + 1 }}</td>
                             <td class="py-3 px-6">{{ $SubCategory->name }}</td>
@@ -89,22 +89,20 @@
                             <td class="py-3 px-6"><span
                                     class="rounded-md bg-green-50 px-2 py-1 text-xs font-medium text-green-700 ring-1 ring-inset ring-green-600/20">Active</span>
                             </td>
-                            <td class="py-3 text-center flex justify-evenly">
-                                <a
+                            <td class="py-3 text-center flex justify-center gap-3">
+                                {{-- <a
                                     class="bg-blue-300 bg-opacity-60 hover:text-blue-600 p-1 w-8 h-8 rounded-lg flex justify-center items-center cursor-pointer"><i
-                                        class="fa-regular fa-eye"></i></a>
+                                        class="fa-regular fa-eye"></i></a> --}}
                                 <a href="javascript:;" aria-haspopup="dialog" aria-expanded="false"
-                                aria-controls="edit-subCategory-offcanvas" data-hs-overlay="#edit-subCategory-offcanvas"
-                                data-id="{{ $SubCategory->id }}"
+                                    aria-controls="edit-subCategory-offcanvas" data-hs-overlay="#edit-subCategory-offcanvas"
+                                    data-id="{{ $SubCategory->id }}"
                                     class="editSubCategory bg-yellow-200 bg-opacity-60 hover:text-yellow-600 p-1 w-8 h-8 rounded-lg flex justify-center items-center cursor-pointer edit-employee-button"><i
                                         class="fa-regular fa-pen-to-square"></i></a>
-                                <form action="{{ route('category.sub-category-delete', $SubCategory->id) }}" method="POST"
-                                    id="delete-form-{{ $SubCategory->id }}">
+                                <form action="{{ route('sub-category.destroy', $SubCategory->id) }}" method="POST"
+                                    id="deleteModal">
                                     @csrf
                                     @method('DELETE')
-                                    <input type="hidden" name="id" value="{{ $SubCategory->id }}">
-                                    <button type="button"
-                                        onclick="confirmDelete('{{ $SubCategory->id }}', '{{ $SubCategory->name }}')"
+                                    <button type="button" onclick="confirmDelete()"
                                         class="bg-red-300 bg-opacity-60 hover:text-red-600 p-1 w-8 h-8 rounded-lg flex justify-center items-center cursor-pointer">
                                         <i class="fa-solid fa-trash-can"></i>
                                     </button>
@@ -139,15 +137,15 @@
             </button>
         </div>
         <div class="p-4">
-            <form id="add-sub-category" data-parsley-validate action="{{ route('category.sub-category-store') }}"
+            <form id="add-sub-category" data-parsley-validate action="{{ route('sub-category.store') }}"
                 onsubmit="jsValidator('add-sub-category')" method="POST" enctype="multipart/form-data">
                 @csrf
                 <label for="input-label" class="block text-sm font-medium mb-2 dark:text-white">Parent Category
                     <abbr class="text-red-600">*</abbr></label>
-                <select name="parent_category_id" required
+                <select name="parentId" required
                     class="mb-4 py-3 px-4 pe-9 block w-full border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-0">
                     <option selected value="" hidden>Select Parent Category</option>
-                    @foreach ($categorys as $category)
+                    @foreach ($categories as $category)
                         <option value="{{ $category->id }}">{{ $category->name }}</option>
                     @endforeach
                 </select>
@@ -191,15 +189,15 @@
             </button>
         </div>
         <div class="p-4">
-            <form id="edit-sub-category" data-parsley-validate
-                onsubmit="jsValidator('edit-sub-category')" method="POST" enctype="multipart/form-data">
+            <form id="edit-sub-category" data-parsley-validate onsubmit="jsValidator('edit-sub-category')" method="POST"
+                enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
                 <label for="input-label" class="block text-sm font-medium mb-2 dark:text-white">Parent Category
                     <abbr class="text-red-600">*</abbr></label>
-                <select name="parent_category_id" required
+                <select name="parentId" required
                     class="mb-4 py-3 px-4 pe-9 block w-full border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-0">
-                    @foreach ($categorys as $category)
+                    @foreach ($categories as $category)
                         <option value="{{ $category->id }}">{{ $category->name }}</option>
                     @endforeach
                 </select>
@@ -224,38 +222,11 @@
 
 @section('script')
     <script>
-        function confirmDelete(subCategoryId, subCategoryName) {
-            Swal.fire({
-                title: 'Confirm Deletion',
-                text: "Deleting this sub-category will permanently remove all its records. Do you wish to proceed with deleting: " +
-                    subCategoryName + "?",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes, delete it!'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    // Corrected form submission for sub-category
-                    document.getElementById('delete-form-' + subCategoryId).submit();
-
-                    // Show success message after deletion
-                    Swal.fire({
-                        title: "Deleted!",
-                        text: "The sub-category has been deleted successfully.",
-                        icon: "success",
-                    });
-                }
-            });
-        }
-    </script>
-
-    <script>
         $(document).ready(function() {
             $('.editSubCategory').on('click', function() {
                 var subCategoryId = $(this).data('id');
                 const form = document.getElementById('edit-sub-category');
-                var editUrl = '{{ route('category.editSubCategory', ':id') }}';
+                var editUrl = '{{ route('sub-category.edit', ':id') }}';
                 editUrl = editUrl.replace(':id', subCategoryId);
                 $.ajax({
                     url: editUrl,
@@ -263,12 +234,13 @@
                     success: function(data) {
                         console.log(data);
                         $('#sub-category-name').val(data.subCategory.name);
+                        $('select[name="parentId"]').val(data.subCategory.parentId).change();
                     },
                     error: function() {
                         alert('Failed to fetch category data');
                     }
                 });
-                var updateUrl = '{{ route('category.subCategoryUpdate', ':id') }}';
+                var updateUrl = '{{ route('sub-category.update', ':id') }}';
                 updateUrl = updateUrl.replace(':id', subCategoryId);
                 form.action = updateUrl;
             });

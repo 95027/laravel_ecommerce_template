@@ -5,6 +5,7 @@ namespace Modules\Category\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Models\Media;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Modules\Category\Models\Category;
 use Illuminate\Support\Str;
 
@@ -70,7 +71,11 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        return view('category::edit');
+        $category = Category::find($id);
+
+        if ($category) {
+            return response()->json(['category' => $category]);
+        }
     }
 
     /**
@@ -78,7 +83,36 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate(['name' => 'required']);
+
+        $category = Category::find($id);
+
+        if ($category) {
+            $category->update(['name' => $request->name]);
+
+            if ($request->hasFile('image')) {
+
+                $media = Media::where('mediable_type', Category::class)->where('mediable_id', $category->id)->first();
+                if ($media) {
+                    $media->delete();
+                    Storage::delete('public/' . $media->file_path);
+                }
+                $file = $request->file('image');
+                $filename = time() . '_' . Str::random(18) . '.' . $file->getClientOriginalExtension();
+                $filepath = $file->storeAs('categories', $filename, 'public');
+
+                Media::create([
+                    'mediable_type' => Category::class,
+                    'mediable_id' => $category->id,
+                    'file_name' => $filename,
+                    'file_path' => $filepath,
+                    'file_type' => 'category',
+                ]);
+            }
+
+            notify()->success('Category updated successfully');
+            return redirect()->back();
+        }
     }
 
     /**
@@ -86,6 +120,22 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $category = Category::find($id);
+
+        if ($category) {
+            $category->delete();
+            $media = Media::where('mediable_type', Category::class)->where('mediable_id', $category->id)->first();
+            if ($media) {
+                $media->delete();
+                Storage::delete('public/' . $media->file_path);
+            }
+        }
+        notify()->success('Category deleted successfully');
+        return back();
+    }
+
+    public function subCategory(){
+
+        return view('category::sub-category');
     }
 }

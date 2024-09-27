@@ -108,7 +108,7 @@
                 <div class="mb-2" x-data="{ open: false }">
                     <div class="text-xs font-semibold  text-gray-400">Products</div>
                     <li
-                        class="dropdown relative m-1 {{ request()->routeIs('product.index', 'category.index', 'category.sub-category', 'brand') ? 'rounded-br-md rounded-se-md bg-gray-800 text-white shadow-2xl font-bold active-tab' : 'text-gray-400' }}">
+                        class="dropdown relative m-1 {{ request()->routeIs('product.index', 'category.index', 'brand.index') ? 'rounded-br-md rounded-se-md bg-gray-800 text-white shadow-2xl font-bold active-tab' : 'text-gray-400' }}">
                         <!-- Dropdown Toggle -->
                         <a href="#" @click="open = !open"
                             class="dropdown-toggle group flex justify-between items-center gap-x-3 p-2 text-sm font-semibold  {{ request()->routeIs('admin.user') ? 'text-white' : 'text-gray-400 hover:text-white' }}">
@@ -135,8 +135,8 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="{{ route('category.sub-category') }}"
-                                    class="block p-2 {{ request()->routeIs('category.sub-category') ? 'text-white' : 'text-gray-400 hover:text-white' }}">
+                                <a href="{{ route('sub-category.index') }}"
+                                    class="block p-2 {{ request()->routeIs('sub-category.index') ? 'text-white' : 'text-gray-400 hover:text-white' }}">
                                     Sub Category
                                 </a>
                             </li>
