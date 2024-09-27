@@ -94,7 +94,7 @@
                                 class="rounded-md bg-green-50 px-2 py-1 text-xs font-medium text-green-700 ring-1 ring-inset ring-green-600/20">Active</span>
                         </td>
                         <td class="py-3 text-center flex justify-evenly">
-                            <a href="{{route('order-details')}}"
+                            <a href="{{ route('order-details') }}"
                                 class="bg-blue-300 bg-opacity-60 hover:text-blue-600 p-1 w-8 h-8 rounded-lg flex justify-center items-center cursor-pointer"><i
                                     class="fa-regular fa-eye"></i></a>
                             {{-- <a

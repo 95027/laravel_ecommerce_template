@@ -23,13 +23,6 @@ Route::middleware(['auth:admin'])->group(function () {
         Route::get('/', [AdminUserController::class, 'allUsers'])->name('user');
     });
 
-
-    Route::prefix('order')->name('order')->group(function () {
-        Route::get('/', [ProductController::class, 'getAllOrders']);
-        Route::get('/{id}', [ProductController::class, 'orderDetails'])->name('.details');
-        Route::put('/{id}', [ProductController::class, 'updateOrder'])->name('.update');
-    });
-
     Route::prefix('employee')->name('employee')->group(function () {
         Route::get('/employees', [AdminPageController::class, 'employeePage'])->name('.employees');
         Route::post('/', [AdminController::class, 'createEmployee'])->name('.store');
@@ -38,7 +31,6 @@ Route::middleware(['auth:admin'])->group(function () {
         Route::delete('/{id}', [AdminController::class, 'deleteEmployee'])->name('.delete');
     });
 
-    Route::get('/all-orders', [AdminPageController::class, 'allOrders'])->name('allOrders');
 
     Route::get('/role', [AdminPageController::class, 'rolePage'])->name('rolePage');
 
@@ -46,8 +38,6 @@ Route::middleware(['auth:admin'])->group(function () {
 
     Route::get('/profile', [AdminController::class, 'profilePage'])->name('profile-page');
 
-
-    Route::get('/order-details', [AdminPageController::class, 'orderDetails'])->name('order-details');
 
 
     Route::get('/transations', [AdminPageController::class, 'transations'])->name('transations');

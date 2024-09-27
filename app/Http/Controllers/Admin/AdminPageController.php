@@ -11,7 +11,7 @@ use Illuminate\Http\Request;
 
 class AdminPageController extends Controller
 {
-    
+
     public function addProductPage()
     {
         $data['pageTitle'] = 'Add-Product';
@@ -40,11 +40,6 @@ class AdminPageController extends Controller
         return view('admin.pages.contactForm', $data);
     }
 
-    public function allOrders()
-    {
-        $data['pageTitle'] = 'All-Orders';
-        return view('admin.pages.orders', $data);
-    }
 
     public function employeePage()
     {
@@ -68,11 +63,6 @@ class AdminPageController extends Controller
         return view('admin.pages.roles',$data);
     }
 
-
-    public function orderDetails(){
-        $data['pageTitle'] = 'Order Details';
-        return view('admin.pages.order-details', $data);
-    }
 
     public function transations(){
         $data['pageTitle'] = 'All-Transactions';

@@ -4,6 +4,7 @@ namespace Modules\Order\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Modules\Order\Models\Order;
 
 class OrderController extends Controller
 {
@@ -12,7 +13,9 @@ class OrderController extends Controller
      */
     public function index()
     {
-        return view('order::index');
+        $data['orders'] = Order::latest()->get();
+
+        return view('order::index', $data);
     }
 
     /**
@@ -36,7 +39,9 @@ class OrderController extends Controller
      */
     public function show($id)
     {
-        return view('order::show');
+       // $order = Order::where('id', $id)->with('orderItem')->latest()->first();
+
+        return view('order::order-details');
     }
 
     /**

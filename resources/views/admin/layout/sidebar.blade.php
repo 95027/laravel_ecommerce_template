@@ -1,8 +1,7 @@
 <div class="hidden lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:w-72 lg:flex-col">
     <div class="flex grow flex-col gap-y-5 overflow-y-auto bg-gray-900 px-5 pb-4 menu">
         <a href="{{ route('admin.dashboard') }}" class="flex h-16 shrink-0 items-center">
-            <img class="h-8 w-auto" src="{{asset('assets/admin/images/logo/logo2.png')}}"
-                alt="Your Company">
+            <img class="h-8 w-auto" src="{{ asset('assets/admin/images/logo/logo2.png') }}" alt="Your Company">
             <h1 class="text-3xl ms-2 font-bold text-white">Ecommerce</h1>
         </a>
         <nav class="flex flex-1 flex-col">
@@ -105,10 +104,10 @@
                 <div class="mb-2" x-data="{ open: false }">
                     <div class="text-xs font-semibold  text-gray-400">Products</div>
                     <li
-                        class="dropdown relative m-1 {{ request()->routeIs('product.index','category.index','category.sub-category','brand.index') ? 'rounded-br-md rounded-se-md bg-gray-800 text-white shadow-2xl font-bold active-tab' : 'text-gray-400' }}">
+                        class="dropdown relative m-1 {{ request()->routeIs('product.index', 'category.index', 'category.sub-category', 'brand.index') ? 'rounded-br-md rounded-se-md bg-gray-800 text-white shadow-2xl font-bold active-tab' : 'text-gray-400' }}">
                         <!-- Dropdown Toggle -->
                         <a href="#" @click="open = !open"
-                            class="dropdown-toggle group flex justify-between items-center gap-x-3 p-2 text-sm font-semibold  {{ request()->routeIs('product.index','category.index','category.sub-category', 'brand.index') ? 'text-white' : 'text-gray-400 hover:text-white' }}">
+                            class="dropdown-toggle group flex justify-between items-center gap-x-3 p-2 text-sm font-semibold  {{ request()->routeIs('product.index', 'category.index', 'category.sub-category', 'brand.index') ? 'text-white' : 'text-gray-400 hover:text-white' }}">
                             <span class="flex items-center gap-x-3">
                                 <i class='bx bxl-product-hunt text-2xl'></i> Product
                                 Management
@@ -150,10 +149,10 @@
                 <div class="mb-2" x-data="{ open: false }">
                     <div class="text-xs font-semibold  text-gray-400">Orders</div>
                     <li
-                        class="dropdown relative m-1 {{ request()->routeIs('allOrders') ? 'rounded-br-md rounded-se-md bg-gray-800 text-white shadow-2xl font-bold active-tab' : 'text-gray-400' }}">
+                        class="dropdown relative m-1 {{ request()->routeIs('order.index') ? 'rounded-br-md rounded-se-md bg-gray-800 text-white shadow-2xl font-bold active-tab' : 'text-gray-400' }}">
                         <!-- Dropdown Toggle -->
                         <a href="#" @click="open = !open"
-                            class="dropdown-toggle group flex justify-between items-center gap-x-3 p-2 text-sm font-semibold  {{ request()->routeIs('allOrders') ? 'text-white' : 'text-gray-400 hover:text-white' }}">
+                            class="dropdown-toggle group flex justify-between items-center gap-x-3 p-2 text-sm font-semibold  {{ request()->routeIs('order.index') ? 'text-white' : 'text-gray-400 hover:text-white' }}">
                             <span class="flex items-center gap-x-3">
                                 <i class='bx bx-sort text-2xl'></i> Order
                                 Management
@@ -166,8 +165,8 @@
                             class="dropdown-menu mt-2 marker:text-white list-disc bg-gray-800 p-2 rounded-md"
                             role="list">
                             <li>
-                                <a href="{{ route('allOrders') }}"
-                                    class="block p-2 {{ request()->routeIs('allOrders') ? 'text-white' : 'text-gray-400 hover:text-white' }}">
+                                <a href="{{ route('order.index') }}"
+                                    class="block p-2 {{ request()->routeIs('order.index') ? 'text-white' : 'text-gray-400 hover:text-white' }}">
                                     All Orders
                                 </a>
                             </li>
@@ -290,7 +289,6 @@
                         </ul>
                     </li>
                 </div>
-
             </ul>
         </nav>
     </div>

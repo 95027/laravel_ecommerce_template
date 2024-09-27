@@ -17,17 +17,6 @@ Route::middleware('auth')->name('profile.')->group(function () {
 });
 
 
-Route::middleware('auth')->group(function () {
-
-    Route::prefix('stripe')->name('stripe.')->group(function () {
-        Route::post('/payment', [PaymentController::class, 'handlePayment'])->name('payment');
-        Route::get('/success', [PaymentController::class, 'success'])->name('success');
-        Route::get('/cancel', [PaymentController::class, 'cancel'])->name('cancel');
-        Route::post('/refund', [PaymentController::class, 'refundPayment'])->name('refund');
-    });
-    
-});
-
 //Route::get('/export', [ExportController::class, 'export'])->name('export');
 
 

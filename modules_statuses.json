@@ -7,5 +7,6 @@
     "Product": true,
     "Address": true,
     "Order": true,
-    "Transaction": true
+    "Transaction": true,
+    "Stripe": true
 }
