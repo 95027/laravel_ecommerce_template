@@ -21,8 +21,8 @@
                     </li>
                 </ol>
             </div>
-            <a type="button" aria-haspopup="dialog" aria-expanded="false" aria-controls="add-employee-offcanvas"
-                data-hs-overlay="#add-employee-offcanvas"
+            <a type="button" aria-haspopup="dialog" aria-expanded="false" aria-controls="add-role-offcanvas"
+                data-hs-overlay="#add-role-offcanvas"
                 class="py-2 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-blue-100 text-blue-800 hover:bg-blue-200 focus:outline-none focus:bg-blue-200 cursor-pointer">
                 <i class="bx bx-plus"></i>
                 Add Role
@@ -98,16 +98,16 @@
     </div>
 @endsection
 {{-- Add Employee Offcanvas --}}
-<div id="add-employee-offcanvas"
+<div id="add-role-offcanvas"
     class="hs-overlay hs-overlay-open:translate-x-0 hidden translate-x-full fixed top-0 end-0 transition-all duration-300 transform h-full max-w-sm w-full z-[80] bg-white border-s dark:bg-neutral-800 dark:border-neutral-700"
-    role="dialog" tabindex="-1" aria-labelledby="add-employee-offcanvas-label">
+    role="dialog" tabindex="-1" aria-labelledby="add-role-offcanvas-label">
     <div class="flex justify-between items-center py-3 px-4 border-b dark:border-neutral-700">
-        <h3 id="add-employee-offcanvas-label" class="font-bold text-gray-800 dark:text-white">
-            Edit Employee
+        <h3 id="add-role-offcanvas-label" class="font-bold text-gray-800 dark:text-white">
+            Add Role
         </h3>
         <button type="button"
             class="size-8 inline-flex justify-center items-center gap-x-2 rounded-full border border-transparent bg-gray-100 text-gray-800 hover:bg-gray-200 focus:outline-none focus:bg-gray-200 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-700 dark:hover:bg-neutral-600 dark:text-neutral-400 dark:focus:bg-neutral-600"
-            aria-label="Close" data-hs-overlay="#add-employee-offcanvas">
+            aria-label="Close" data-hs-overlay="#add-role-offcanvas">
             <span class="sr-only">Close</span>
             <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                 viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -121,42 +121,17 @@
         <form action="{{ route('employee.store') }}" method="POST">
             @csrf
             <div class="max-w-sm mb-4">
-                <label for="input-label" class="block text-sm font-medium mb-2 dark:text-white">Employee
+                <label for="input-label" class="block text-sm font-medium mb-2 dark:text-white">Role
                     Name <abbr class="text-red-600">*</abbr></label>
                 <input type="text" name="name"
                     class="py-3 px-4 block w-full border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-0"
                     placeholder="Enter employee name">
             </div>
-            <div class="max-w-sm mb-4">
-                <label for="input-label" class="block text-sm font-medium mb-2 dark:text-white">Employee
-                    Email <abbr class="text-red-600">*</abbr></label>
-                <input type="email" name="email"
-                    class="py-3 px-4 block w-full border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-0"
-                    placeholder="Enter employee email">
-            </div>
-            <div class="max-w-sm mb-4">
-                <label for="input-label" class="block text-sm font-medium mb-2 dark:text-white">Employee
-                    Mobile <abbr class="text-red-600">*</abbr></label>
-                <input type="number" name="mobile"
-                    class="py-3 px-4 block w-full border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-0"
-                    placeholder="Enter employee mobile">
-            </div>
-            <div class="max-w-sm mb-4">
-                <label for="hs-select-label" class="block text-sm font-medium mb-2 dark:text-white">Select
-                    Role</label>
-                <select id="hs-select-label" name="role"
-                    class="py-3 px-4 pe-9 block w-full border border-gray-300 rounded-lg text-sm focus:border-outline-none focus:ring-0">
-                    <option selected="" hidden>Select One</option>
-                    <option value="owner">Owner</option>
-                    <option value="manager">Manager</option>
-                    <option value="accountent">Accountent</option>
-                </select>
-            </div>
             <div class="">
                 <button type="submit" aria-haspopup="dialog" aria-expanded="false"
                     aria-controls="add-category-offcanvas" data-hs-overlay="#add-category-offcanvas"
                     class="py-2 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-blue-100 text-blue-800 hover:bg-blue-200 focus:outline-none focus:bg-blue-200">
-                    Add Employee
+                    Add Role
                 </button>
             </div>
         </form>
@@ -167,7 +142,7 @@
     class="hs-overlay hs-overlay-open:translate-x-0 hidden translate-x-full fixed top-0 end-0 transition-all duration-300 transform h-full max-w-sm w-full z-[80] bg-white border-s dark:bg-neutral-800 dark:border-neutral-700"
     role="dialog" tabindex="-1" aria-labelledby="edit-employee-offcanvas-label">
     <div class="flex justify-between items-center py-3 px-4 border-b dark:border-neutral-700">
-        <h3 id="add-employee-offcanvas-label" class="font-bold text-gray-800 dark:text-white">
+        <h3 id="add-role-offcanvas-label" class="font-bold text-gray-800 dark:text-white">
             Edit Employee
         </h3>
         <button type="button"

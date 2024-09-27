@@ -1,7 +1,7 @@
 <div class="hidden lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:w-72 lg:flex-col">
     <div class="flex grow flex-col gap-y-5 overflow-y-auto bg-gray-900 px-5 pb-4 menu">
         <a href="{{ route('admin.dashboard') }}" class="flex h-16 shrink-0 items-center">
-            <img class="h-8 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
+            <img class="h-8 w-auto" src="{{asset('assets/admin/images/logo/logo2.png')}}"
                 alt="Your Company">
             <h1 class="text-3xl ms-2 font-bold text-white">Ecommerce</h1>
         </a>
@@ -42,6 +42,7 @@
                         </a>
                     </li>
                 </div>
+
                 <div class="mb-2" x-data="{ open: false }">
                     <div class="text-xs font-semibold  text-gray-400">Roles & Permissions</div>
                     <li
@@ -104,16 +105,16 @@
                 <div class="mb-2" x-data="{ open: false }">
                     <div class="text-xs font-semibold  text-gray-400">Products</div>
                     <li
-                        class="dropdown relative m-1 {{ request()->routeIs('product.index', 'category.index', 'category.sub-category', 'brand') ? 'rounded-br-md rounded-se-md bg-gray-800 text-white shadow-2xl font-bold active-tab' : 'text-gray-400' }}">
+                        class="dropdown relative m-1 {{ request()->routeIs('product.index','category.index','category.sub-category','brand.index') ? 'rounded-br-md rounded-se-md bg-gray-800 text-white shadow-2xl font-bold active-tab' : 'text-gray-400' }}">
                         <!-- Dropdown Toggle -->
                         <a href="#" @click="open = !open"
-                            class="dropdown-toggle group flex justify-between items-center gap-x-3 p-2 text-sm font-semibold  {{ request()->routeIs('admin.user') ? 'text-white' : 'text-gray-400 hover:text-white' }}">
+                            class="dropdown-toggle group flex justify-between items-center gap-x-3 p-2 text-sm font-semibold  {{ request()->routeIs('product.index','category.index','category.sub-category', 'brand.index') ? 'text-white' : 'text-gray-400 hover:text-white' }}">
                             <span class="flex items-center gap-x-3">
-                                <i class='bx bxl-product-hunt text-2xl'></i> Product Management
+                                <i class='bx bxl-product-hunt text-2xl'></i> Product
+                                Management
                             </span>
                             <i class='bx' :class="open ? 'bx-minus' : 'bx-plus'"></i>
                         </a>
-
                         <!-- Dropdown Menu -->
                         <ul x-show="open" x-transition
                             class="dropdown-menu mt-2 marker:text-white list-disc bg-gray-800 p-2 rounded-md"
@@ -217,7 +218,7 @@
                         class="relative m-1 {{ request()->routeIs('') ? 'rounded-br-md rounded-se-md bg-gray-800 text-white shadow-2xl font-bold active-tab' : 'text-gray-400' }}">
                         <a href="{{-- {{ route('') }} --}}"
                             class="group flex gap-x-3 p-2 text-sm font-semibold  {{ request()->routeIs('') ? 'text-white' : 'text-gray-400 hover:text-white' }}">
-                            <i class='bx bx-support me-2 text-2xl'></i>Support Ticket
+                            <i class='bx bx-support text-2xl'></i>Support Ticket
                         </a>
                     </li>
                 </div>
@@ -228,7 +229,7 @@
                         class="relative m-1 {{ request()->routeIs('review.index') ? 'rounded-br-md rounded-se-md bg-gray-800 text-white shadow-2xl font-bold active-tab' : 'text-gray-400' }}">
                         <a href="{{ route('review.index') }}"
                             class="group flex gap-x-3 p-2 text-sm font-semibold  {{ request()->routeIs('review.index') ? 'text-white' : 'text-gray-400 hover:text-white' }}">
-                            <i class='bx bxs-star-half me-2 text-2xl'></i>Reviews
+                            <i class='bx bxs-star-half text-2xl'></i>Reviews
                         </a>
                     </li>
                 </div>
@@ -239,7 +240,7 @@
                         class="relative m-1 {{ request()->routeIs('coupon.index') ? 'rounded-br-md rounded-se-md bg-gray-800 text-white shadow-2xl font-bold active-tab' : 'text-gray-400' }}">
                         <a href="{{ route('coupon.index') }}"
                             class="group flex gap-x-3 p-2 text-sm font-semibold  {{ request()->routeIs('coupon.index') ? 'text-white' : 'text-gray-400 hover:text-white' }}">
-                            <i class='bx bxs-coupon me-2 text-2xl'></i>All Coupons
+                            <i class='bx bxs-coupon text-2xl'></i>All Coupons
                         </a>
                     </li>
                 </div>

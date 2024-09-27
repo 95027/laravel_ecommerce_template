@@ -27,13 +27,13 @@
 
 * {
     /* font-family: "Roboto", sans-serif; */
-    /* font-family: "Inter", sans-serif; */
-    font-family: "Poppins", sans-serif;
+    font-family: "Inter", sans-serif;
+    /* font-family: "Poppins", sans-serif; */
 }
 
-body {
+/* body {
     zoom: 90%;
-}
+} */
 
 body::-webkit-scrollbar {
     display: none;
@@ -109,7 +109,6 @@ body::-webkit-scrollbar {
     top: 0;
     bottom: 0;
     width: 5px;
-    /* background-color: #1D4ED8; */
     background-color: #fff;
 }
 
