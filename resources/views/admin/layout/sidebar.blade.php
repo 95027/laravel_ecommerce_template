@@ -132,8 +132,8 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="{{ route('category.sub-category') }}"
-                                    class="block p-2 {{ request()->routeIs('category.sub-category') ? 'text-white' : 'text-gray-400 hover:text-white' }}">
+                                <a href="{{ route('sub-category.index') }}"
+                                    class="block p-2 {{ request()->routeIs('sub-category.index') ? 'text-white' : 'text-gray-400 hover:text-white' }}">
                                     Sub Category
                                 </a>
                             </li>

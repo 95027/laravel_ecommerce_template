@@ -67,7 +67,6 @@
                                     method="POST">
                                     @csrf
                                     @method('DELETE')
-                                    <input type="hidden" name="id" value="{{ $category->id }}">
                                     <button type="button" onclick="confirmDelete()"
                                         class="bg-red-300 bg-opacity-60 hover:text-red-600 p-1 w-8 h-8 rounded-lg flex justify-center items-center cursor-pointer">
                                         <i class="fa-solid fa-trash-can"></i>

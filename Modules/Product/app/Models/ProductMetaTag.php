@@ -19,4 +19,8 @@ class ProductMetaTag extends Model
     // {
     //     // return ProductMetaTagFactory::new();
     // }
+
+    public function product(){
+        return $this->belongsTo(Product::class);
+    }
 }

@@ -2,8 +2,12 @@
 
 namespace Modules\Product\Models;
 
+use App\Models\Media;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Modules\Brand\Models\Brand;
+use Modules\Category\Models\Category;
+
 // use Modules\Product\Database\Factories\ProductFactory;
 
 class Product extends Model
@@ -20,7 +24,7 @@ class Product extends Model
     //     // return ProductFactory::new();
     // }
 
-    /* public function media()
+    public function media()
     {
         return $this->hasMany(Media::class, 'mediable_id');
     }
@@ -32,6 +36,10 @@ class Product extends Model
 
     public function category()
     {
-        return $this->belongsTo(Category::class);
-    } */
+        return $this->belongsTo(Category::class, 'categoryId');
+    }
+
+    public function tag(){
+        return $this->hasOne(ProductMetaTag::class,'product_id');
+    }
 }

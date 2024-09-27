@@ -2,9 +2,9 @@
 
 namespace App\Livewire\Admin\Product;
 
-use App\Models\Brand;
-use App\Models\Category;
 use Livewire\Component;
+use Modules\Brand\Models\Brand;
+use Modules\Category\Models\Category;
 
 class CategoryChange extends Component
 {
@@ -19,7 +19,7 @@ class CategoryChange extends Component
 
     public function render()
     {
-        $data['brands'] = []; // Brand::latest()->get();
+        $data['brands'] = Brand::latest()->get();
         return view('livewire.admin.product.category-change', $data);
     }
 

@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Modules\Category\Http\Controllers\CategoryController;
+use Modules\Category\Http\Controllers\SubCategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,4 +17,5 @@ use Modules\Category\Http\Controllers\CategoryController;
 
 Route::group(['middleware' => 'auth:admin'], function () {
     Route::resource('category', CategoryController::class)->names('category');
+    Route::resource('sub-category', SubCategoryController::class)->names('sub-category');
 });

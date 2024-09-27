@@ -21,12 +21,14 @@
                     </li>
                 </ol>
             </div>
-            <a type="button" href="{{ route('product.add-product-page') }}"
+            <a type="button" href="{{ route('product.create') }}"
                 class="py-2 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-blue-100 text-blue-800 hover:bg-blue-200 focus:outline-none focus:bg-blue-200 disabled:opacity-50 disabled:pointer-events-none dark:text-blue-400 dark:bg-blue-800/30 dark:hover:bg-blue-800/20 dark:focus:bg-blue-800/20">
                 <i class="bx bx-plus"></i>
                 Add Product
             </a>
         </div>
+
+
         <div
             class="shadow-md shadow-gray-200 p-2 relative z-10 bg-white border rounded-xl md:p-5 dark:bg-neutral-900 dark:border-neutral-800 dark:shadow-gray-900/20">
             <div class="card-header flex justify-between items-center py-4 border-b-2 mb-2">
@@ -55,11 +57,11 @@
                                 <i class="bx bx-chevron-down"></i>
                             </div>
                             <ul class="options bg-gray-300">
-                                {{-- @foreach ($categories as $category)
+                                @foreach ($categories as $category)
                                     <li class="option hover:bg-gray-200">
                                         <span class="option-text px-4">{{ $category->name }}</span>
                                     </li>
-                                @endforeach --}}
+                                @endforeach
                             </ul>
                         </div>
                     </div>
@@ -70,11 +72,11 @@
                                 <i class="bx bx-chevron-down"></i>
                             </div>
                             <ul class="options bg-gray-300">
-                                {{-- @foreach ($subCategorys as $subCategory)
+                                @foreach ($subCategories as $subCategory)
                                     <li class="option hover:bg-gray-200">
                                         <span class="option-text px-4">{{ $subCategory->name }}</span>
                                     </li>
-                                @endforeach --}}
+                                @endforeach
                             </ul>
                         </div>
                     </div>
@@ -85,11 +87,11 @@
                                 <i class="bx bx-chevron-down"></i>
                             </div>
                             <ul class="options bg-gray-300 shadow-inner">
-                                {{-- @foreach ($brands as $brand)
+                                @foreach ($brands as $brand)
                                     <li class="option hover:bg-gray-200">
                                         <span class="option-text px-4">{{ $brand->name }}</span>
                                     </li>
-                                @endforeach --}}
+                                @endforeach
                             </ul>
                         </div>
                     </div>
@@ -113,7 +115,7 @@
                     </tr>
                 </thead>
                 <tbody class="text-gray-600 text-s font-light">
-                    {{-- @foreach ($products as $i => $product)
+                    @foreach ($products as $i => $product)
                         <tr class="">
                             <td class="py-3 px-6">{{ $i + 1 }}</td>
                             <td class="py-3 px-6">
@@ -122,8 +124,8 @@
                                     alt="{{ $product->id }}">
                             </td>
                             <td class="py-3 px-6">{{ $product->title }}</td>
-                            <td class="py-3 px-6">{{ $product->brand->name }}</td>
-                            <td class="py-3 px-6">{{ $product->categoryId }}</td>
+                            <td class="py-3 px-6">{{-- {{ $product->brand->name }} --}}</td>
+                            <td class="py-3 px-6">{{ $product->category->name }}</td>
                             <td class="py-3 px-6">{{ $product->mrp }}</td>
                             <td class="py-3 px-6">{{ $product->price }}</td>
                             <td class="py-3 px-6">{{ $product->quantity }}</td>
@@ -135,51 +137,28 @@
                                 <span
                                     class="rounded-md bg-{{ $color }}-50 px-2 py-1 text-xs font-medium text-{{ $color }}-700 ring-1 ring-inset ring-green-600/20">{{ $status }}</span>
                             </td>
-                            <td class="py-3 text-center flex justify-evenly">
-                                <a
+                            <td class="py-3 text-center flex justify-center gap-3">
+                                {{-- <a
                                     class="bg-blue-300 bg-opacity-60 hover:text-blue-600 p-1 w-8 h-8 rounded-lg flex justify-center items-center cursor-pointer"><i
-                                        class="fa-regular fa-eye"></i></a>
-                                <a href="{{ route('product.editProduct', $product->id) }}"
+                                        class="fa-regular fa-eye"></i></a> --}}
+                                <a href="{{ route('product.edit', $product->id) }}"
                                     class="edit-employee bg-yellow-200 bg-opacity-60 hover:text-yellow-600 p-1 w-8 h-8 rounded-lg flex justify-center items-center cursor-pointer edit-employee-button"><i
                                         class="fa-regular fa-pen-to-square"></i></a>
-                                <form id="delete-form-{{ $product->id }}"
-                                    action="{{ route('product.delete', $product->id) }}" method="POST">
+                                <form id="deleteModal" action="{{ route('product.destroy', $product->id) }}"
+                                    method="POST">
                                     @csrf
                                     @method('DELETE')
-                                    <input type="hidden" name="id" value="{{ $product->id }}">
-                                    <button type="button"
-                                        onclick="confirmDelete('{{ $product->id }}', '{{ $product->name }}')"
+                                    <button type="button" onclick="confirmDelete()"
                                         class="bg-red-300 bg-opacity-60 hover:text-red-600 p-1 w-8 h-8 rounded-lg flex justify-center items-center cursor-pointer">
                                         <i class="fa-solid fa-trash-can"></i>
                                     </button>
                                 </form>
                             </td>
                         </tr>
-                    @endforeach --}}
+                    @endforeach
+                    <!-- Additional rows go here -->
                 </tbody>
             </table>
         </div>
     </div>
-@endsection
-
-@section('script')
-    <script>
-        function confirmDelete(productId, productName) {
-            Swal.fire({
-                title: 'Confirm Deletion',
-                text: "Deleting this product will permanently remove all its records. Do you wish to proceed with deleting: " +
-                    productName + "?",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes, delete it!'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    // Submit the form only after the user confirms
-                    document.getElementById('delete-form-' + productId).submit();
-                }
-            });
-        }
-    </script>
 @endsection
