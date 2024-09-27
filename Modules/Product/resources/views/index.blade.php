@@ -27,6 +27,8 @@
                 Add Product
             </a>
         </div>
+
+        
         <div
             class="shadow-md shadow-gray-200 p-2 relative z-10 bg-white border rounded-xl md:p-5 dark:bg-neutral-900 dark:border-neutral-800 dark:shadow-gray-900/20">
             <div class="card-header flex justify-between items-center py-4 border-b-2 mb-2">
