@@ -8,5 +8,7 @@
     "Address": true,
     "Order": true,
     "Transaction": true,
-    "Stripe": true
+    "Stripe": true,
+    "Razorpay": true,
+    "Paypal": true
 }

@@ -10,14 +10,15 @@ class StripeController extends Controller
 {
     protected $stripe;
 
-    public function __construct(){
+    public function __construct()
+    {
 
         $this->stripe = new StripeClient(env('STRIPE_SECRET'));
-
     }
 
 
-    public function payment(Request $request){
+    public function payment(Request $request)
+    {
 
         $response = $this->stripe->checkout->sessions->create([
             'line_items' => [
@@ -25,7 +26,7 @@ class StripeController extends Controller
                     'price_data' => [
                         'currency' => 'inr',
                         'product_data' => ['name' => 'ecommerce'],
-                        'unit_amount' => 100* 100,
+                        'unit_amount' => 100 * 100,
                     ],
                     'quantity' => 1,
 
@@ -36,33 +37,44 @@ class StripeController extends Controller
             'cancel_url' => route('stripe.cancel'),
         ]);
 
-        if(isset($response->id) && $response->id != ''){
+        if (isset($response->id) && $response->id != '') {
             return redirect($response->url);
         }
 
         return redirect()->route('stripe.cancel');
+    }
 
+    public function success(Request $request)
+    {
 
-         }
-
-    public function success(Request $request){
-
-        if(isset($request->session_id)){
+        if (isset($request->session_id)) {
             $session = $this->stripe->checkout->sessions->retrieve($request->session_id);
         }
 
         dd($session);
-
     }
 
-    public function cancel(Request $request){
+    public function cancel(Request $request)
+    {
 
         dd($request);
-
     }
 
-    public function refund(){
+    public function refund(Request $request)
+    {
 
+        try {
+            $refund = $this->stripe->refunds->create([
+                'payment_intent' => 'pi_3PutIBRrTeEtlK900htpyISB',
+                // 'amount' => 200,
+                // no amount means full refund
+            ]);
+
+            dd($refund);
+        } catch (\Throwable $th) {
+
+            notify()->error($th->getMessage());
+            return redirect()->back();
+        }
     }
-
 }
