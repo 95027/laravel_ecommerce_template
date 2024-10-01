@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('userId');
             $table->foreignId('orderId');
+            $table->string('transactionId');
             $table->string('paymentId');
             $table->string('currency');
             $table->integer('amount');
