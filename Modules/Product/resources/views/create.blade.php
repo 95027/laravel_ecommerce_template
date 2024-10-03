@@ -26,7 +26,7 @@
                             <path d="M6 13L10 3" stroke="currentColor" stroke-linecap="round"></path>
                         </svg>
                     </li>
-                    <li class="inline-flex items-center text-xs font-semibold text-gray-800 truncate dark:text-neutral-200"
+                    <li class="inline-flex items-center text-xs font-semibold text-blue-600 truncate dark:text-neutral-200"
                         aria-current="page">
                         Add Products
                     </li>
