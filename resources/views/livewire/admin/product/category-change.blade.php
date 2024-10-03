@@ -1,4 +1,4 @@
-<div class="grid grid-cols-2 gap-2 gap-y-6 mb-4">
+<div class="grid grid-cols-2 gap-2 gap-y-6 mb-4 ">
     <div class="w-full">
         <label for="input-label" class="block text-sm font-medium mb-2 dark:text-white">Product
             Name <abbr class="text-red-600">*</abbr></label>

@@ -22,6 +22,6 @@
         "vuepress": "^2.0.0-rc.15"
     },
     "dependencies": {
-        "preline": "^2.4.1"
+        "preline": "^2.5.0"
     }
 }
