@@ -7,6 +7,7 @@
 
         <button type="submit">refund now</button>
     </form>
+
 @endsection
 
 @section('script')
