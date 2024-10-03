@@ -3,7 +3,7 @@
     <div class="container mx-auto mt-3">
         <div class="flex justify-between items-center mt-6 mb-3">
             <div>
-                <h4>All Roles</h4>
+                <h4>All Employees</h4>
                 <ol class="flex items-center whitespace-nowrap">
                     <li class="inline-flex items-center">
                         <a class="flex items-center text-xs text-gray-500 hover:text-blue-600 focus:outline-none focus:text-blue-600 dark:text-neutral-500 dark:hover:text-blue-500 dark:focus:text-blue-500"
@@ -17,15 +17,15 @@
                     </li>
                     <li class="inline-flex items-center text-xs font-semibold text-gray-800 truncate dark:text-neutral-200"
                         aria-current="page">
-                        Roles
+                        Employees
                     </li>
                 </ol>
             </div>
-            <a type="button" aria-haspopup="dialog" aria-expanded="false" aria-controls="add-role-offcanvas"
-                data-hs-overlay="#add-role-offcanvas"
+            <a type="button" aria-haspopup="dialog" aria-expanded="false" aria-controls="add-employee-offcanvas"
+                data-hs-overlay="#add-employee-offcanvas"
                 class="py-2 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-blue-100 text-blue-800 hover:bg-blue-200 focus:outline-none focus:bg-blue-200 cursor-pointer">
                 <i class="bx bx-plus"></i>
-                Add Role
+                Add Employee
             </a>
         </div>
         <div
@@ -42,7 +42,7 @@
                     </tr>
                 </thead>
                 <tbody class="text-gray-600 text-sm font-light">
-                    {{-- @foreach ($employees as $employee)
+                    @foreach ($employees as $employee)
                         <tr>
                             <td class="py-3"><a href=""
                                     class="hover:text-blue-600 font-bold">{{ $employee->employeeId }}</a></td>
@@ -59,7 +59,7 @@
                                 </div>
                             </td>
                             <td class="py-3 font-semibold">{{ $employee->mobile }}</td>
-                            <td class="py-3 font-semibold">{{ $employee->role }}</td>
+                            <td class="py-3 font-semibold">{{ $employee->roles->pluck('name')->implode(', ')}}</td>
                             <td class="py-3">
                                 @if ($employee->status == 1)
                                     <span
@@ -73,9 +73,10 @@
                                 <a
                                     class="bg-blue-300 bg-opacity-60 hover:text-blue-600 p-1 w-8 h-8 rounded-lg flex justify-center items-center cursor-pointer"><i
                                         class="fa-regular fa-eye"></i></a>
-                                <a aria-haspopup="dialog" aria-expanded="false" aria-controls="edit-employee-offcanvas"
-                                    data-hs-overlay="#edit-employee-offcanvas"
-                                    class="bg-yellow-200 bg-opacity-60 hover:text-yellow-600 p-1 w-8 h-8 rounded-lg flex justify-center items-center cursor-pointer"><i
+                                <a href="javascript:;" aria-haspopup="dialog" aria-expanded="false"
+                                    aria-controls="edit-employee-offcanvas" data-hs-overlay="#edit-employee-offcanvas"
+                                    data-id="{{ $employee->id }}"
+                                    class="edit-employee bg-yellow-200 bg-opacity-60 hover:text-yellow-600 p-1 w-8 h-8 rounded-lg flex justify-center items-center cursor-pointer edit-employee-button"><i
                                         class="fa-regular fa-pen-to-square"></i></a>
                                 <form action="{{ route('employee.delete', $employee->id) }}" method="POST"
                                     id="delete-form-{{ $employee->id }}">
@@ -90,7 +91,7 @@
                                 </form>
                             </td>
                         </tr>
-                    @endforeach --}}
+                    @endforeach
 
                 </tbody>
             </table>
@@ -98,16 +99,16 @@
     </div>
 @endsection
 {{-- Add Employee Offcanvas --}}
-<div id="add-role-offcanvas"
+<div id="add-employee-offcanvas"
     class="hs-overlay hs-overlay-open:translate-x-0 hidden translate-x-full fixed top-0 end-0 transition-all duration-300 transform h-full max-w-sm w-full z-[80] bg-white border-s dark:bg-neutral-800 dark:border-neutral-700"
-    role="dialog" tabindex="-1" aria-labelledby="add-role-offcanvas-label">
+    role="dialog" tabindex="-1" aria-labelledby="add-employee-offcanvas-label">
     <div class="flex justify-between items-center py-3 px-4 border-b dark:border-neutral-700">
-        <h3 id="add-role-offcanvas-label" class="font-bold text-gray-800 dark:text-white">
-            Add Role
+        <h3 id="add-employee-offcanvas-label" class="font-bold text-gray-800 dark:text-white">
+            Add Employee
         </h3>
         <button type="button"
             class="size-8 inline-flex justify-center items-center gap-x-2 rounded-full border border-transparent bg-gray-100 text-gray-800 hover:bg-gray-200 focus:outline-none focus:bg-gray-200 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-700 dark:hover:bg-neutral-600 dark:text-neutral-400 dark:focus:bg-neutral-600"
-            aria-label="Close" data-hs-overlay="#add-role-offcanvas">
+            aria-label="Close" data-hs-overlay="#add-employee-offcanvas">
             <span class="sr-only">Close</span>
             <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                 viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -119,46 +120,6 @@
     </div>
     <div class="p-4">
         <form action="{{ route('employee.store') }}" method="POST">
-            @csrf
-            <div class="max-w-sm mb-4">
-                <label for="input-label" class="block text-sm font-medium mb-2 dark:text-white">Role
-                    Name <abbr class="text-red-600">*</abbr></label>
-                <input type="text" name="name"
-                    class="py-3 px-4 block w-full border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-0"
-                    placeholder="Enter employee name">
-            </div>
-            <div class="">
-                <button type="submit" aria-haspopup="dialog" aria-expanded="false"
-                    aria-controls="add-category-offcanvas" data-hs-overlay="#add-category-offcanvas"
-                    class="py-2 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-blue-100 text-blue-800 hover:bg-blue-200 focus:outline-none focus:bg-blue-200">
-                    Add Role
-                </button>
-            </div>
-        </form>
-    </div>
-</div>
-{{-- Edit Employee Offcanvas --}}
-{{-- <div id="edit-employee-offcanvas"
-    class="hs-overlay hs-overlay-open:translate-x-0 hidden translate-x-full fixed top-0 end-0 transition-all duration-300 transform h-full max-w-sm w-full z-[80] bg-white border-s dark:bg-neutral-800 dark:border-neutral-700"
-    role="dialog" tabindex="-1" aria-labelledby="edit-employee-offcanvas-label">
-    <div class="flex justify-between items-center py-3 px-4 border-b dark:border-neutral-700">
-        <h3 id="add-role-offcanvas-label" class="font-bold text-gray-800 dark:text-white">
-            Edit Employee
-        </h3>
-        <button type="button"
-            class="size-8 inline-flex justify-center items-center gap-x-2 rounded-full border border-transparent bg-gray-100 text-gray-800 hover:bg-gray-200 focus:outline-none focus:bg-gray-200 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-700 dark:hover:bg-neutral-600 dark:text-neutral-400 dark:focus:bg-neutral-600"
-            aria-label="Close" data-hs-overlay="#edit-employee-offcanvas">
-            <span class="sr-only">Close</span>
-            <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                stroke-linejoin="round">
-                <path d="M18 6 6 18"></path>
-                <path d="m6 6 12 12"></path>
-            </svg>
-        </button>
-    </div>
-    <div class="p-4">
-        <form action="" method="POST">
             @csrf
             <div class="max-w-sm mb-4">
                 <label for="input-label" class="block text-sm font-medium mb-2 dark:text-white">Employee
@@ -181,15 +142,23 @@
                     class="py-3 px-4 block w-full border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-0"
                     placeholder="Enter employee mobile">
             </div>
-            <div class="max-w-sm mb-4">
+            <div class=" mb-4">
                 <label for="hs-select-label" class="block text-sm font-medium mb-2 dark:text-white">Select
-                    Role</label>
-                <select id="hs-select-label" name="role"
-                    class="py-3 px-4 pe-9 block w-full border border-gray-300 rounded-lg text-sm focus:border-outline-none focus:ring-0">
-                    <option selected="" hidden>Select One</option>
-                    <option value="owner">Owner</option>
-                    <option value="manager">Manager</option>
-                    <option value="accountent">Accountent</option>
+                    Role <abbr class="text-red-600">*</abbr></label>
+                <select name="roleIds[]"
+                multiple
+                    data-hs-select='{
+                "placeholder": "Select option...",
+                "toggleTag": "<button type=\"button\" aria-expanded=\"false\"></button>",
+                "toggleClasses": "hs-select-disabled:pointer-events-none hs-select-disabled:opacity-50 relative py-3 ps-4 pe-9 flex gap-x-2 text-nowrap w-full cursor-pointer bg-white border border-gray-200 rounded-lg text-start text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-neutral-600",
+                "dropdownClasses": "mt-2 z-50 w-full max-h-72 p-1 space-y-0.5 bg-white border border-gray-200 rounded-lg overflow-hidden overflow-y-auto dark:bg-neutral-900 dark:border-neutral-700",
+                "optionClasses": "py-2 px-4 w-full text-sm text-gray-800 cursor-pointer hover:bg-gray-100 rounded-lg focus:outline-none focus:bg-gray-100 dark:bg-neutral-900 dark:hover:bg-neutral-800 dark:text-neutral-200 dark:focus:bg-neutral-800",
+                "optionTemplate": "<div class=\"flex justify-between w-full\"><span data-title></span><span class=\"hidden hs-selected:block\"><svg class=\"shrink-0 size-4 text-blue-600\" xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" fill=\"currentColor\" viewBox=\"0 0 16 16\"><path d=\"M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z\"/></svg></span></div>"
+              }'>
+                    <option value="" hidden>Choose</option>
+                    @foreach ($roles as $role)
+                        <option value="{{ $role->id }}">{{ $role->name }}</option>
+                    @endforeach
                 </select>
             </div>
             <div class="">
@@ -201,32 +170,106 @@
             </div>
         </form>
     </div>
-</div> --}}
+</div>
+{{-- Edit Employee Offcanvas --}}
+<div id="edit-employee-offcanvas"
+    class="hs-overlay hs-overlay-open:translate-x-0 hidden translate-x-full fixed top-0 end-0 transition-all duration-300 transform h-full max-w-sm w-full z-[80] bg-white border-s dark:bg-neutral-800 dark:border-neutral-700"
+    role="dialog" tabindex="-1" aria-labelledby="edit-employee-offcanvas-label">
+    <div class="flex justify-between items-center py-3 px-4 border-b dark:border-neutral-700">
+        <h3 id="add-employee-offcanvas-label" class="font-bold text-gray-800 dark:text-white">
+            Edit Employee
+        </h3>
+        <button type="button"
+            class="size-8 inline-flex justify-center items-center gap-x-2 rounded-full border border-transparent bg-gray-100 text-gray-800 hover:bg-gray-200 focus:outline-none focus:bg-gray-200 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-700 dark:hover:bg-neutral-600 dark:text-neutral-400 dark:focus:bg-neutral-600"
+            aria-label="Close" data-hs-overlay="#edit-employee-offcanvas">
+            <span class="sr-only">Close</span>
+            <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round">
+                <path d="M18 6 6 18"></path>
+                <path d="m6 6 12 12"></path>
+            </svg>
+        </button>
+    </div>
+    <div class="p-4">
+        <form id="editEmployeeForm" method="POST">
+            @csrf
+            @method('PUT')
+            <div class="max-w-sm mb-4">
+                <label for="input-label" class="block text-sm font-medium mb-2 dark:text-white">Employee
+                    Name <abbr class="text-red-600">*</abbr></label>
+                <input type="text" name="name" id="employeName"
+                    class="py-3 px-4 block w-full border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-0"
+                    placeholder="Enter employee name" value="">
+            </div>
+            <div class="max-w-sm mb-4">
+                <label for="input-label" class="block text-sm font-medium mb-2 dark:text-white">Employee
+                    Email <abbr class="text-red-600">*</abbr></label>
+                <input type="email" name="email" id="employeeEmail"
+                    class="py-3 px-4 block w-full border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-0"
+                    placeholder="Enter employee email">
+            </div>
+            <div class="max-w-sm mb-4">
+                <label for="input-label" class="block text-sm font-medium mb-2 dark:text-white">Employee
+                    Mobile <abbr class="text-red-600">*</abbr></label>
+                <input type="number" name="mobile" id="employeeMobile"
+                    class="py-3 px-4 block w-full border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-0"
+                    placeholder="Enter employee mobile">
+            </div>
+            <div class="max-w-sm mb-4">
+                <label for="hs-select-label" class="block text-sm font-medium mb-2 dark:text-white">Select
+                    Role</label>
+                <select id="hs-select-label" name="role" id="employeeRole"
+                    class="py-3 px-4 pe-9 block w-full border border-gray-300 rounded-lg text-sm focus:border-outline-none focus:ring-0">
+                    <option hidden>Select One</option>
+                    <option value="owner">Owner</option>
+                    <option value="manager">Manager</option>
+                    <option value="accountent">Accountent</option>
+                </select>
+            </div>
+            <div class="">
+                <button type="submit"
+                    class="py-2 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-blue-100 text-blue-800 hover:bg-blue-200 focus:outline-none focus:bg-blue-200">
+                    Update Employee
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
 
 
 @section('script')
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
-        function confirmDelete(employeeId, employeeName) {
-            Swal.fire({
-                title: 'Confirm Deletion',
-                text: "Deleting this employee will permanently remove all their records. Do you wish to proceed with deleting: " +
-                    employeeName + "?",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes, delete it!'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    document.getElementById('delete-form-' + employeeId).submit();
-                    Swal.fire({
-                        title: "Deleted!",
-                        text: "Your file has been deleted.",
-                        icon: "success",
-                    });
-                }
+        $(document).ready(function() {
+            $('.edit-employee').on('click', function() {
+                var employeeId = $(this).data('id');
+                const form = document.getElementById('editEmployeeForm');
+                var editUrl = '{{ route(
+                    'employee.details',
+                    ': id ',
+                ) }}';
+                editUrl = editUrl.replace(':id', employeeId);
+                $.ajax({
+                    url: editUrl,
+                    type: 'GET',
+                    success: function(data) {
+                        $('#employeName').val(data.employee.name);
+                        $('#employeeEmail').val(data.employee.email);
+                        $('#employeeMobile').val(data.employee.mobile);
+                        $('#employeeRole').val(data.employee.role);
+                    },
+                    error: function() {
+                        alert('failed to fetech employee data');
+                    }
+                });
+
+                var updateUrl = '{{ route(
+                    'employee.update',
+                    ': id ',
+                ) }}';
+                updateUrl = updateUrl.replace(':id', employeeId);
+                form.action = updateUrl;
             });
-        }
+        });
     </script>
 @endsection

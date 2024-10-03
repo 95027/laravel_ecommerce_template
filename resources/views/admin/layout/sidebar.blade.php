@@ -33,16 +33,28 @@
                 <div class="mb-2">
                     <div class="text-xs font-semibold  text-gray-400">All Employees</div>
                     <li
-                        class="relative m-1 {{ request()->routeIs('employee.employees') ? 'rounded-br-md rounded-se-md bg-gray-800 text-white shadow-2xl font-bold active-tab' : 'text-gray-400' }}">
-                        <a href="{{ route('employee.employees') }}"
-                            class="group flex gap-x-3 rounded-md p-2 text-sm font-semibold  {{ request()->routeIs('employee.employees') ? 'text-white' : 'text-gray-400 hover:text-white' }} ">
+                        class="relative m-1 {{ request()->routeIs('employee.index') ? 'rounded-br-md rounded-se-md bg-gray-800 text-white shadow-2xl font-bold active-tab' : 'text-gray-400' }}">
+                        <a href="{{ route('employee.index') }}"
+                            class="group flex gap-x-3 rounded-md p-2 text-sm font-semibold  {{ request()->routeIs('employee.index') ? 'text-white' : 'text-gray-400 hover:text-white' }} ">
                             <i class="fa-solid fa-users text-lg"></i>
                             All Employees
                         </a>
                     </li>
                 </div>
 
-                <div class="mb-2" x-data="{ open: false }">
+                <div class="mb-2">
+                    <div class="text-xs font-semibold  text-gray-400">Roles & Permissions</div>
+                    <li
+                        class="relative m-1 {{ request()->routeIs('employee.role.index') ? 'rounded-br-md rounded-se-md bg-gray-800 text-white shadow-2xl font-bold active-tab' : 'text-gray-400' }}">
+                        <a href="{{ route('employee.role.index') }}"
+                            class="group flex gap-x-3 rounded-md p-2 text-sm font-semibold  {{ request()->routeIs('employee.role.index') ? 'text-white' : 'text-gray-400 hover:text-white' }} ">
+                            <i class='bx bx-user-plus text-2xl'></i>
+                            Roles & Permissions
+                        </a>
+                    </li>
+                </div>
+
+                {{--  <div class="mb-2" x-data="{ open: false }">
                     <div class="text-xs font-semibold  text-gray-400">Roles & Permissions</div>
                     <li
                         class="dropdown relative m-1 {{ request()->routeIs('rolePage') ? 'rounded-br-md rounded-se-md bg-gray-800 text-white shadow-2xl font-bold active-tab' : 'text-gray-400' }}">
@@ -60,9 +72,9 @@
                             class="dropdown-menu mt-2 marker:text-white list-disc bg-gray-800 p-2 rounded-md"
                             role="list">
                             <li>
-                                <a href="{{ route('rolePage') }}"
-                                    class="block p-2 {{ request()->routeIs('rolePage') ? 'text-white' : 'text-gray-400 hover:text-white' }}">
-                                    Add Role
+                                <a href="{{ route('employee.role.index') }}"
+                                    class="block p-2 {{ request()->routeIs('employee.role.index') ? 'text-white' : 'text-gray-400 hover:text-white' }}">
+                                    Roles
                                 </a>
                             </li>
                             <li>
@@ -72,7 +84,7 @@
                             </li>
                         </ul>
                     </li>
-                </div>
+                </div>  --}}
 
                 <div class="mb-2" x-data="{ open: false }">
                     <div class="text-xs font-semibold  text-gray-400">All Users</div>
