@@ -11,5 +11,6 @@
     "Stripe": true,
     "Razorpay": true,
     "Paypal": true,
-    "RolesPermissions": true
+    "RolesPermissions": true,
+    "Reports": true
 }
