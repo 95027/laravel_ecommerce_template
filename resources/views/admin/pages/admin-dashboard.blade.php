@@ -229,6 +229,8 @@
 
 @section('script')
     <script>
+        var sparklineData = [47, 45, 54, 38, 56, 24, 65, 31, 37, 39, 62, 51, 35, 41, 35, 27, 93, 53, 61, 27, 54, 43, 19,
+        46];
         var randomizeArray = function(arg) {
             var array = arg.slice();
             var currentIndex = array.length,
@@ -243,23 +245,17 @@
             }
 
             return array;
-        }
-
-        var sparklineData = [47, 45, 54, 38, 56, 24, 65, 31, 37, 39, 62, 51, 35, 41, 35, 27, 93, 53, 61, 27, 54, 43, 19,
-            46
-        ];
-        var colorPalette = ['#00D8B6', '#008FFB', '#FEB019', '#FF4560', '#775DD0'];
+        };
 
         // First Sparkline Chart (Sales)
         var spark1 = {
             chart: {
                 id: 'sparkline1',
-                group: 'sparklines',
                 type: 'area',
                 height: 160,
                 sparkline: {
                     enabled: true
-                },
+                }
             },
             stroke: {
                 curve: 'straight'
@@ -283,7 +279,7 @@
                 text: '$424,652',
                 offsetX: 30,
                 style: {
-                    fontSize: '24px',
+                    fontSize: '24px'
                 }
             },
             subtitle: {
@@ -299,12 +295,11 @@
         var spark2 = {
             chart: {
                 id: 'sparkline2',
-                group: 'sparklines',
                 type: 'area',
                 height: 160,
                 sparkline: {
                     enabled: true
-                },
+                }
             },
             stroke: {
                 curve: 'straight'
@@ -344,12 +339,11 @@
         var spark3 = {
             chart: {
                 id: 'sparkline3',
-                group: 'sparklines',
                 type: 'area',
                 height: 160,
                 sparkline: {
                     enabled: true
-                },
+                }
             },
             stroke: {
                 curve: 'straight'
@@ -389,12 +383,11 @@
         var spark4 = {
             chart: {
                 id: 'sparkline4',
-                group: 'sparklines',
                 type: 'area',
                 height: 160,
                 sparkline: {
                     enabled: true
-                },
+                }
             },
             stroke: {
                 curve: 'straight'
@@ -429,29 +422,6 @@
                 }
             }
         };
-
-        var options = {
-            series: [44, 55, 13, 43, 22],
-            chart: {
-                width: 380,
-                type: 'pie',
-            },
-            labels: ['Team A', 'Team B', 'Team C', 'Team D', 'Team E'],
-            responsive: [{
-                breakpoint: 480,
-                options: {
-                    chart: {
-                        width: 200
-                    },
-                    legend: {
-                        position: 'bottom'
-                    }
-                }
-            }]
-        };
-
-        var chart = new ApexCharts(document.querySelector("#chart"), options).render();
-
 
         // Render the charts
         new ApexCharts(document.querySelector("#spark1"), spark1).render();

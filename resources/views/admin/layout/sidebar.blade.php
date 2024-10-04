@@ -247,10 +247,10 @@
                 <div class="mb-2" x-data="{ open: false }">
                     <div class="text-xs font-semibold  text-gray-400">All Reports</div>
                     <li
-                        class="dropdown relative m-1 {{ request()->routeIs('') ? 'rounded-br-md rounded-se-md bg-gray-800 text-white shadow-2xl font-bold active-tab' : 'text-gray-400' }}">
+                        class="dropdown relative m-1 {{ request()->routeIs('transationPage','salePage','productReports','brandPage') ? 'rounded-br-md rounded-se-md bg-gray-800 text-white shadow-2xl font-bold active-tab' : 'text-gray-400' }}">
                         <!-- Dropdown Toggle -->
                         <a href="#" @click="open = !open"
-                            class="dropdown-toggle group flex justify-between items-center gap-x-3 p-2 text-sm font-semibold  {{ request()->routeIs('admin.user') ? 'text-white' : 'text-gray-400 hover:text-white' }}">
+                            class="dropdown-toggle group flex justify-between items-center gap-x-3 p-2 text-sm font-semibold  {{ request()->routeIs('transationPage','salePage','productReports','brandPage') ? 'text-white' : 'text-gray-400 hover:text-white' }}">
                             <span class="flex items-center gap-x-3">
                                 <i class='bx bx-file text-2xl'></i> All
                                 Reports
@@ -263,26 +263,26 @@
                             class="dropdown-menu mt-2 marker:text-white list-disc bg-gray-800 p-2 rounded-md"
                             role="list">
                             <li>
-                                <a href="#"
-                                    class="block p-2 {{ request()->routeIs('') ? 'text-white' : 'text-gray-400 hover:text-white' }}">
+                                <a href="{{route('transationPage')}}"
+                                    class="block p-2 {{ request()->routeIs('transationPage') ? 'text-white' : 'text-gray-400 hover:text-white' }}">
                                     Transaction Report
                                 </a>
                             </li>
                             <li>
-                                <a href="#"
-                                    class="block p-2 {{ request()->routeIs('') ? 'text-white' : 'text-gray-400 hover:text-white' }}">
+                                <a href="{{route('salePage')}}"
+                                    class="block p-2 {{ request()->routeIs('salePage') ? 'text-white' : 'text-gray-400 hover:text-white' }}">
                                     Sales Report
                                 </a>
                             </li>
                             <li>
-                                <a href="#"
-                                    class="block p-2 {{ request()->routeIs('') ? 'text-white' : 'text-gray-400 hover:text-white' }}">
+                                <a href="{{route('productReports')}}"
+                                    class="block p-2 {{ request()->routeIs('productReports') ? 'text-white' : 'text-gray-400 hover:text-white' }}">
                                     Product Report
                                 </a>
                             </li>
                             <li>
-                                <a href="#"
-                                    class="block p-2 {{ request()->routeIs('') ? 'text-white' : 'text-gray-400 hover:text-white' }}">
+                                <a href="{{route('brandPage')}}"
+                                    class="block p-2 {{ request()->routeIs('brandPage') ? 'text-white' : 'text-gray-400 hover:text-white' }}">
                                     Brand Report
                                 </a>
                             </li>

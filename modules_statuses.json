@@ -10,5 +10,6 @@
     "Transaction": true,
     "Stripe": true,
     "Razorpay": true,
-    "Paypal": true
+    "Paypal": true,
+    "Reports": true
 }
