@@ -1,10 +1,8 @@
-@extends('employee.layout.master')
+@extends('admin.layout.master')
 
 @section('content')
     <h1>roles based dashboard</h1>
-    <p>{{auth()->user()->name}}</p>
-    <form action="{{ route('employee.logout') }}" method="POST">
-        @csrf
-        <button type="submit">logout</button>
-    </form>
+    <div>
+        {{ auth()->user()->name}}
+    </div>
 @endsection

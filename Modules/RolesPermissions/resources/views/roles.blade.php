@@ -86,7 +86,7 @@
             <div class=" mb-4">
                 <label for="hs-select-label" class="block text-sm font-medium mb-2 dark:text-white">Select
                     Permissions <abbr class="text-red-600">*</abbr></label>
-                <select name="permissionIds[]" multiple data-hs-select='{
+                <select name="permissions[]" multiple data-hs-select='{
                 "placeholder": "Select option...",
                 "toggleTag": "<button type=\"button\" aria-expanded=\"false\"></button>",
                 "toggleClasses": "hs-select-disabled:pointer-events-none hs-select-disabled:opacity-50 relative py-3 ps-4 pe-9 flex gap-x-2 text-nowrap w-full cursor-pointer bg-white border border-gray-200 rounded-lg text-start text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-neutral-600",
@@ -96,7 +96,7 @@
               }'>
                     <option value="" hidden>Choose</option>
                     @foreach ($permissions as $permission)
-                    <option value="{{ $permission->id }}">{{ $permission->name }}</option>
+                    <option value="{{ $permission->name }}">{{ $permission->name }}</option>
                     @endforeach
                 </select>
             </div>

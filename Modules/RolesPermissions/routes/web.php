@@ -16,13 +16,14 @@ use Modules\RolesPermissions\Http\Controllers\RolesPermissionsController;
 */
 
 
-Route::middleware(['auth:admin'])->prefix('employee')->name('employee.')->group(function (){
+Route::middleware(['auth:employee', 'permission:role management'])->prefix('employee')->name('employee.')->group(function (){
 
     Route::get('/', [EmployeeController::class,'employees'])->name('index');
-    Route::get('/role', [RolesPermissionsController::class, 'roles'])->name('role.index');
     Route::post('/', [EmployeeController::class,'storeEmployee'])->name('store');
-    Route::post('/role', [RolesPermissionsController::class, 'createRole'])->name('role.create');
     Route::delete('/{id}', [EmployeeController::class,'destroyEmployee'])->name('destroy');
+    Route::get('/role', [RolesPermissionsController::class, 'roles'])->name('role.index');
+    Route::post('/role', [RolesPermissionsController::class, 'createRole'])->name('role.create');
     Route::delete('/role/{id}', [RolesPermissionsController::class, 'destroyRole'])->name('role.destroy');
 
 });
+

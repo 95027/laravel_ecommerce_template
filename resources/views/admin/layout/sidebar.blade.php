@@ -1,13 +1,21 @@
 <div class="hidden lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:w-72 lg:flex-col">
     <div class="flex grow flex-col gap-y-5 overflow-y-auto bg-gray-900 px-5 pb-4 menu">
+        @role('admin')
         <a href="{{ route('admin.dashboard') }}" class="flex h-16 shrink-0 items-center">
             <img class="h-8 w-auto" src="{{ asset('assets/admin/images/logo/logo2.png') }}" alt="Your Company">
             <h1 class="text-3xl ms-2 font-bold text-white">Ecommerce</h1>
         </a>
+        @else
+        <a href="{{ route('employee.dashboard') }}" class="flex h-16 shrink-0 items-center">
+            <img class="h-8 w-auto" src="{{ asset('assets/admin/images/logo/logo2.png') }}" alt="Your Company">
+            <h1 class="text-3xl ms-2 font-bold text-white">Ecommerce</h1>
+        </a>
+        @endrole
         <nav class="flex flex-1 flex-col">
             <ul role="list" class="flex flex-1 flex-col -mx-0 space-y-1">
                 <div class="mb-2">
                     <div class="text-xs font-semibold  text-gray-400">Dashboard</div>
+                    @role('admin')
                     <li
                         class="relative m-1 {{ request()->routeIs('admin.dashboard') ? 'rounded-br-md rounded-se-md bg-gray-800 text-white shadow-2xl font-bold active-tab' : 'text-gray-400' }}">
                         <a href="{{ route('admin.dashboard') }}"
@@ -16,20 +24,33 @@
                             Dashboard
                         </a>
                     </li>
+                    @else
+                    <li
+                        class="relative m-1 {{ request()->routeIs('employee.dashboard') ? 'rounded-br-md rounded-se-md bg-gray-800 text-white shadow-2xl font-bold active-tab' : 'text-gray-400' }}">
+                        <a href="{{ route('employee.dashboard') }}"
+                            class="group flex gap-x-3 p-2 text-sm font-semibold  {{ request()->routeIs('employee.dashboard') ? 'text-white' : 'text-gray-400 hover:text-white' }}">
+                            <i class='bx bxs-dashboard text-2xl'></i>
+                            Dashboard
+                        </a>
+                    </li>
+                    @endrole
                 </div>
                 {{-- @foreach ($sidebarSections as $section)
-                    <div class="mb-2">
-                        <div class="text-xs font-semibold  text-gray-400">{{ $section->heading }}</div>
-                        <li
-                            class="relative m-1 {{ request()->routeIs("{$section->slug}") ? 'rounded-br-md rounded-se-md bg-gray-800 text-white shadow-2xl font-bold active-tab' : 'text-gray-400' }}">
-                            <a href="{{ route('employee.employees') }}"
-                                class="group flex gap-x-3 rounded-md p-2 text-sm font-semibold  {{ request()->routeIs($section->slug) ? 'text-white' : 'text-gray-400 hover:text-white' }} ">
-                                <i class="{{ $section->icon }} text-2xl"></i>
-                                {{ $section->title }}
-                            </a>
-                        </li>
+                <div class="mb-2">
+                    <div class="text-xs font-semibold  text-gray-400">{{ $section->heading }}
                     </div>
+                    <li class="relative m-1 {{ request()->routeIs(" {$section->slug}") ? 'rounded-br-md rounded-se-md
+                        bg-gray-800 text-white shadow-2xl font-bold active-tab' : 'text-gray-400' }}">
+                        <a href="{{ route('employee.employees') }}"
+                            class="group flex gap-x-3 rounded-md p-2 text-sm font-semibold  {{ request()->routeIs($section->slug) ? 'text-white' : 'text-gray-400 hover:text-white' }} ">
+                            <i class="{{ $section->icon }} text-2xl"></i>
+                            {{ $section->title }}
+                        </a>
+                    </li>
+                </div>
                 @endforeach --}}
+
+                @can('employee management')
                 <div class="mb-2">
                     <div class="text-xs font-semibold  text-gray-400">All Employees</div>
                     <li
@@ -41,7 +62,9 @@
                         </a>
                     </li>
                 </div>
+                @endcan
 
+                @can('role management')
                 <div class="mb-2">
                     <div class="text-xs font-semibold  text-gray-400">Roles & Permissions</div>
                     <li
@@ -53,8 +76,9 @@
                         </a>
                     </li>
                 </div>
+                @endcan
 
-                {{--  <div class="mb-2" x-data="{ open: false }">
+                {{-- <div class="mb-2" x-data="{ open: false }">
                     <div class="text-xs font-semibold  text-gray-400">Roles & Permissions</div>
                     <li
                         class="dropdown relative m-1 {{ request()->routeIs('rolePage') ? 'rounded-br-md rounded-se-md bg-gray-800 text-white shadow-2xl font-bold active-tab' : 'text-gray-400' }}">
@@ -84,8 +108,9 @@
                             </li>
                         </ul>
                     </li>
-                </div>  --}}
+                </div> --}}
 
+                @can('user management')
                 <div class="mb-2" x-data="{ open: false }">
                     <div class="text-xs font-semibold  text-gray-400">All Users</div>
                     <li
@@ -112,7 +137,9 @@
                         </ul>
                     </li>
                 </div>
+                @endcan
 
+                @can('product management')
                 <div class="mb-2" x-data="{ open: false }">
                     <div class="text-xs font-semibold  text-gray-400">Products</div>
                     <li
@@ -157,7 +184,9 @@
                         </ul>
                     </li>
                 </div>
+                @endcan
 
+                @can('order management')
                 <div class="mb-2" x-data="{ open: false }">
                     <div class="text-xs font-semibold  text-gray-400">Orders</div>
                     <li
@@ -185,7 +214,9 @@
                         </ul>
                     </li>
                 </div>
+                @endcan
 
+                @can('transaction management')
                 <div class="mb-2" x-data="{ open: false }">
                     <div class="text-xs font-semibold  text-gray-400">Transations</div>
                     <li
@@ -211,7 +242,9 @@
                         </ul>
                     </li>
                 </div>
+                @endcan
 
+                @can('contact management')
                 <div class="mb-2">
                     <div class="text-xs font-semibold  text-gray-400">Contact Form</div>
                     <li
@@ -223,6 +256,9 @@
                     </li>
                 </div>
 
+                @endcan
+
+                @can('support management')
                 <div class="mb-2">
                     <div class="text-xs font-semibold  text-gray-400">Support</div>
                     <li
@@ -233,7 +269,9 @@
                         </a>
                     </li>
                 </div>
+                @endcan
 
+                @can('reviews management')
                 <div class="mb-2">
                     <div class="text-xs font-semibold  text-gray-400">Reviews</div>
                     <li
@@ -244,6 +282,9 @@
                         </a>
                     </li>
                 </div>
+                @endcan
+
+                @can('coupon management')
 
                 <div class="mb-2">
                     <div class="text-xs font-semibold  text-gray-400">Coupons</div>
@@ -256,13 +297,17 @@
                     </li>
                 </div>
 
+                @endcan
+
+                @can('report management')
+
                 <div class="mb-2" x-data="{ open: false }">
                     <div class="text-xs font-semibold  text-gray-400">All Reports</div>
                     <li
-                        class="dropdown relative m-1 {{ request()->routeIs('transationPage','salePage','productReports','brandPage') ? 'rounded-br-md rounded-se-md bg-gray-800 text-white shadow-2xl font-bold active-tab' : 'text-gray-400' }}">
+                        class="dropdown relative m-1 {{ request()->routeIs('transationPage', 'salePage', 'productReports', 'brandPage') ? 'rounded-br-md rounded-se-md bg-gray-800 text-white shadow-2xl font-bold active-tab' : 'text-gray-400' }}">
                         <!-- Dropdown Toggle -->
                         <a href="#" @click="open = !open"
-                            class="dropdown-toggle group flex justify-between items-center gap-x-3 p-2 text-sm font-semibold  {{ request()->routeIs('transationPage','salePage','productReports','brandPage') ? 'text-white' : 'text-gray-400 hover:text-white' }}">
+                            class="dropdown-toggle group flex justify-between items-center gap-x-3 p-2 text-sm font-semibold  {{ request()->routeIs('transationPage', 'salePage', 'productReports', 'brandPage') ? 'text-white' : 'text-gray-400 hover:text-white' }}">
                             <span class="flex items-center gap-x-3">
                                 <i class='bx bx-file text-2xl'></i> All
                                 Reports
@@ -274,7 +319,7 @@
                         <ul x-show="open" x-transition
                             class="dropdown-menu mt-2 marker:text-white list-disc bg-gray-800 p-2 rounded-md"
                             role="list">
-                            {{--  <li>
+                            {{-- <li>
                                 <a href="{{route('transationPage')}}"
                                     class="block p-2 {{ request()->routeIs('transationPage') ? 'text-white' : 'text-gray-400 hover:text-white' }}">
                                     Transaction Report
@@ -297,10 +342,11 @@
                                     class="block p-2 {{ request()->routeIs('brandPage') ? 'text-white' : 'text-gray-400 hover:text-white' }}">
                                     Brand Report
                                 </a>
-                            </li>  --}}
+                            </li> --}}
                         </ul>
                     </li>
                 </div>
+                @endcan
             </ul>
         </nav>
     </div>

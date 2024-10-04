@@ -15,7 +15,7 @@ use Modules\Razorpay\Http\Controllers\RazorpayController;
 */
 
 
-Route::middleware(['auth:admin'])->prefix('razorpay')->name('razorpay.')->group(function () {
+Route::middleware(['auth:employee'])->prefix('razorpay')->name('razorpay.')->group(function () {
 
     Route::get('/test', [RazorpayController::class, 'test'])->name('test');
     Route::post('/payment', [RazorpayController::class, 'payment'])->name('payment');

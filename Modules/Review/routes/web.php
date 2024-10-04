@@ -14,6 +14,6 @@ use Modules\Review\Http\Controllers\ReviewController;
 |
 */
 
-Route::group(['middleware' => 'auth:admin'], function () {
+Route::group(['middleware' => ['auth:employee', 'permission:reviews management']], function () {
     Route::resource('review', ReviewController::class)->names('review');
 });
