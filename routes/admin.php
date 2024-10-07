@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\UserController as AdminUserController;
 
 Route::middleware('guest')->prefix('admin')->group(function () {
     Route::get('/login', [AdminAuthController::class, 'loginForm'])->name('admin.login.form');
+    Route::get('/reset-password',[AdminAuthController::class, 'resetPasswordForm'])->name('employee-reset-password');
     Route::post('/login', [AdminAuthController::class, 'login'])->name('admin.login');
 });
 

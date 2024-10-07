@@ -71,23 +71,20 @@
                                         class="rounded-md bg-red-50 px-2 py-1 text-xs font-medium text-red-700 ring-1 ring-inset ring-red-600/20">Inactive</span>
                                 @endif
                             </td>
-                            <td class="py-3 text-center flex justify-center gap-3">
-                                {{--  <a
-                                    class="bg-blue-300 bg-opacity-60 hover:text-blue-600 p-1 w-8 h-8 rounded-lg flex justify-center items-center cursor-pointer"><i
-                                        class="fa-regular fa-eye"></i></a>  --}}
+                            <td class="py-6 flex justify-center gap-x-2">
                                 <a href="javascript:;" aria-haspopup="dialog" aria-expanded="false"
                                     aria-controls="edit-employee-offcanvas" data-hs-overlay="#edit-employee-offcanvas"
                                     data-id="{{ $employee->id }}"
-                                    class="edit-employee bg-yellow-200 bg-opacity-60 hover:text-yellow-600 p-1 w-8 h-8 rounded-lg flex justify-center items-center cursor-pointer edit-employee-button"><i
-                                        class="fa-regular fa-pen-to-square"></i></a>
+                                    class="edit-employee hover:text-yellow-600 p-1 rounded-lg cursor-pointer edit-employee-button"><i
+                                        class="fa-regular fa-pen-to-square text-lg"></i></a>
                                 <form action="{{ route('employee.destroy', $employee->id) }}" method="POST"
                                     id="deleteModal">
                                     @csrf
                                     @method('DELETE')
                                     <button type="button"
                                         onclick="confirmDelete()"
-                                        class="bg-red-300 bg-opacity-60 hover:text-red-600 p-1 w-8 h-8 rounded-lg flex justify-center items-center cursor-pointer">
-                                        <i class="fa-solid fa-trash-can"></i>
+                                        class="hover:text-red-600 p-1 rounded-lg cursor-pointer">
+                                        <i class="fa-solid fa-trash-can text-lg"></i>
                                     </button>
                                 </form>
                             </td>
