@@ -54,9 +54,9 @@
                 <div class="mb-2">
                     <div class="text-xs font-semibold  text-gray-400">All Employees</div>
                     <li
-                        class="relative m-1 {{ request()->routeIs('') ? 'rounded-br-md rounded-se-md bg-gray-800 text-white shadow-2xl font-bold active-tab' : 'text-gray-400' }}">
-                        <a href="{{-- {{ route('') }} --}}"
-                            class="group flex gap-x-3 rounded-md p-2 text-sm font-semibold  {{ request()->routeIs('') ? 'text-white' : 'text-gray-400 hover:text-white' }} ">
+                        class="relative m-1 {{ request()->routeIs('employee.index') ? 'rounded-br-md rounded-se-md bg-gray-800 text-white shadow-2xl font-bold active-tab' : 'text-gray-400' }}">
+                        <a href="{{ route('employee.index') }}"
+                            class="group flex gap-x-3 rounded-md p-2 text-sm font-semibold  {{ request()->routeIs('employee.index') ? 'text-white' : 'text-gray-400 hover:text-white' }} ">
                             <i class="fa-solid fa-users text-lg"></i>
                             All Employees
                         </a>
@@ -69,7 +69,7 @@
                     <div class="text-xs font-semibold  text-gray-400">Roles & Permissions</div>
                     <li
                         class="relative m-1 {{ request()->routeIs('employee.role.index') ? 'rounded-br-md rounded-se-md bg-gray-800 text-white shadow-2xl font-bold active-tab' : 'text-gray-400' }}">
-                        <a href="{{-- {{ route('employee.role.index') }} --}}"
+                        <a href="{{ route('employee.role.index') }}"
                             class="group flex gap-x-3 rounded-md p-2 text-sm font-semibold  {{ request()->routeIs('employee.role.index') ? 'text-white' : 'text-gray-400 hover:text-white' }} ">
                             <i class='bx bx-user-plus text-2xl'></i>
                             Roles & Permissions
