@@ -18,7 +18,13 @@ class AdminAuthController extends Controller
     {
         $credentials = $request->only('email', 'password');
 
-        if (Auth::guard('admin')->attempt($credentials)) {
+        if (Auth::guard('employee')->attempt($credentials)) {
+
+            $employee = Auth::guard('employee')->user();
+
+            if(!$employee->hasRole('admin')) {
+                return redirect()->route('employee.dashboard');
+            }
             return redirect()->route('admin.dashboard');
         }
 
@@ -27,7 +33,7 @@ class AdminAuthController extends Controller
 
     public function logout(Request $request)
     {
-        Auth::guard('admin')->logout();
+        Auth::guard('employee')->logout();
 
         $request->session()->invalidate();
 

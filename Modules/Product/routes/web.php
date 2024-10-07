@@ -14,6 +14,6 @@ use Modules\Product\Http\Controllers\ProductController;
 |
 */
 
-Route::group(['middleware' => 'auth:admin'], function () {
+Route::group(['middleware' => ['auth:employee', 'permission:product management']], function () {
     Route::resource('product', ProductController::class)->names('product');
 });

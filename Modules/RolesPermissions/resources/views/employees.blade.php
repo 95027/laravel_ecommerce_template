@@ -37,7 +37,8 @@
                         <th class="py-3 w-72 font-extrabold">Name / Email</th>
                         <th class="py-3 w-52 font-extrabold">Mobile</th>
                         <th class="py-3 w-44 font-extrabold">Role</th>
-                        <th class="py-3 w-40 font-extrabold">Status</th>
+                        <th class="py-3 w-54 font-extrabold">Permissions</th>
+                        <th class="py-3 w-30 font-extrabold">Status</th>
                         <th class="py-3 text-center w-40 font-extrabold">Actions</th>
                     </tr>
                 </thead>
@@ -60,6 +61,7 @@
                             </td>
                             <td class="py-3 font-semibold">{{ $employee->mobile }}</td>
                             <td class="py-3 font-semibold">{{ $employee->roles->pluck('name')->implode(', ')}}</td>
+                            <td class="py-3 font-semibold">{{ $employee->permissions->pluck('name')->implode(', ')}}</td>
                             <td class="py-3">
                                 @if ($employee->status == 1)
                                     <span
@@ -69,22 +71,21 @@
                                         class="rounded-md bg-red-50 px-2 py-1 text-xs font-medium text-red-700 ring-1 ring-inset ring-red-600/20">Inactive</span>
                                 @endif
                             </td>
-                            <td class="py-3 text-center flex justify-evenly">
-                                <a
+                            <td class="py-3 text-center flex justify-center gap-3">
+                                {{--  <a
                                     class="bg-blue-300 bg-opacity-60 hover:text-blue-600 p-1 w-8 h-8 rounded-lg flex justify-center items-center cursor-pointer"><i
-                                        class="fa-regular fa-eye"></i></a>
+                                        class="fa-regular fa-eye"></i></a>  --}}
                                 <a href="javascript:;" aria-haspopup="dialog" aria-expanded="false"
                                     aria-controls="edit-employee-offcanvas" data-hs-overlay="#edit-employee-offcanvas"
                                     data-id="{{ $employee->id }}"
                                     class="edit-employee bg-yellow-200 bg-opacity-60 hover:text-yellow-600 p-1 w-8 h-8 rounded-lg flex justify-center items-center cursor-pointer edit-employee-button"><i
                                         class="fa-regular fa-pen-to-square"></i></a>
-                                <form action="{{ route('employee.delete', $employee->id) }}" method="POST"
-                                    id="delete-form-{{ $employee->id }}">
+                                <form action="{{ route('employee.destroy', $employee->id) }}" method="POST"
+                                    id="deleteModal">
                                     @csrf
                                     @method('DELETE')
-                                    <input type="hidden" name="id" value="{{ $employee->id }}">
                                     <button type="button"
-                                        onclick="confirmDelete('{{ $employee->id }}', '{{ $employee->name }}')"
+                                        onclick="confirmDelete()"
                                         class="bg-red-300 bg-opacity-60 hover:text-red-600 p-1 w-8 h-8 rounded-lg flex justify-center items-center cursor-pointer">
                                         <i class="fa-solid fa-trash-can"></i>
                                     </button>
@@ -145,7 +146,7 @@
             <div class=" mb-4">
                 <label for="hs-select-label" class="block text-sm font-medium mb-2 dark:text-white">Select
                     Role <abbr class="text-red-600">*</abbr></label>
-                <select name="roleIds[]"
+                <select name="roles[]"
                 multiple
                     data-hs-select='{
                 "placeholder": "Select option...",
@@ -157,7 +158,7 @@
               }'>
                     <option value="" hidden>Choose</option>
                     @foreach ($roles as $role)
-                        <option value="{{ $role->id }}">{{ $role->name }}</option>
+                        <option value="{{ $role->name}}">{{ $role->name }}</option>
                     @endforeach
                 </select>
             </div>
@@ -239,7 +240,7 @@
 
 
 @section('script')
-    <script>
+    {{--  <script>
         $(document).ready(function() {
             $('.edit-employee').on('click', function() {
                 var employeeId = $(this).data('id');
@@ -271,5 +272,5 @@
                 form.action = updateUrl;
             });
         });
-    </script>
+    </script>  --}}
 @endsection

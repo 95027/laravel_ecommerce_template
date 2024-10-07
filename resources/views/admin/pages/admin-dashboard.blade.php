@@ -1,6 +1,7 @@
 @extends('admin.layout.master')
 
 @section('content')
+
     <div class="container mx-auto mt-3">
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3 mt-10 mb-8">
             <!-- First Chart: Sales -->

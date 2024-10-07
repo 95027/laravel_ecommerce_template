@@ -16,14 +16,44 @@ class EmployeeSeeder extends Seeder
      */
     public function run(): void
     {
-        $employee = Employee::create([
+        $admin = Employee::create([
+            'employeeId' => 'ADMIN01',
             'name' => 'admin',
             'email' => 'admin@mail.com',
+            'mobile' => '9999999999',
             'password' => Hash::make('password'),
         ]);
 
-        $role = Role::create(['name' => 'admin', 'guard_name' => 'employee']);
-        $role->givePermissionTo(Permission::all());
-        $employee->assignRole('admin');
+        $role = Role::create([
+            'name' => 'admin',
+            'guard_name' => 'employee'
+        ]);
+
+        $permissions = [
+            "employee management",
+            "role management",
+            "user management",
+            "product management",
+            "order management",
+            "coupon management",
+            "support management",
+            "transaction management",
+            "contact management",
+            "reviews management",
+            "report management"
+        ];
+
+
+        foreach ($permissions as $permission) {
+            $permission = Permission::create([
+                'name' => $permission,
+                'guard_name' => 'employee',
+            ]);
+
+            $role->givePermissionTo($permission->name);
+        }
+
+        $admin->assignRole($role->name);
+        $admin->syncPermissions($permissions);
     }
 }

@@ -14,6 +14,6 @@ use Modules\Order\Http\Controllers\OrderController;
 |
 */
 
-Route::group(['middleware' => ['auth:admin']], function () {
+Route::group(['middleware' => ['auth:employee', 'permission:order management']], function () {
     Route::resource('order', OrderController::class)->names('order');
 });

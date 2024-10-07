@@ -14,6 +14,6 @@ use Modules\Transaction\Http\Controllers\TransactionController;
 |
 */
 
-Route::group([], function () {
+Route::group(['middleware' => ['auth:employee', 'permission:transaction managemnt']], function () {
     Route::resource('transaction', TransactionController::class)->names('transaction');
 });

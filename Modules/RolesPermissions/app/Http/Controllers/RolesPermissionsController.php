@@ -24,8 +24,8 @@ class RolesPermissionsController extends Controller
 
         $request->validate([
             'name' => 'required|string|unique:roles,name',
-            'permissionIds' => 'required|array',
-            'permissionIds.*' => 'exists:permissions,id',
+            'permissions' => 'required|array',
+            'permissions.*' => 'exists:permissions,name',
         ]);
 
         $role = Role::create([
@@ -33,11 +33,8 @@ class RolesPermissionsController extends Controller
             'guard_name' => 'employee',
         ]);
 
-        $permissions = Permission::whereIn('id', $request->permissionIds)->get();
-
-        $role->syncPermissions($permissions->pluck('name')->toArray());
-
-
+        $role->syncPermissions($request->permissions);
+        
         notify()->success('Role created successfully');
 
         return redirect()->back();

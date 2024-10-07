@@ -14,6 +14,6 @@ use Modules\Coupon\Http\Controllers\CouponController;
 |
 */
 
-Route::group(['middleware' => 'auth:admin'], function () {
+Route::group(['middleware' => ['auth:employee', 'permission:coupon management']], function () {
     Route::resource('coupon', CouponController::class)->names('coupon');
 });

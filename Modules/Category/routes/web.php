@@ -15,7 +15,7 @@ use Modules\Category\Http\Controllers\SubCategoryController;
 |
 */
 
-Route::group(['middleware' => 'auth:admin'], function () {
+Route::group(['middleware' => ['auth:employee', 'permission:product management']], function () {
     Route::resource('category', CategoryController::class)->names('category');
     Route::resource('sub-category', SubCategoryController::class)->names('sub-category');
 });

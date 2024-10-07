@@ -14,6 +14,6 @@ use Modules\ContactForm\Http\Controllers\ContactFormController;
 |
 */
 
-Route::group(['middleware' => 'auth:admin'], function () {
+Route::group(['middleware' => ['auth:employee', 'permission:contact management']], function () {
     Route::resource('contactform', ContactFormController::class)->names('contactform');
 });

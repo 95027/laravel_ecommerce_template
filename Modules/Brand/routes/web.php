@@ -14,6 +14,6 @@ use Modules\Brand\Http\Controllers\BrandController;
 |
 */
 
-Route::group(['middleware' => 'auth:admin'], function () {
+Route::group(['middleware' => ['auth:employee', 'permission:product management']], function () {
     Route::resource('brand', BrandController::class)->names('brand');
 });
