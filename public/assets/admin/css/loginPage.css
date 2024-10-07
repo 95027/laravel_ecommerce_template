@@ -1,6 +1,6 @@
 /* Login Page design */
 body {
-    font-family: "Comic Sans MS", sans-serif;
+    /* font-family: "Comic Sans MS", sans-serif; */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -16,8 +16,16 @@ body {
     background: white;
     border: 2px solid #000;
     padding: 40px;
-    width: 320px;
+    width: 350px;
     box-shadow: 10px 10px 0 #000;
+    text-align: center;
+}
+.login-container-2 {
+    background: white;
+    border: 2px solid #000;
+    padding: 40px;
+    width: 350px;
+    box-shadow: 5px 5px 0 #000;
     text-align: center;
 }
 
@@ -25,6 +33,10 @@ h1 {
     font-size: 50px;
     margin-bottom: 30px;
     font-weight: bold;
+}
+
+.reset-heading{
+    font-size: 35px;
 }
 
 .input-group {

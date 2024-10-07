@@ -63,7 +63,7 @@
                             <td class="py-3 font-semibold">{{ $employee->mobile }}</td>
                             <td class="py-3 font-semibold">{{ $employee->roles->pluck('name')->implode(', ') }}</td>
                             <td class="py-3 font-semibold">
-                                <form action="{{ route('employee.reset-password') }}" method="POST">
+                                <form action="{{ route('employee.reset-password.mail') }}" method="POST">
                                     @csrf
                                     <input type="hidden" name="employeeId" value="{{ $employee->id }}"/>
                                     <button type="submit"><span
@@ -88,15 +88,16 @@
                                 <a href="javascript:;" aria-haspopup="dialog" aria-expanded="false"
                                     aria-controls="edit-employee-offcanvas" data-hs-overlay="#edit-employee-offcanvas"
                                     data-id="{{ $employee->id }}"
-                                    class="edit-employee bg-yellow-200 bg-opacity-60 hover:text-yellow-600 p-1 w-8 h-8 rounded-lg flex justify-center items-center cursor-pointer edit-employee-button"><i
-                                        class="fa-regular fa-pen-to-square"></i></a>
+                                    class="edit-employee hover:text-yellow-600 p-1 rounded-lg cursor-pointer edit-employee-button"><i
+                                        class="fa-regular fa-pen-to-square text-lg"></i></a>
                                 <form action="{{ route('employee.destroy', $employee->id) }}" method="POST"
                                     id="deleteModal">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="button" onclick="confirmDelete()"
-                                        class="bg-red-300 bg-opacity-60 hover:text-red-600 p-1 w-8 h-8 rounded-lg flex justify-center items-center cursor-pointer">
-                                        <i class="fa-solid fa-trash-can"></i>
+                                    <button type="button"
+                                        onclick="confirmDelete()"
+                                        class="hover:text-red-600 p-1 rounded-lg cursor-pointer">
+                                        <i class="fa-solid fa-trash-can text-lg"></i>
                                     </button>
                                 </form>
                             </td>

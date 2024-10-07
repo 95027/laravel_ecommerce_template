@@ -1,7 +1,6 @@
 @extends('admin.layout.master')
 
 @section('content')
-
     <div class="container mx-auto mt-3">
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3 mt-10 mb-8">
             <!-- First Chart: Sales -->
@@ -34,13 +33,10 @@
                 </div>
             </div>
         </div>
-        {{-- <div
-            class="border border-gray-200 rounded-xl dark:border-neutral-800 overflow-hidden shadow-md h-60 w-72 mt-10">
-            <div id="chart"></div>
-        </div> --}}
-        <div class="gap-3">
+        <div class="flex gap-3">
             <div
-                class="shadow-md shadow-gray-200 p-2 relative z-10 bg-white border rounded-xl md:p-5 dark:bg-neutral-900 dark:border-neutral-800 dark:shadow-gray-900/20">
+                class="w-8/12 shadow-md shadow-gray-200 p-2 relative z-10 bg-white border rounded-xl md:p-5 dark:bg-neutral-900 dark:border-neutral-800 dark:shadow-gray-900/20">
+                <h1 class="font-bold text-2xl">Recent Orders</h1>
                 <div class="overflow-x-auto">
                     <table class="min-w-full table-auto bg-white">
                         <thead>
@@ -53,146 +49,14 @@
                                 <th class="py-3 text-center">Actions</th>
                             </tr>
                         </thead>
-                        <tbody class="text-gray-600 text-sm font-light">
+                        <tbody class="text-gray-600 text-md font-semibold">
                             <tr>
-                                <td class="py-3">1001</td>
+                                <td class="py-3">#1005</td>
                                 <td class="py-3 px-6">
                                     <div class="flex items-center">
                                         <img class="object-cover object-center w-10 h-10 rounded-full"
                                             src="https://picsum.photos/200" alt="User Image">
-                                        <span class="ml-2">Product A</span>
-                                    </div>
-                                </td>
-                                <td class="py-3 px-2">2</td>
-                                <td class="py-3 px-2">$20.00</td>
-                                <td class="py-3 px-2">
-                                    <span
-                                        class="rounded-md bg-green-50 px-2 py-1 text-xs font-medium text-green-700 ring-1 ring-inset ring-green-600/20">Completed</span>
-                                </td>
-                                <td class="py-3 text-center flex justify-evenly">
-                                    <a
-                                        class="bg-blue-300 bg-opacity-60 hover:text-blue-600 p-1 w-8 h-8 rounded-lg flex justify-center items-center cursor-pointer"><i
-                                            class="fa-regular fa-eye"></i></a>
-                                    <a href="javascript:;"
-                                        class="edit-employee bg-yellow-200 bg-opacity-60 hover:text-yellow-600 p-1 w-8 h-8 rounded-lg flex justify-center items-center cursor-pointer edit-employee-button"><i
-                                            class="fa-regular fa-pen-to-square"></i></a>
-                                    <form action="" method="POST">
-                                        @csrf
-                                        @method('DELETE')
-                                        {{-- <input type="hidden" name="id" value=""> --}}
-                                        <button type="button" {{-- onclick="confirmDelete('{{ $product->id }}', '{{ $product->name }}')" --}}
-                                            class="bg-red-300 bg-opacity-60 hover:text-red-600 p-1 w-8 h-8 rounded-lg flex justify-center items-center cursor-pointer">
-                                            <i class="fa-solid fa-trash-can"></i>
-                                        </button>
-                                    </form>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="py-3">1002</td>
-                                <td class="py-3 px-6">
-                                    <div class="flex items-center">
-                                        <img class="object-cover object-center w-10 h-10 rounded-full"
-                                            src="https://picsum.photos/200" alt="User Image">
-                                        <span class="ml-2">Product B</span>
-                                    </div>
-                                </td>
-                                <td class="py-3 px-2">1</td>
-                                <td class="py-3 px-2">$15.00</td>
-                                <td class="py-3 px-2">
-                                    <span
-                                        class="rounded-md bg-yellow-50 px-2 py-1 text-xs font-medium text-yellow-700 ring-1 ring-inset ring-yellow-600/20">Pending</span>
-                                </td>
-                                <td class="py-3 text-center flex justify-evenly">
-                                    <a
-                                        class="bg-blue-300 bg-opacity-60 hover:text-blue-600 p-1 w-8 h-8 rounded-lg flex justify-center items-center cursor-pointer"><i
-                                            class="fa-regular fa-eye"></i></a>
-                                    <a href="javascript:;"
-                                        class="edit-employee bg-yellow-200 bg-opacity-60 hover:text-yellow-600 p-1 w-8 h-8 rounded-lg flex justify-center items-center cursor-pointer edit-employee-button"><i
-                                            class="fa-regular fa-pen-to-square"></i></a>
-                                    <form action="" method="POST">
-                                        @csrf
-                                        @method('DELETE')
-                                        {{-- <input type="hidden" name="id" value=""> --}}
-                                        <button type="button" {{-- onclick="confirmDelete('{{ $product->id }}', '{{ $product->name }}')" --}}
-                                            class="bg-red-300 bg-opacity-60 hover:text-red-600 p-1 w-8 h-8 rounded-lg flex justify-center items-center cursor-pointer">
-                                            <i class="fa-solid fa-trash-can"></i>
-                                        </button>
-                                    </form>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="py-3">1003</td>
-                                <td class="py-3 px-6">
-                                    <div class="flex items-center">
-                                        <img class="object-cover object-center w-10 h-10 rounded-full"
-                                            src="https://picsum.photos/200" alt="User Image">
-                                        <span class="ml-2">Product C</span>
-                                    </div>
-                                </td>
-                                <td class="py-3 px-2">5</td>
-                                <td class="py-3 px-2">$75.00</td>
-                                <td class="py-3 px-2">
-                                    <span
-                                        class="rounded-md bg-red-50 px-2 py-1 text-xs font-medium text-red-700 ring-1 ring-inset ring-red-600/20">Cancelled</span>
-                                </td>
-                                <td class="py-3 text-center flex justify-evenly">
-                                    <a
-                                        class="bg-blue-300 bg-opacity-60 hover:text-blue-600 p-1 w-8 h-8 rounded-lg flex justify-center items-center cursor-pointer"><i
-                                            class="fa-regular fa-eye"></i></a>
-                                    <a href="javascript:;"
-                                        class="edit-employee bg-yellow-200 bg-opacity-60 hover:text-yellow-600 p-1 w-8 h-8 rounded-lg flex justify-center items-center cursor-pointer edit-employee-button"><i
-                                            class="fa-regular fa-pen-to-square"></i></a>
-                                    <form action="" method="POST">
-                                        @csrf
-                                        @method('DELETE')
-                                        {{-- <input type="hidden" name="id" value=""> --}}
-                                        <button type="button" {{-- onclick="confirmDelete('{{ $product->id }}', '{{ $product->name }}')" --}}
-                                            class="bg-red-300 bg-opacity-60 hover:text-red-600 p-1 w-8 h-8 rounded-lg flex justify-center items-center cursor-pointer">
-                                            <i class="fa-solid fa-trash-can"></i>
-                                        </button>
-                                    </form>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="py-3">1004</td>
-                                <td class="py-3 px-6">
-                                    <div class="flex items-center">
-                                        <img class="object-cover object-center w-10 h-10 rounded-full"
-                                            src="https://picsum.photos/200" alt="User Image">
-                                        <span class="ml-2">Product D</span>
-                                    </div>
-                                </td>
-                                <td class="py-3 px-2">3</td>
-                                <td class="py-3 px-2">$30.00</td>
-                                <td class="py-3 px-2">
-                                    <span
-                                        class="rounded-md bg-green-50 px-2 py-1 text-xs font-medium text-green-700 ring-1 ring-inset ring-green-600/20">Completed</span>
-                                </td>
-                                <td class="py-3 text-center flex justify-evenly">
-                                    <a
-                                        class="bg-blue-300 bg-opacity-60 hover:text-blue-600 p-1 w-8 h-8 rounded-lg flex justify-center items-center cursor-pointer"><i
-                                            class="fa-regular fa-eye"></i></a>
-                                    <a href="javascript:;"
-                                        class="edit-employee bg-yellow-200 bg-opacity-60 hover:text-yellow-600 p-1 w-8 h-8 rounded-lg flex justify-center items-center cursor-pointer edit-employee-button"><i
-                                            class="fa-regular fa-pen-to-square"></i></a>
-                                    <form action="" method="POST">
-                                        @csrf
-                                        @method('DELETE')
-                                        {{-- <input type="hidden" name="id" value=""> --}}
-                                        <button type="button" {{-- onclick="confirmDelete('{{ $product->id }}', '{{ $product->name }}')" --}}
-                                            class="bg-red-300 bg-opacity-60 hover:text-red-600 p-1 w-8 h-8 rounded-lg flex justify-center items-center cursor-pointer">
-                                            <i class="fa-solid fa-trash-can"></i>
-                                        </button>
-                                    </form>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="py-3">1005</td>
-                                <td class="py-3 px-6">
-                                    <div class="flex items-center">
-                                        <img class="object-cover object-center w-10 h-10 rounded-full"
-                                            src="https://picsum.photos/200" alt="User Image">
-                                        <span class="ml-2">Product E</span>
+                                        <span class="ml-2 font-semibold">Product E</span>
                                     </div>
                                 </td>
                                 <td class="py-3 px-2">4</td>
@@ -202,21 +66,8 @@
                                         class="rounded-md bg-yellow-50 px-2 py-1 text-xs font-medium text-yellow-700 ring-1 ring-inset ring-yellow-600/20">Pending</span>
                                 </td>
                                 <td class="py-3 text-center flex justify-evenly">
-                                    <a
-                                        class="bg-blue-300 bg-opacity-60 hover:text-blue-600 p-1 w-8 h-8 rounded-lg flex justify-center items-center cursor-pointer"><i
-                                            class="fa-regular fa-eye"></i></a>
-                                    <a href="javascript:;"
-                                        class="edit-employee bg-yellow-200 bg-opacity-60 hover:text-yellow-600 p-1 w-8 h-8 rounded-lg flex justify-center items-center cursor-pointer edit-employee-button"><i
-                                            class="fa-regular fa-pen-to-square"></i></a>
-                                    <form action="" method="POST">
-                                        @csrf
-                                        @method('DELETE')
-                                        {{-- <input type="hidden" name="id" value=""> --}}
-                                        <button type="button" {{-- onclick="confirmDelete('{{ $product->id }}', '{{ $product->name }}')" --}}
-                                            class="bg-red-300 bg-opacity-60 hover:text-red-600 p-1 w-8 h-8 rounded-lg flex justify-center items-center cursor-pointer">
-                                            <i class="fa-solid fa-trash-can"></i>
-                                        </button>
-                                    </form>
+                                    <a class="p-1 w-8 h-8 rounded-lg flex justify-center items-center cursor-pointer"><i
+                                            class="fa-regular fa-eye hover:text-blue-600"></i></a>
                                 </td>
                             </tr>
                         </tbody>
@@ -224,210 +75,94 @@
                 </div>
             </div>
 
+            <div
+                class="w-4/12 shadow-md shadow-gray-200 p-2 relative z-10 bg-white border rounded-xl md:p-5 dark:bg-neutral-900 dark:border-neutral-800 dark:shadow-gray-900/20">
+                <div class="flex justify-between items-center">
+                    <h1 class="font-bold text-2xl">Top Selling Products</h1>
+                    <div class="">
+                        <select class="w-20"
+                            data-hs-select='{
+                        "placeholder": "Fillter",
+                        "toggleTag": "<button type=\"button\" aria-expanded=\"false\"></button>",
+                        "toggleClasses": "hs-select-disabled:pointer-events-none hs-select-disabled:opacity-50 relative py-3 ps-4 pe-9 flex gap-x-2 text-nowrap w-full cursor-pointer bg-white border border-gray-200 rounded-lg text-start text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-neutral-600",
+                        "dropdownClasses": "mt-2 z-50 w-full max-h-72 p-1 space-y-0.5 bg-white border border-gray-200 rounded-lg overflow-hidden overflow-y-auto dark:bg-neutral-900 dark:border-neutral-700",
+                        "optionClasses": "py-2 px-2 w-full text-sm text-gray-800 cursor-pointer hover:bg-gray-100 rounded-lg focus:outline-none focus:bg-gray-100 dark:bg-neutral-900 dark:hover:bg-neutral-800 dark:text-neutral-200 dark:focus:bg-neutral-800",
+                        "optionTemplate": "<div class=\"flex justify-between w-full\"><span data-title></span><span class=\"hidden hs-selected:block\"><svg class=\"shrink-0 size-4 text-blue-600\" xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" fill=\"currentColor\" viewBox=\"0 0 16 16\"><path d=\"M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z\"/></svg></span></div>"
+                      }'>
+                            <option value="choose" hidden>Choose</option>
+                        </select>
+                    </div>
+                </div>
+                <table class="min-w-full table-auto bg-white">
+                    <tbody class="text-gray-600 text-md font-semibold">
+                        <tr>
+                            <td class="py-3">
+                                <div class="flex items-center">
+                                    <img class="object-cover object-center w-10 h-10 rounded-full"
+                                        src="https://picsum.photos/200" alt="User Image">
+                                    <span class="ml-2 font-semibold">Product E</span>
+                                </div>
+                            </td>
+                            <td class="py-3 px-2">$50.00</td>
+                            <td class="py-3 px-2">
+                                <span
+                                    class="rounded-md bg-green-50 px-2 py-1 text-xs font-medium text-green-700 ring-1 ring-inset ring-green-600/20">Active</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="py-3">
+                                <div class="flex items-center">
+                                    <img class="object-cover object-center w-10 h-10 rounded-full"
+                                        src="https://picsum.photos/200" alt="User Image">
+                                    <span class="ml-2 font-semibold">Product E</span>
+                                </div>
+                            </td>
+                            <td class="py-3 px-2">$50.00</td>
+                            <td class="py-3 px-2">
+                                <span
+                                    class="rounded-md bg-yellow-50 px-2 py-1 text-xs font-medium text-yellow-700 ring-1 ring-inset ring-yellow-600/20">Active</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="py-3">
+                                <div class="flex items-center">
+                                    <img class="object-cover object-center w-10 h-10 rounded-full"
+                                        src="https://picsum.photos/200" alt="User Image">
+                                    <span class="ml-2 font-semibold">Product E</span>
+                                </div>
+                            </td>
+                            <td class="py-3 px-2">$50.00</td>
+                            <td class="py-3 px-2">
+                                <span
+                                    class="rounded-md bg-yellow-50 px-2 py-1 text-xs font-medium text-yellow-700 ring-1 ring-inset ring-yellow-600/20">Active</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="py-3">
+                                <div class="flex items-center">
+                                    <img class="object-cover object-center w-10 h-10 rounded-full"
+                                        src="https://picsum.photos/200" alt="User Image">
+                                    <span class="ml-2 font-semibold">Product E</span>
+                                </div>
+                            </td>
+                            <td class="py-3 px-2">$50.00</td>
+                            <td class="py-3 px-2">
+                                <span
+                                    class="rounded-md bg-yellow-50 px-2 py-1 text-xs font-medium text-yellow-700 ring-1 ring-inset ring-yellow-600/20">Active</span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+
+        </div>
+
+
+        <div
+            class="w-6/12 shadow-md shadow-gray-200 p-2 relative z-10 bg-white border rounded-xl md:p-5 dark:bg-neutral-900 dark:border-neutral-800 dark:shadow-gray-900/20">
+            <h1 class="font-bold text-2xl mb-4">Total Sale</h1>
+            <div id="totalSale"></div>
         </div>
     </div>
-@endsection
-
-@section('script')
-    <script>
-        var sparklineData = [47, 45, 54, 38, 56, 24, 65, 31, 37, 39, 62, 51, 35, 41, 35, 27, 93, 53, 61, 27, 54, 43, 19,
-        46];
-        var randomizeArray = function(arg) {
-            var array = arg.slice();
-            var currentIndex = array.length,
-                temporaryValue, randomIndex;
-
-            while (0 !== currentIndex) {
-                randomIndex = Math.floor(Math.random() * currentIndex);
-                currentIndex -= 1;
-                temporaryValue = array[currentIndex];
-                array[currentIndex] = array[randomIndex];
-                array[randomIndex] = temporaryValue;
-            }
-
-            return array;
-        };
-
-        // First Sparkline Chart (Sales)
-        var spark1 = {
-            chart: {
-                id: 'sparkline1',
-                type: 'area',
-                height: 160,
-                sparkline: {
-                    enabled: true
-                }
-            },
-            stroke: {
-                curve: 'straight'
-            },
-            fill: {
-                opacity: 1
-            },
-            series: [{
-                name: 'Sales',
-                data: randomizeArray(sparklineData)
-            }],
-            labels: [...Array(24).keys()].map(n => `2018-09-0${n+1}`),
-            yaxis: {
-                min: 0
-            },
-            xaxis: {
-                type: 'datetime'
-            },
-            colors: ['#008FFB'],
-            title: {
-                text: '$424,652',
-                offsetX: 30,
-                style: {
-                    fontSize: '24px'
-                }
-            },
-            subtitle: {
-                text: 'Sales',
-                offsetX: 30,
-                style: {
-                    fontSize: '14px'
-                }
-            }
-        };
-
-        // Second Sparkline Chart (Total Products)
-        var spark2 = {
-            chart: {
-                id: 'sparkline2',
-                type: 'area',
-                height: 160,
-                sparkline: {
-                    enabled: true
-                }
-            },
-            stroke: {
-                curve: 'straight'
-            },
-            fill: {
-                opacity: 1
-            },
-            series: [{
-                name: 'Products',
-                data: randomizeArray(sparklineData)
-            }],
-            labels: [...Array(24).keys()].map(n => `2018-09-0${n+1}`),
-            yaxis: {
-                min: 0
-            },
-            xaxis: {
-                type: 'datetime'
-            },
-            colors: ['#FEB019'],
-            title: {
-                text: '12,234',
-                offsetX: 30,
-                style: {
-                    fontSize: '24px'
-                }
-            },
-            subtitle: {
-                text: 'Products',
-                offsetX: 30,
-                style: {
-                    fontSize: '14px'
-                }
-            }
-        };
-
-        // Third Sparkline Chart (Total Revenue)
-        var spark3 = {
-            chart: {
-                id: 'sparkline3',
-                type: 'area',
-                height: 160,
-                sparkline: {
-                    enabled: true
-                }
-            },
-            stroke: {
-                curve: 'straight'
-            },
-            fill: {
-                opacity: 1
-            },
-            series: [{
-                name: 'Revenue',
-                data: randomizeArray(sparklineData)
-            }],
-            labels: [...Array(24).keys()].map(n => `2018-09-0${n+1}`),
-            yaxis: {
-                min: 0
-            },
-            xaxis: {
-                type: 'datetime'
-            },
-            colors: ['#FF4560'],
-            title: {
-                text: '$932,150',
-                offsetX: 30,
-                style: {
-                    fontSize: '24px'
-                }
-            },
-            subtitle: {
-                text: 'Revenue',
-                offsetX: 30,
-                style: {
-                    fontSize: '14px'
-                }
-            }
-        };
-
-        // Fourth Sparkline Chart (Total Orders)
-        var spark4 = {
-            chart: {
-                id: 'sparkline4',
-                type: 'area',
-                height: 160,
-                sparkline: {
-                    enabled: true
-                }
-            },
-            stroke: {
-                curve: 'straight'
-            },
-            fill: {
-                opacity: 1
-            },
-            series: [{
-                name: 'Orders',
-                data: randomizeArray(sparklineData)
-            }],
-            labels: [...Array(24).keys()].map(n => `2018-09-0${n+1}`),
-            yaxis: {
-                min: 0
-            },
-            xaxis: {
-                type: 'datetime'
-            },
-            colors: ['#775DD0'],
-            title: {
-                text: '1,530',
-                offsetX: 30,
-                style: {
-                    fontSize: '24px'
-                }
-            },
-            subtitle: {
-                text: 'Orders',
-                offsetX: 30,
-                style: {
-                    fontSize: '14px'
-                }
-            }
-        };
-
-        // Render the charts
-        new ApexCharts(document.querySelector("#spark1"), spark1).render();
-        new ApexCharts(document.querySelector("#spark2"), spark2).render();
-        new ApexCharts(document.querySelector("#spark3"), spark3).render();
-        new ApexCharts(document.querySelector("#spark4"), spark4).render();
-    </script>
 @endsection

@@ -21,6 +21,10 @@ class AdminAuthController extends Controller
         return view('admin.auth.admin-login');
     }
 
+    public function resetPasswordForm(){
+        return view('admin.auth.employee-reset-password');
+    }
+
     public function login(Request $request)
     {
         $credentials = $request->only('email', 'password');
