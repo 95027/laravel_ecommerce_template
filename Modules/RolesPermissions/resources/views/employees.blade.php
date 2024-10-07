@@ -33,12 +33,12 @@
             <table class="min-w-full table-auto bg-white">
                 <thead class="border-b-2">
                     <tr class="text-left text-gray-600 uppercase text-sm leading-normal">
-                        <th class="py-3 w-52 font-extrabold">Employee Id</th>
+                        <th class="py-3 w-36 font-extrabold">Employee Id</th>
                         <th class="py-3 w-72 font-extrabold">Name / Email</th>
-                        <th class="py-3 w-52 font-extrabold">Mobile</th>
-                        <th class="py-3 w-44 font-extrabold">Role</th>
-                        <th class="py-3 w-54 font-extrabold">Share Credentials</th>
-                        <th class="py-3 w-54 font-extrabold">Permissions</th>
+                        <th class="py-3 w-32 font-extrabold">Mobile</th>
+                        <th class="py-3 w-32 font-extrabold">Role</th>
+                        <th class="py-3 w-60 font-extrabold">Share Credentials</th>
+                        <th class="py-3 w-60 font-extrabold">Permissions</th>
                         <th class="py-3 w-30 font-extrabold">Status</th>
                         <th class="py-3 text-center w-40 font-extrabold">Actions</th>
                     </tr>
