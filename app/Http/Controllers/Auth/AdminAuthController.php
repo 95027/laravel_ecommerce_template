@@ -80,11 +80,10 @@ class AdminAuthController extends Controller
             'password' => 'required',
         ]);
 
-        $status = Password::broker('employee')->reset($request->only('email', 'password', 'password_confirmation', 'token'), function($employee, $password){
+        $status = Password::broker('employees')->reset($request->only('email', 'password', 'password_confirmation', 'token'), function($employee, $password){
 
             $employee->forceFill([
                 'password' => Hash::make($password),
-                'remember_token' => Str::random(60),
             ])->save();
 
             event(new PasswordReset($employee));

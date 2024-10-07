@@ -40,8 +40,13 @@ class PasswordResetMail extends Mailable
      */
     public function content(): Content
     {
+        $resetUrl = url(route('employee-reset-password', ['token'=> $this->token, 'email' => $this->email], false));
+
         return new Content(
             view: 'mails.employee.employee-reset-password',
+            with:[
+                'url' => $resetUrl,
+            ]
         );
     }
 

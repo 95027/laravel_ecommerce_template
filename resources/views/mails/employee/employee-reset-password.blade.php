@@ -8,5 +8,8 @@
 </head>
 <body>
 {{ $token }} {{ $email }}
+<button>
+    <a href="{{ $url }}">clcik</a>
+</button>
 </body>
 </html>
