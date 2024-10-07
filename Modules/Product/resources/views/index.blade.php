@@ -13,7 +13,7 @@
                         <path d="M6 13L10 3" stroke="currentColor" stroke-linecap="round"></path>
                     </svg>
                 </li>
-                <li class="inline-flex items-center text-xs font-semibold text-gray-800 truncate dark:text-neutral-200" aria-current="page">
+                <li class="inline-flex items-center text-xs font-semibold text-blue-600 truncate dark:text-neutral-200" aria-current="page">
                     Products
                 </li>
             </ol>
@@ -128,12 +128,12 @@
                         {{-- <a
                                     class="bg-blue-300 bg-opacity-60 hover:text-blue-600 p-1 w-8 h-8 rounded-lg flex justify-center items-center cursor-pointer"><i
                                         class="fa-regular fa-eye"></i></a> --}}
-                        <a href="{{ route('product.edit', $product->id) }}" class="edit-employee bg-yellow-200 bg-opacity-60 hover:text-yellow-600 p-1 w-8 h-8 rounded-lg flex justify-center items-center cursor-pointer edit-employee-button"><i class="fa-regular fa-pen-to-square"></i></a>
+                        <a href="{{ route('product.edit', $product->id) }}" class="edit-employee bg-yellow-200 bg-opacity-60 hover:text-yellow-600 hover:bg-yellow-200 p-1 w-8 h-8 rounded-lg flex justify-center items-center cursor-pointer edit-employee-button"><i class="fa-regular fa-pen-to-square text-sm"></i></a>
                         <form id="deleteModal" action="{{ route('product.destroy', $product->id) }}" method="POST">
                             @csrf
                             @method('DELETE')
-                            <button type="button" onclick="confirmDelete()" class="bg-red-300 bg-opacity-60 hover:text-red-600 p-1 w-8 h-8 rounded-lg flex justify-center items-center cursor-pointer">
-                                <i class="fa-solid fa-trash-can"></i>
+                            <button type="button" onclick="confirmDelete()" class="bg-red-200 bg-opacity-60 hover:text-red-600 hover:bg-red-200 p-1 w-8 h-8 rounded-lg flex justify-center items-center cursor-pointer">
+                                <i class="fa-solid fa-trash-can text-sm"></i>
                             </button>
                         </form>
                     </td>

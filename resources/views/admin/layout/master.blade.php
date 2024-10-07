@@ -38,7 +38,6 @@
 
     <x-notify::notify />
     @notifyJs
-    {{-- <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script> --}}
     <!-- Add jQuery via CDN in a Blade template -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/parsley.js/2.9.2/parsley.min.js"></script>
@@ -51,40 +50,6 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="{{asset('assets/admin/js/sweet-alert.js')}}"></script>
     @yield('script')
-    <script>
-        document.querySelectorAll('.select-menu').forEach(menu => {
-            const selectBtn = menu.querySelector(".select-btn");
-            const options = menu.querySelectorAll(".option");
-            const sBtn_text = menu.querySelector(".sBtn-text");
-
-            // Toggle the dropdown
-            selectBtn.addEventListener("click", () => {
-                menu.classList.toggle("active");
-            });
-
-            // Handle each option click
-            options.forEach(option => {
-                option.addEventListener("click", () => {
-                    let selectedOption = option.querySelector(".option-text").innerText;
-                    sBtn_text.innerText = selectedOption;
-                    menu.classList.remove("active"); // Close the menu after selection
-                });
-            });
-
-            // Close the dropdown if clicked outside
-            document.addEventListener("click", function(e) {
-                if (!menu.contains(e.target)) {
-                    menu.classList.remove("active");
-                }
-            });
-        });
-    </script>
-    <script>
-        const checkbox = document.getElementById("checkbox")
-        checkbox.addEventListener("change", () => {
-            document.body.classList.toggle("dark")
-        })
-    </script>
 </body>
 
 </html>
