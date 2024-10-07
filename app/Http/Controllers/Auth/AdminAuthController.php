@@ -3,9 +3,16 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Mail\employee\PasswordResetMail;
 use App\Models\Admin;
+use App\Models\Employee;
+use Illuminate\Auth\Events\PasswordReset;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Password;
 
 class AdminAuthController extends Controller
 {
@@ -44,5 +51,50 @@ class AdminAuthController extends Controller
         $request->session()->regenerateToken();
 
         return redirect()->route('admin.login.form');
+    }
+
+    public function resetPassword(Request $request){
+
+        $employeeId = $request->employeeId;
+
+        $employee = Employee::find($employeeId);
+
+        if(!$employee){
+            notify()->error('Requested employee not found');
+        }
+
+        $token = Password::broker('employees')->createToken($employee);
+
+        Mail::to($employee->email)->send(new PasswordResetMail($token, $employee->email));
+
+        notify()->success('Credentials are mailed to ' . $employee->name);
+        return redirect()->back();
+
+    }
+
+    public function updatePassword(Request $request){
+
+        $request->validate([
+            'token' => 'required',
+            'email' => 'required',
+            'password' => 'required',
+        ]);
+
+        $status = Password::broker('employees')->reset($request->only('email', 'password', 'password_confirmation', 'token'), function($employee, $password){
+
+            $employee->forceFill([
+                'password' => Hash::make($password),
+            ])->save();
+
+            event(new PasswordReset($employee));
+
+        });
+
+        if ($status === Password::PASSWORD_RESET) {
+            return redirect()->route('admin.login')->with('success', 'Your password resetted successfully...');
+        } else {
+            return redirect()->back()->with('error', 'Invalid or expired token');
+        }
+
     }
 }

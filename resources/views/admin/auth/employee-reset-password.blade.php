@@ -12,8 +12,10 @@
 <body>
     <div class="login-container-2">
         <h1 class="reset-heading">Reset Password</h1>
-        <form id="loginForm" action="{{-- {{ route('admin.login') }} --}}" method="POST" onsubmit="return validateForm()">
+        <form id="loginForm" action="{{ route('employee.update-password') }}" method="POST" onsubmit="return validateForm()">
             @csrf
+            <input type="hidden" name="token" value="{{ request()->query('token') }}"/>
+            <input type="hidden" name="email" value="{{ request()->query('email') }}"/>
             <div class="input-group">
                 <label for="oldpassword">Old Password</label>
                 <input type="password" id="oldpassword" name="OldPassword">

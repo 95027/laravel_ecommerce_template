@@ -251,22 +251,23 @@
                 @endcan
 
                 @can('report management')
-                    <div class="mb-2" x-data="{ open: false }">
-                        <div class="text-xs font-semibold  text-gray-400">All Reports</div>
-                        <li
-                            class="dropdown relative m-1 {{ request()->routeIs('transationPage', 'salePage', 'productReports', 'brandPage') ? 'rounded-br-md rounded-se-md bg-gray-800 text-white shadow-2xl font-bold active-tab' : 'text-gray-400' }}">
-                            <!-- Dropdown Toggle -->
-                            <a href="#" @click="open = !open"
-                                class="dropdown-toggle group flex justify-between items-center gap-x-3 p-2 text-sm font-semibold  {{ request()->routeIs('transationPage', 'salePage', 'productReports', 'brandPage') ? 'text-white' : 'text-gray-400 hover:text-white' }}">
-                                <span class="flex items-center gap-x-3">
-                                    <i class='bx bx-file text-2xl'></i> All
-                                    Reports
-                                </span>
-                                <i class='bx' :class="open ? 'bx-minus' : 'bx-plus'"></i>
-                            </a>
+
+                <div class="mb-2" x-data="{ open: false }">
+                    <div class="text-xs font-semibold  text-gray-400">All Reports</div>
+                    <li
+                        class="dropdown relative m-1 {{ request()->routeIs('transationPage', 'salePage', 'productReports', 'brandPage') ? 'rounded-br-md rounded-se-md bg-gray-800 text-white shadow-2xl font-bold active-tab' : 'text-gray-400' }}">
+                        <!-- Dropdown Toggle -->
+                        <a href="#" @click="open = !open"
+                            class="dropdown-toggle group flex justify-between items-center gap-x-3 p-2 text-sm font-semibold  {{ request()->routeIs('transationPage', 'salePage', 'productReports', 'brandPage') ? 'text-white' : 'text-gray-400 hover:text-white' }}">
+                            <span class="flex items-center gap-x-3">
+                                <i class='bx bx-file text-2xl'></i> All
+                                Reports
+                            </span>
+                            <i class='bx' :class="open ? 'bx-minus' : 'bx-plus'"></i>
+                        </a>
 
                             <!-- Dropdown Menu -->
-                            <ul x-show="open" x-transition
+                           {{--   <ul x-show="open" x-transition
                                 class="dropdown-menu mt-2 marker:text-white list-disc bg-gray-800 p-2 rounded-md"
                                 role="list">
                                 <li>
@@ -293,7 +294,7 @@
                                         Brand Report
                                     </a>
                                 </li>
-                            </ul>
+                            </ul>  --}}
                         </li>
                     </div>
                 @endcan
