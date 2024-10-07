@@ -316,7 +316,7 @@
                         </a>
 
                         <!-- Dropdown Menu -->
-                        <ul x-show="open" x-transition
+                        {{--  <ul x-show="open" x-transition
                             class="dropdown-menu mt-2 marker:text-white list-disc bg-gray-800 p-2 rounded-md"
                             role="list">
                              <li>
@@ -342,8 +342,8 @@
                                     class="block p-2 {{ request()->routeIs('brandPage') ? 'text-white' : 'text-gray-400 hover:text-white' }}">
                                     Brand Report
                                 </a>
-                            </li> 
-                        </ul>
+                            </li>
+                        </ul>  --}}
                     </li>
                 </div>
                 @endcan
