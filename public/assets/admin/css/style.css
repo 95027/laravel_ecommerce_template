@@ -69,6 +69,14 @@ body::-webkit-scrollbar {
     width: 1px;
 }
 
+.sidebarScroll::-webkit-scrollbar-track{
+    display: none;
+}
+
+.sidebarScroll::-webkit-scrollbar{
+    width: 1px;
+}
+
 
 /* Dropdown toggle styles */
 .dropdown {

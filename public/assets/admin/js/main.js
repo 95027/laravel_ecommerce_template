@@ -48,14 +48,15 @@ var spark1 = {
     colors: ['#008FFB'],
     title: {
         text: '$424,652',
-        offsetX: 30,
+        offsetX: 10,
+        offsetY:5,
         style: {
             fontSize: '24px'
         }
     },
     subtitle: {
         text: 'Sales',
-        offsetX: 30,
+        offsetX: 10,
         style: {
             fontSize: '14px'
         }
@@ -92,14 +93,15 @@ var spark2 = {
     colors: ['#FEB019'],
     title: {
         text: '12,234',
-        offsetX: 30,
+        offsetX: 10,
+        offsetY:5,
         style: {
             fontSize: '24px'
         }
     },
     subtitle: {
         text: 'Products',
-        offsetX: 30,
+        offsetX: 10,
         style: {
             fontSize: '14px'
         }
@@ -136,14 +138,15 @@ var spark3 = {
     colors: ['#FF4560'],
     title: {
         text: '$932,150',
-        offsetX: 30,
+        offsetX: 10,
+        offsetY:5,
         style: {
             fontSize: '24px'
         }
     },
     subtitle: {
         text: 'Revenue',
-        offsetX: 30,
+        offsetX: 10,
         style: {
             fontSize: '14px'
         }
@@ -180,14 +183,15 @@ var spark4 = {
     colors: ['#775DD0'],
     title: {
         text: '1,530',
-        offsetX: 30,
+        offsetX: 10,
+        offsetY:5,
         style: {
             fontSize: '24px'
         }
     },
     subtitle: {
         text: 'Orders',
-        offsetX: 30,
+        offsetX: 10,
         style: {
             fontSize: '14px'
         }
@@ -221,10 +225,11 @@ var options = {
     plotOptions: {
         bar: {
             horizontal: false,
-            columnWidth: '55%',
+            columnWidth: '45%',
             endingShape: 'rounded'
         },
     },
+    colors: ['#87CEFA', '#1E90FF'],
     dataLabels: {
         enabled: false
     },
@@ -234,11 +239,11 @@ var options = {
         colors: ['transparent']
     },
     xaxis: {
-        categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct'], // Months of the year
+        categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'], 
     },
     yaxis: {
         title: {
-            text: 'Amount ($)'
+            text: 'Amount (₹)'
         }
     },
     fill: {
@@ -247,7 +252,7 @@ var options = {
     tooltip: {
         y: {
             formatter: function (val) {
-                return "$ " + val.toLocaleString(); // Formats as currency
+                return "₹ " + val.toLocaleString(); // Formats as currency
             }
         }
     }

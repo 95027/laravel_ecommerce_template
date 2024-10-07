@@ -81,7 +81,7 @@
             <div class="max-w-sm mb-4">
                 <label for="input-label" class="block text-sm font-medium mb-2 dark:text-white">Role
                     Name <abbr class="text-red-600">*</abbr></label>
-                <input type="text" name="name" class="py-3 px-4 block w-full border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-0" placeholder="Enter employee name">
+                <input type="text" name="name" class="py-3 px-4 block w-full border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-0" placeholder="Enter role name">
             </div>
             <div class=" mb-4">
                 <label for="hs-select-label" class="block text-sm font-medium mb-2 dark:text-white">Select
