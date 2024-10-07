@@ -37,6 +37,7 @@
                         <th class="py-3 w-72 font-extrabold">Name / Email</th>
                         <th class="py-3 w-52 font-extrabold">Mobile</th>
                         <th class="py-3 w-44 font-extrabold">Role</th>
+                        <th class="py-3 w-54 font-extrabold">Share Credentials</th>
                         <th class="py-3 w-54 font-extrabold">Permissions</th>
                         <th class="py-3 w-30 font-extrabold">Status</th>
                         <th class="py-3 text-center w-40 font-extrabold">Actions</th>
@@ -60,8 +61,17 @@
                                 </div>
                             </td>
                             <td class="py-3 font-semibold">{{ $employee->mobile }}</td>
-                            <td class="py-3 font-semibold">{{ $employee->roles->pluck('name')->implode(', ')}}</td>
-                            <td class="py-3 font-semibold">{{ $employee->permissions->pluck('name')->implode(', ')}}</td>
+                            <td class="py-3 font-semibold">{{ $employee->roles->pluck('name')->implode(', ') }}</td>
+                            <td class="py-3 font-semibold">
+                                <form action="{{ route('employee.reset-password') }}" method="POST">
+                                    @csrf
+                                    <input type="hidden" name="employeeId" value="{{ $employee->id }}"/>
+                                    <button type="submit"><span
+                                        class="rounded-md bg-green-50 px-2 py-1 text-xs font-medium text-blue-700 ring-1 ring-inset ring-blur-600/20">Send
+                                        Mail</span></button>
+                                    </form>
+                            </td>
+                            <td class="py-3 font-semibold">{{ $employee->permissions->pluck('name')->implode(', ') }}</td>
                             <td class="py-3">
                                 @if ($employee->status == 1)
                                     <span
@@ -72,7 +82,7 @@
                                 @endif
                             </td>
                             <td class="py-3 text-center flex justify-center gap-3">
-                                {{--  <a
+                                {{-- <a
                                     class="bg-blue-300 bg-opacity-60 hover:text-blue-600 p-1 w-8 h-8 rounded-lg flex justify-center items-center cursor-pointer"><i
                                         class="fa-regular fa-eye"></i></a>  --}}
                                 <a href="javascript:;" aria-haspopup="dialog" aria-expanded="false"
@@ -84,8 +94,7 @@
                                     id="deleteModal">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="button"
-                                        onclick="confirmDelete()"
+                                    <button type="button" onclick="confirmDelete()"
                                         class="bg-red-300 bg-opacity-60 hover:text-red-600 p-1 w-8 h-8 rounded-lg flex justify-center items-center cursor-pointer">
                                         <i class="fa-solid fa-trash-can"></i>
                                     </button>
@@ -146,8 +155,7 @@
             <div class=" mb-4">
                 <label for="hs-select-label" class="block text-sm font-medium mb-2 dark:text-white">Select
                     Role <abbr class="text-red-600">*</abbr></label>
-                <select name="roles[]"
-                multiple
+                <select name="roles[]" multiple
                     data-hs-select='{
                 "placeholder": "Select option...",
                 "toggleTag": "<button type=\"button\" aria-expanded=\"false\"></button>",
@@ -158,7 +166,7 @@
               }'>
                     <option value="" hidden>Choose</option>
                     @foreach ($roles as $role)
-                        <option value="{{ $role->name}}">{{ $role->name }}</option>
+                        <option value="{{ $role->name }}">{{ $role->name }}</option>
                     @endforeach
                 </select>
             </div>
@@ -240,7 +248,7 @@
 
 
 @section('script')
-    {{--  <script>
+    {{-- <script>
         $(document).ready(function() {
             $('.edit-employee').on('click', function() {
                 var employeeId = $(this).data('id');
@@ -249,28 +257,28 @@
                     'employee.details',
                     ': id ',
                 ) }}';
-                editUrl = editUrl.replace(':id', employeeId);
-                $.ajax({
-                    url: editUrl,
-                    type: 'GET',
-                    success: function(data) {
-                        $('#employeName').val(data.employee.name);
-                        $('#employeeEmail').val(data.employee.email);
-                        $('#employeeMobile').val(data.employee.mobile);
-                        $('#employeeRole').val(data.employee.role);
-                    },
-                    error: function() {
-                        alert('failed to fetech employee data');
-                    }
-                });
+editUrl = editUrl.replace(':id', employeeId);
+$.ajax({
+url: editUrl,
+type: 'GET',
+success: function(data) {
+$('#employeName').val(data.employee.name);
+$('#employeeEmail').val(data.employee.email);
+$('#employeeMobile').val(data.employee.mobile);
+$('#employeeRole').val(data.employee.role);
+},
+error: function() {
+alert('failed to fetech employee data');
+}
+});
 
-                var updateUrl = '{{ route(
+var updateUrl = '{{ route(
                     'employee.update',
                     ': id ',
                 ) }}';
-                updateUrl = updateUrl.replace(':id', employeeId);
-                form.action = updateUrl;
-            });
-        });
-    </script>  --}}
+updateUrl = updateUrl.replace(':id', employeeId);
+form.action = updateUrl;
+});
+});
+</script> --}}
 @endsection
