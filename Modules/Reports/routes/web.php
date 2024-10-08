@@ -17,8 +17,10 @@ use Modules\Reports\Http\Controllers\ReportsController;
 // Route::group([], function () {
 //     Route::resource('reports', ReportsController::class)->names('reports');
 // });
+Route::middleware(['auth:employee', 'permission:report management'])->group(function(){
 
-Route::get('/transation', [ReportsController::class, 'transationPage'])->name('transationPage');
-Route::get('/sales', [ReportsController::class, 'salePage'])->name('salePage');
-Route::get('/products-reports', [ReportsController::class, 'productReports'])->name('productReports');
-Route::get('/brands', [ReportsController::class, 'brandPage'])->name('brandPage');
+    Route::get('/transation', [ReportsController::class, 'transationPage'])->name('transationPage');
+    Route::get('/sales', [ReportsController::class, 'salePage'])->name('salePage');
+    Route::get('/products-reports', [ReportsController::class, 'productReports'])->name('productReports');
+    Route::get('/brands', [ReportsController::class, 'brandPage'])->name('brandPage');
+});

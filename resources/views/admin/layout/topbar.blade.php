@@ -339,7 +339,7 @@
         </form>
 
         <div>
-            <h5 id="greeting" class="text-lg font-semibold">Good Morning </h5>
+            <h5 id="greeting" class="text-lg font-semibold"></h5>
             <p id="dateTime" class="text-xs"></p>
         </div>
         <div>
@@ -353,8 +353,8 @@
                 </svg>
                 <span class="flex absolute top-2 end-1 size-3 -mt-1.5 -me-1.5">
                     <span
-                        class="animate-ping absolute inline-flex size-full rounded-full bg-green-400 opacity-75"></span>
-                    <span class="relative inline-flex rounded-full size-3 bg-green-500"></span>
+                        class="animate-ping absolute inline-flex size-full rounded-full bg-red-400 opacity-75"></span>
+                    <span class="relative inline-flex rounded-full size-3 bg-red-500"></span>
                 </span>
             </button>
         </div>

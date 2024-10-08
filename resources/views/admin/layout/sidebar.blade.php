@@ -267,7 +267,7 @@
                         </a>
 
                             <!-- Dropdown Menu -->
-                           {{--   <ul x-show="open" x-transition
+                             <ul x-show="open" x-transition
                                 class="dropdown-menu mt-2 marker:text-white list-disc bg-gray-800 p-2 rounded-md"
                                 role="list">
                                 <li>
@@ -294,7 +294,7 @@
                                         Brand Report
                                     </a>
                                 </li>
-                            </ul>  --}}
+                            </ul> 
                         </li>
                     </div>
                 @endcan
