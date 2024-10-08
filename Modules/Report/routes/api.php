@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Modules\Reports\Http\Controllers\ReportsController;
+use Modules\Report\Http\Controllers\ReportController;
 
 /*
  *--------------------------------------------------------------------------
@@ -15,5 +15,5 @@ use Modules\Reports\Http\Controllers\ReportsController;
 */
 
 Route::middleware(['auth:sanctum'])->prefix('v1')->group(function () {
-    Route::apiResource('reports', ReportsController::class)->names('reports');
+    Route::apiResource('report', ReportController::class)->names('report');
 });

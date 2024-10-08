@@ -1,18 +1,18 @@
 <?php
 
-namespace Modules\Reports\Providers;
+namespace Modules\Report\Providers;
 
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 use Nwidart\Modules\Traits\PathNamespace;
 
-class ReportsServiceProvider extends ServiceProvider
+class ReportServiceProvider extends ServiceProvider
 {
     use PathNamespace;
 
-    protected string $name = 'Reports';
+    protected string $name = 'Report';
 
-    protected string $nameLower = 'reports';
+    protected string $nameLower = 'report';
 
     /**
      * Boot the application events.

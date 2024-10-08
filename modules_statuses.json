@@ -12,5 +12,6 @@
     "Razorpay": true,
     "Paypal": true,
     "RolesPermissions": true,
-    "Reports": true
+    "Reports": true,
+    "Report": true
 }

@@ -13,20 +13,4 @@ Route::middleware('guest')->name('employee.')->group(function () {
 Route::middleware(['auth:employee'])->prefix('employee')->name('employee.')->group(function () {
     Route::get('/dashboard', [EmployeeController::class, 'dashboard'])->name('dashboard');
     Route::post('/logout', [EmployeeAuthController::class, 'logout'])->name('logout');
-
-
-    Route::middleware(['permission:user_management'])->group(function () {
-        Route::get('/users', [EmployeeController::class, 'users'])->name('users');
-    });
-
-
-    Route::middleware(['permission:order_management'])->group(function () {
-
-        Route::get('/orders', [EmployeeController::class, 'orders'])->name('orders');
-    });
-
-    Route::middleware(['permission:product_management'])->group(function () {
-
-        Route::get('/products', [EmployeeController::class, 'products'])->name('products');
-    });
 });
