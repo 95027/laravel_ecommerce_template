@@ -1,4 +1,7 @@
-<div class="hidden lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:w-72 lg:flex-col">
+<div class="hidden lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:w-72 lg:flex-col relative">
+    <div class="bg-gray-300 absolute -right-3 top-2 w-8 h-8 flex justify-center items-center rounded-lg">
+        <i class="fa-solid fa-arrow-left text-xl"></i>
+    </div>
     <div class="flex grow flex-col gap-y-5 overflow-y-auto bg-gray-900 px-5 pb-4 menu">
         @role('admin')
             <a href="{{ route('admin.dashboard') }}" class="flex h-16 shrink-0 items-center">
@@ -251,23 +254,22 @@
                 @endcan
 
                 @can('report management')
-
-                <div class="mb-2" x-data="{ open: false }">
-                    <div class="text-xs font-semibold  text-gray-400">All Reports</div>
-                    <li
-                        class="dropdown relative m-1 {{ request()->routeIs('report.transaction', 'report.sales', 'report.product', 'report.brand') ? 'rounded-br-md rounded-se-md bg-gray-800 text-white shadow-2xl font-bold active-tab' : 'text-gray-400' }}">
-                        <!-- Dropdown Toggle -->
-                        <a href="#" @click="open = !open"
-                            class="dropdown-toggle group flex justify-between items-center gap-x-3 p-2 text-sm font-semibold  {{ request()->routeIs('report.transaction', 'report.sales', 'report.product', 'report.brand') ? 'text-white' : 'text-gray-400 hover:text-white' }}">
-                            <span class="flex items-center gap-x-3">
-                                <i class='bx bx-file text-2xl'></i> All
-                                Reports
-                            </span>
-                            <i class='bx' :class="open ? 'bx-minus' : 'bx-plus'"></i>
-                        </a>
+                    <div class="mb-2" x-data="{ open: false }">
+                        <div class="text-xs font-semibold  text-gray-400">All Reports</div>
+                        <li
+                            class="dropdown relative m-1 {{ request()->routeIs('report.transaction', 'report.sales', 'report.product', 'report.brand') ? 'rounded-br-md rounded-se-md bg-gray-800 text-white shadow-2xl font-bold active-tab' : 'text-gray-400' }}">
+                            <!-- Dropdown Toggle -->
+                            <a href="#" @click="open = !open"
+                                class="dropdown-toggle group flex justify-between items-center gap-x-3 p-2 text-sm font-semibold  {{ request()->routeIs('report.transaction', 'report.sales', 'report.product', 'report.brand') ? 'text-white' : 'text-gray-400 hover:text-white' }}">
+                                <span class="flex items-center gap-x-3">
+                                    <i class='bx bx-file text-2xl'></i> All
+                                    Reports
+                                </span>
+                                <i class='bx' :class="open ? 'bx-minus' : 'bx-plus'"></i>
+                            </a>
 
                             <!-- Dropdown Menu -->
-                             <ul x-show="open" x-transition
+                            <ul x-show="open" x-transition
                                 class="dropdown-menu mt-2 marker:text-white list-disc bg-gray-800 p-2 rounded-md"
                                 role="list">
                                 <li>
