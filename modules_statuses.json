@@ -13,5 +13,6 @@
     "Paypal": true,
     "RolesPermissions": true,
     "Reports": true,
-    "Report": true
+    "Report": true,
+    "SocialLogin": true
 }

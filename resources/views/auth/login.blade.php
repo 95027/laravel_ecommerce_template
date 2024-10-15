@@ -31,4 +31,6 @@
             <a href="{{ route('password.request') }}">Forgot Your Password?</a>
         </div>
     </form>
+
+    @include('sociallogin::google-login')
 @endsection
