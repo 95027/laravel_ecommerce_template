@@ -4,7 +4,6 @@
     <h1>home page</h1>
     @if (auth()->user())
 
-    {{ auth()->user()->serviceProvider->first()->token }}
     <form method="POST" action="{{ route('logout') }}">
         @csrf
 
@@ -14,9 +13,6 @@
         </x-responsive-nav-link>
     </form>
 
-    @if (auth()->user()->serviceProvider->first()->token)
-
-    @endif
     @endif
 
 </div>
