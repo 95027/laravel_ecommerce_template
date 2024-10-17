@@ -364,10 +364,10 @@
                 <button type="button" class="-m-1.5 flex items-center p-1.5" id="user-menu-button"
                     @click="open = !open" aria-expanded="false" aria-haspopup="true">
                     <img class="h-8 w-8 rounded-full bg-gray-50"
-                        src="{{ Auth::user()->profile_image ?? 'https://picsum.photos/200' }}" alt="User Avatar">
+                        src="{{ auth()->user()->profile_image ?? 'https://picsum.photos/200' }}" alt="User Avatar">
                     <span class="hidden lg:flex lg:items-center">
                         <span class="ml-4 text-sm font-semibold leading-6 text-gray-900" aria-hidden="true">
-                            {{ Auth::user()?->name }}</span>
+                            {{ auth()->user()?->name }}</span>
                         <svg class="ml-2 h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"
                             aria-hidden="true">
                             <path fill-rule="evenodd"
