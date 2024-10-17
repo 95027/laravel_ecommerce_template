@@ -8,6 +8,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
+use Modules\SocialLogin\Models\SocialLogin;
 
 class AuthenticatedSessionController extends Controller
 {
@@ -28,7 +29,6 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        
         notify()->success('Laravel Notify is awesome!');
         return redirect()->intended(route('home', absolute: false));
     }
@@ -38,6 +38,25 @@ class AuthenticatedSessionController extends Controller
      */
     public function destroy(Request $request): RedirectResponse
     {
+        $googleToken = Auth::user()->serviceProvider->where('provider', 'google')->first()->token;
+
+        if ($googleToken) {
+
+            $socialLogin = SocialLogin::where('token', $googleToken)->first();
+
+            if ($socialLogin) {
+                $socialLogin->update([
+                    'token' => null,
+                ]);
+            }
+
+            $client = new \GuzzleHttp\Client();
+
+            $client->post('https://accounts.google.com/o/oauth2/revoke', [
+                'query' => ['token' => $googleToken],
+            ]);
+        }
+
         Auth::guard('web')->logout();
 
         $request->session()->invalidate();

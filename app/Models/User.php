@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Modules\SocialLogin\Models\SocialLogin;
 
 class User extends Authenticatable
 {
@@ -46,8 +47,7 @@ class User extends Authenticatable
         ];
     }
 
-    public function addresses()
-    {
-        return $this->hasMany(Address::class);
+    public function serviceProvider() {
+        return $this->hasMany(SocialLogin::class);
     }
 }
