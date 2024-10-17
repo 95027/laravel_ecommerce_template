@@ -40,7 +40,8 @@ class EmployeeSeeder extends Seeder
             "transaction management",
             "contact management",
             "reviews management",
-            "report management"
+            "report management",
+            "slider management"
         ];
 
 

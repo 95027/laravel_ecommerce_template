@@ -1,0 +1,11 @@
+{
+    "name": "SliderImage",
+    "alias": "sliderimage",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\SliderImage\\Providers\\SliderImageServiceProvider"
+    ],
+    "files": []
+}

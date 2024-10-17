@@ -14,5 +14,6 @@
     "RolesPermissions": true,
     "Reports": true,
     "Report": true,
-    "SocialLogin": true
+    "SocialLogin": true,
+    "SliderImage": true
 }

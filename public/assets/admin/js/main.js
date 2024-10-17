@@ -35,7 +35,7 @@ var spark1 = {
         opacity: 1
     },
     series: [{
-        name: 'Sales',
+        name: 'Users',
         data: randomizeArray(sparklineData)
     }],
     labels: [...Array(24).keys()].map(n => `2018-09-0${n + 1}`),
@@ -55,7 +55,7 @@ var spark1 = {
         }
     },
     subtitle: {
-        text: 'Sales',
+        text: 'Users',
         offsetX: 10,
         style: {
             fontSize: '14px'
@@ -239,7 +239,7 @@ var options = {
         colors: ['transparent']
     },
     xaxis: {
-        categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'], 
+        categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
     },
     yaxis: {
         title: {
