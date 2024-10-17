@@ -2,11 +2,12 @@
 
 use App\Http\Controllers\ExportController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PageController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', [HomeController::class, 'home'])->name('home');
+
 
 Route::middleware('auth')->name('profile.')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('edit');
@@ -15,6 +16,13 @@ Route::middleware('auth')->name('profile.')->group(function () {
     Route::post('/profile/verify-email', [ProfileController::class, 'verifyEmail'])->name('mail.verify');
     Route::get('/profile/verify-email/{user}', [ProfileController::class, 'mailVerified'])->name('mail.verified');
 });
+// Routes that require authentication
+Route::middleware(['auth'])->group(function () {
+    Route::get('/', [HomeController::class, 'home'])->name('home');
+});
+
+
+
 
 
 //Route::get('/export', [ExportController::class, 'export'])->name('export');

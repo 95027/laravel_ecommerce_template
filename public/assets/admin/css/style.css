@@ -33,6 +33,7 @@
 
 body {
     zoom: 90%;
+    background-color: #f0f5f9;
 }
 
 body::-webkit-scrollbar {
@@ -69,11 +70,11 @@ body::-webkit-scrollbar {
     width: 1px;
 }
 
-.sidebarScroll::-webkit-scrollbar-track{
+.sidebarScroll::-webkit-scrollbar-track {
     display: none;
 }
 
-.sidebarScroll::-webkit-scrollbar{
+.sidebarScroll::-webkit-scrollbar {
     width: 1px;
 }
 
@@ -183,5 +184,3 @@ body::-webkit-scrollbar {
 .error-message {
     font-size: 0.875rem;
 }
-
-

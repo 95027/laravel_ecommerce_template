@@ -92,7 +92,6 @@
             <thead>
                 <tr class="text-left text-gray-600 uppercase text-base leading-normal">
                     <th class="py-3">Sl.No</th>
-                    {{-- <th class="py-3 px-8">Product id</th> --}}
                     <th class="py-3 px-6">Image</th>
                     <th class="py-3 px-6">Title</th>
                     <th class="py-3 px-6">Brand</th>
@@ -104,7 +103,7 @@
                     <th class="py-3 text-center">Actions</th>
                 </tr>
             </thead>
-            <tbody class="text-gray-600 text-s font-light">
+            <tbody class="text-gray-600 text-md font-semibold">
                 @foreach ($products as $i => $product)
                 <tr class="">
                     <td class="py-3 px-6">{{ $i + 1 }}</td>

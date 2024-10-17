@@ -205,8 +205,8 @@
 
                 <div class="flex justify-end mt-4">
                     <button type="submit" id="submit-btn"
-                        class="py-2 px-4 text-sm font-medium rounded-lg bg-green-100 text-green-800">
-                        Submit
+                        class="py-2 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-blue-100 text-blue-800 hover:bg-blue-200 focus:outline-none focus:bg-blue-200 disabled:opacity-50 disabled:pointer-events-none dark:text-blue-400 dark:bg-blue-800/30 dark:hover:bg-blue-800/20 dark:focus:bg-blue-800/20">
+                        Add Product
                     </button>
                 </div>
             </form>

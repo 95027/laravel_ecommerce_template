@@ -42,7 +42,7 @@
                         <th class="py-3 text-center">Actions</th>
                     </tr>
                 </thead>
-                <tbody class="text-gray-600 text-s font-light">
+                <tbody class="text-gray-600 text-md font-semibold">
                     @foreach ($categories as $i => $category)
                         <tr class="">
                             <td class="py-3 px-6">{{ $i + 1 }}</td>
