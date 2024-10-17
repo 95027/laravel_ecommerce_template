@@ -1,3 +1,6 @@
+@php
+    use Illuminate\Support\Facades\Route;
+@endphp
 <footer class="main">
     <section class="newsletter mb-15 wow animate__animated animate__fadeIn">
         <div class="container">
@@ -16,7 +19,9 @@
                                 <button class="btn" type="submit">Subscribe</button>
                             </form>
                         </div>
-                        <img src="{{ asset('assets/client/assets/imgs/banner/banner-9.png') }}" alt="newsletter" />
+                        <img src="{{ asset(in_array(Route::currentRouteName(), ['home', 'product-details']) ? 'assets/client/assets/imgs/banner/banner-9.png' : 'assets/client/assets/imgs/banner/banner-13.png') }}"
+                            alt="newsletter" />
+
                     </div>
                 </div>
             </div>
@@ -107,7 +112,7 @@
                     <div class="widget-about font-md mb-md-3 mb-lg-3 mb-xl-0 wow animate__animated animate__fadeInUp"
                         data-wow-delay="0">
                         <div class="logo mb-30">
-                            <a href="index.html" class="mb-15">
+                            <a href="{{ route('home') }}" class="mb-15">
                                 <img src="{{ asset('assets/client/assets/imgs/theme/logo.svg') }}" alt="logo" />
                             </a>
                             <p class="font-lg text-heading">Awesome grocery store website template</p>
@@ -144,11 +149,11 @@
                     data-wow-delay=".1s>
                     <h4 class=" widget-title">Company</h4>
                     <ul class="footer-list mb-sm-5 mb-md-0">
-                        <li><a href="#">About Us</a></li>
+                        <li><a href="{{ route('web.about-us') }}">About Us</a></li>
                         <li><a href="#">Delivery Information</a></li>
-                        <li><a href="#">Privacy Policy</a></li>
-                        <li><a href="#">Terms &amp; Conditions</a></li>
-                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="{{ route('web.privacy-policy') }}">Privacy Policy</a></li>
+                        <li><a href="{{ route('web.terms-conditions') }}">Terms &amp; Conditions</a></li>
+                        <li><a href="{{ route('web.contact-us') }}">Contact Us</a></li>
                         <li><a href="#">Support Center</a></li>
                         <li><a href="#">Careers</a></li>
                     </ul>

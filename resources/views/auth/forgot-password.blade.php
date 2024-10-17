@@ -1,18 +1,58 @@
 @extends('client.layout.master')
 @section('content')
-    <form method="POST" action="{{ route('password.email') }}">
-        @csrf
-
-        <div>
-            <label for="email">Email:</label>
-            <input id="email" type="email" name="email" value="{{ old('email') }}" required autofocus>
-            @error('email')
-                <div class="text-danger">{{ $message }}</div>
-            @enderror
+    <div class="page-content pt-150 pb-150">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-4 col-lg-6 col-md-12 m-auto">
+                    <div class="login_wrap widget-taber-content background-white">
+                        <div class="padding_eight_all bg-white">
+                            <div class="heading_s1">
+                                <img class="border-radius-15"
+                                    src="{{ asset('assets/client/assets/imgs/page/forgot_password.svg') }}" alt="" />
+                                <h2 class="mb-15 mt-15">Forgot your password?</h2>
+                                <p class="mb-30">Not to worry, we got you! Let’s get you a new password. Please enter your
+                                    email address or your Username.</p>
+                            </div>
+                            <form method="POST" action="{{ route('password.email') }}">
+                                @csrf
+                                <div class="form-group">
+                                    <input type="text" required="" name="email" value="{{ old('email') }}"
+                                        placeholder="Username or Email *" autofocus />
+                                    @error('email')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                                <div class="login_footer form-group">
+                                    <div class="chek-form">
+                                        <input type="text" required="" name="email" placeholder="Security code *" />
+                                    </div>
+                                    <span class="security-code">
+                                        <b class="text-new">8</b>
+                                        <b class="text-hot">6</b>
+                                        <b class="text-sale">7</b>
+                                        <b class="text-best">5</b>
+                                    </span>
+                                </div>
+                                <div class="login_footer form-group mb-50">
+                                    <div class="chek-form">
+                                        <div class="custome-checkbox">
+                                            <input class="form-check-input" type="checkbox" name="checkbox"
+                                                id="exampleCheckbox1" value="" />
+                                            <label class="form-check-label" for="exampleCheckbox1"><span>I agree to terms &
+                                                    Policy.</span></label>
+                                        </div>
+                                    </div>
+                                    <a class="text-muted" href="#">Learn more</a>
+                                </div>
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-heading btn-block hover-up" name="login">Reset
+                                        password</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-
-        <div>
-            <button type="submit">Email Password Reset Link</button>
-        </div>
-    </form>
+    </div>
 @endsection
