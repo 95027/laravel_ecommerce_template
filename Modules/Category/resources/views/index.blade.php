@@ -37,7 +37,8 @@
                     <tr class="text-left text-gray-600 uppercase text-base leading-normal">
                         <th class="py-3 px-6">Sl.No</th>
                         <th class="py-3 px-6">Name</th>
-                        <th class="py-3 px-6">Icon / Thumbnail</th>
+                        <th class="py-3 px-6">Icon</th>
+                        <th class="py-3 px-6">Image</th>
                         <th class="py-3 px-6">Status</th>
                         <th class="py-3 text-center">Actions</th>
                     </tr>
@@ -49,7 +50,11 @@
                             <td class="py-3 px-6">{{ $category->name }}</td>
                             <td class="py-3 px-6">
                                 <img class="w-12 h-12 rounded-full"
-                                    src="{{ asset('storage/' . $category->media?->file_path) }}" alt="{{ $category->id }}">
+                                    src="{{ asset('storage/' . $category->media->where('featured', 1)->first()->file_path) }}" alt="{{ $category->id }}">
+                            </td>
+                            <td class="py-3 px-6">
+                                <img class="w-12 h-12 rounded-full"
+                                    src="{{ asset('storage/' . $category->media->where('featured', 0)->first()->file_path) }}" alt="{{ $category->id }}">
                             </td>
                             <td class="py-3 px-6"><span
                                     class="rounded-md bg-green-50 px-2 py-1 text-xs font-medium text-green-700 ring-1 ring-inset ring-green-600/20">Active</span>
@@ -112,6 +117,16 @@
                     <input type="text" name="name" required
                         class="py-3 px-4 block w-full border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-0"
                         placeholder="Enter category name">
+                </div>
+                <div class="max-w-sm mb-6">
+                    <label for="input-label" class="block text-sm font-medium mb-2 dark:text-white">Category
+                        Icon <abbr class="text-red-600">*</abbr></label>
+                    <label for="file-input-medium" class="sr-only">Choose file</label>
+                    <input type="file" name="icon" required accept="image/*"
+                        class="block w-full border border-gray-200 shadow-sm rounded-lg text-sm focus:z-10 focus:outline-none focus:ring-0
+                          file:bg-gray-50 file:border-0
+                          file:me-4
+                          file:py-3 file:px-4">
                 </div>
                 <div class="max-w-sm mb-6">
                     <label for="input-label" class="block text-sm font-medium mb-2 dark:text-white">Category

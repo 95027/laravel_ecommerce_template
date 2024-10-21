@@ -5,6 +5,7 @@ namespace Modules\Category\Models;
 use App\Models\Media;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Modules\Product\Models\Product;
 
 // use Modules\Category\Database\Factories\CategoryFactory;
@@ -25,7 +26,7 @@ class Category extends Model
 
     public function media()
     {
-        return $this->morphOne(Media::class, 'mediable');
+        return $this->MorphMany(Media::class, 'mediable');
     }
 
     public function parent()

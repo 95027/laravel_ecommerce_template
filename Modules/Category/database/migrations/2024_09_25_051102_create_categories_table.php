@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('image')->nullable();
+            $table->string('icon')->nullable();
             $table->integer('parentId')->constrained('categories')->nullable();
             $table->timestamps();
         });

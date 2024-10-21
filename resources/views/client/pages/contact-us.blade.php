@@ -90,7 +90,8 @@
                                     <h2 class="mb-10">Drop Us a Line</h2>
                                     <p class="text-muted mb-30 font-sm">Your email address will not be published. Required
                                         fields are marked *</p>
-                                    <form class="contact-form-style mt-30" id="contact-form" action="#" method="post">
+                                    <form class="contact-form-style mt-30" action="{{route('contact-form.submit')}}" method="POST">
+                                        @csrf
                                         <div class="row">
                                             <div class="col-lg-6 col-md-6">
                                                 <div class="input-style mb-20">
@@ -104,12 +105,12 @@
                                             </div>
                                             <div class="col-lg-6 col-md-6">
                                                 <div class="input-style mb-20">
-                                                    <input name="telephone" placeholder="Your Phone" type="tel" />
+                                                    <input name="phone" placeholder="Your Phone" type="tel" />
                                                 </div>
                                             </div>
                                             <div class="col-lg-6 col-md-6">
                                                 <div class="input-style mb-20">
-                                                    <input name="subject" placeholder="Subject" type="text" />
+                                                    <input name="title" placeholder="Subject" type="text" />
                                                 </div>
                                             </div>
                                             <div class="col-lg-12 col-md-12">

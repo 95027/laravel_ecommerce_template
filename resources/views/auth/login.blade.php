@@ -18,7 +18,8 @@
                                         <p class="mb-30">Don't have an account? <a href="{{ route('register') }}">Create
                                                 here</a></p>
                                     </div>
-                                    <form method="post">
+                                    <form action="{{route('login')}}" method="post">
+                                        @csrf
                                         <div class="form-group">
                                             <input type="text" required="" name="email"
                                                 placeholder="Username or Email *" />
@@ -26,18 +27,6 @@
                                         <div class="form-group">
                                             <input required="" type="password" name="password"
                                                 placeholder="Your password *" />
-                                        </div>
-                                        <div class="login_footer form-group">
-                                            <div class="chek-form">
-                                                <input type="text" required="" name="email"
-                                                    placeholder="Security code *" />
-                                            </div>
-                                            <span class="security-code">
-                                                <b class="text-new">8</b>
-                                                <b class="text-hot">6</b>
-                                                <b class="text-sale">7</b>
-                                                <b class="text-best">5</b>
-                                            </span>
                                         </div>
                                         <div class="login_footer form-group mb-50">
                                             <div class="chek-form">

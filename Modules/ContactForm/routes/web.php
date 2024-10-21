@@ -15,5 +15,9 @@ use Modules\ContactForm\Http\Controllers\ContactFormController;
 */
 
 Route::group(['middleware' => ['auth:employee', 'permission:contact management']], function () {
-    Route::resource('contactform', ContactFormController::class)->names('contactform');
+    Route::get('/contactform', [ContactFormController::class, 'index'])->name('contactform.index');
 });
+
+Route::post('/contact-form/submit', [ContactFormController::class, 'store'])->name('contact-form.submit');
+Route::delete('admin/contact-form/{id}', [ContactFormController::class, 'delete'])->name('admin.contact-form.delete');
+

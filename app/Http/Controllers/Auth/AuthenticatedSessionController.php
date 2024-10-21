@@ -38,7 +38,7 @@ class AuthenticatedSessionController extends Controller
      */
     public function destroy(Request $request): RedirectResponse
     {
-        $googleToken = Auth::user()->serviceProvider->where('provider', 'google')->first()->token;
+        /* $googleToken = Auth::user()->serviceProvider->where('provider', 'google')->first()->token;
 
         if ($googleToken) {
 
@@ -55,7 +55,7 @@ class AuthenticatedSessionController extends Controller
             $client->post('https://accounts.google.com/o/oauth2/revoke', [
                 'query' => ['token' => $googleToken],
             ]);
-        }
+        } */
 
         Auth::guard('web')->logout();
 

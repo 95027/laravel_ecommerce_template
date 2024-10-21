@@ -36,6 +36,7 @@ class CategoryController extends Controller
         $request->validate([
             'name' => 'required',
             'image' => 'required',
+            'icon' => 'required',
         ]);
 
         $category = Category::create(['name' => $request->name]);
@@ -51,6 +52,20 @@ class CategoryController extends Controller
                 'file_name' => $filename,
                 'file_path' => $filepath,
                 'file_type' => 'category',
+            ]);
+        }
+        if ($request->hasFile('icon')) {
+            $file = $request->file('icon');
+            $filename = time() . '_' . Str::random(18) . '.' . $file->getClientOriginalExtension();
+            $filepath = $file->storeAs('categories/icon', $filename, 'public');
+
+            Media::create([
+                'mediable_type' => Category::class,
+                'mediable_id' => $category->id,
+                'file_name' => $filename,
+                'file_path' => $filepath,
+                'file_type' => 'icon',
+                'featured' => 1
             ]);
         }
 

@@ -16,6 +16,8 @@ return new class extends Migration
             $table->foreignId('userId');
             $table->enum('addressType', ['shipping', 'billing']);
             $table->string('name');
+            $table->string('phone');
+            $table->string('city');
             $table->string('street');
             $table->string('postal');
             $table->string('country');

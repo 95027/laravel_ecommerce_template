@@ -16,6 +16,8 @@
     <link rel="stylesheet" href="{{ asset('assets/admin/css/parsleyerror.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    {{-- <link href="assets/css/main.css?v=6.0" rel="stylesheet" type="text/css" /> --}}
+    {{-- <link rel="stylesheet" href="{{asset('assets/admin/assets/css/main.css')}}"> --}}
 
 
 </head>

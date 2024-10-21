@@ -1,8 +1,8 @@
-<div class="hidden lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:w-72 lg:flex-col relative">
+<div class="lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:w-72 lg:flex-col relative">
     <div class="bg-gray-300 absolute -right-3 top-2 w-8 h-8 flex justify-center items-center rounded-lg">
         <i class="fa-solid fa-arrow-left text-xl"></i>
     </div>
-    <div class="flex grow flex-col gap-y-5 overflow-y-auto bg-gray-900 px-5 pb-4 menu">
+    <div class="flex grow flex-col gap-y-5 overflow-y-auto bg-gray-900 px-4 pb-4 menu">
         @role('admin')
             <a href="{{ route('admin.dashboard') }}" class="flex h-16 shrink-0 items-center">
                 <img class="h-8 w-auto" src="{{ asset('assets/admin/images/logo/logo2.png') }}" alt="Your Company">

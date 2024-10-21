@@ -95,15 +95,25 @@
             </div>
             <div class="carausel-10-columns-cover position-relative">
                 <div class="carausel-10-columns" id="carausel-10-columns">
-                    <div class="card-2 bg-9 wow animate__animated animate__fadeInUp" data-wow-delay=".1s">
-                        <figure class="img-hover-scale overflow-hidden">
-                            <a href="#"><img src="{{ asset('assets/client/assets/imgs/shop/cat-13.pn') }}g"
-                                    alt="" /></a>
-                        </figure>
-                        <h6><a href="#">Cake & Milk</a></h6>
-                        <span>26 items</span>
-                    </div>
-                    <div class="card-2 bg-10 wow animate__animated animate__fadeInUp" data-wow-delay=".2s">
+                    @foreach ($categorys as $index => $category)
+                        <?php
+                        // Set the dynamic background class from bg-9 to bg-15
+                        $bgClass = 'bg-' . (9 + ($index % 7)); // Cycles through bg-9 to bg-15
+                        ?>
+                        <div class="card-2 {{ $bgClass }} wow animate__animated animate__fadeInUp"
+                            data-wow-delay=".1s">
+                            <figure class="img-hover-scale overflow-hidden">
+                                <a href="#">
+                                    <img src="{{ asset('storage/' . $category->media->where('featured', 0)->first()->file_path) }}"
+                                        alt="category-icon" />
+                                </a>
+                            </figure>
+                            <h6><a href="#">{{ $category->name }}</a></h6>
+                            <span>26 items</span>
+                        </div>
+                    @endforeach
+
+                    {{-- <div class="card-2 bg-10 wow animate__animated animate__fadeInUp" data-wow-delay=".2s">
                         <figure class="img-hover-scale overflow-hidden">
                             <a href="#"><img src="{{ asset('assets/client/assets/imgs/shop/cat-12.pn') }}g"
                                     alt="" /></a>
@@ -182,7 +192,7 @@
                         </figure>
                         <h6><a href="#">Headphone</a></h6>
                         <span>87 items</span>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
         </div>
@@ -3022,7 +3032,8 @@
                     <div class="product-list-small animated animated">
                         <article class="row align-items-center hover-up">
                             <figure class="col-md-4 mb-0">
-                                <a href="shop-product-right.html"><img src="{{asset('assets/client/assets/imgs/shop/thumbnail-1.jpg')}}"
+                                <a href="shop-product-right.html"><img
+                                        src="{{ asset('assets/client/assets/imgs/shop/thumbnail-1.jpg') }}"
                                         alt="" /></a>
                             </figure>
                             <div class="col-md-8 mb-0">
@@ -3043,7 +3054,8 @@
                         </article>
                         <article class="row align-items-center hover-up">
                             <figure class="col-md-4 mb-0">
-                                <a href="shop-product-right.html"><img src="{{asset('assets/client/assets/imgs/shop/thumbnail-2.jpg')}}"
+                                <a href="shop-product-right.html"><img
+                                        src="{{ asset('assets/client/assets/imgs/shop/thumbnail-2.jpg') }}"
                                         alt="" /></a>
                             </figure>
                             <div class="col-md-8 mb-0">
@@ -3064,7 +3076,8 @@
                         </article>
                         <article class="row align-items-center hover-up">
                             <figure class="col-md-4 mb-0">
-                                <a href="shop-product-right.html"><img src="{{asset('assets/client/assets/imgs/shop/thumbnail-3.jpg')}}"
+                                <a href="shop-product-right.html"><img
+                                        src="{{ asset('assets/client/assets/imgs/shop/thumbnail-3.jpg') }}"
                                         alt="" /></a>
                             </figure>
                             <div class="col-md-8 mb-0">
@@ -3091,7 +3104,8 @@
                     <div class="product-list-small animated animated">
                         <article class="row align-items-center hover-up">
                             <figure class="col-md-4 mb-0">
-                                <a href="shop-product-right.html"><img src="{{asset('assets/client/assets/imgs/shop/thumbnail-4.jpg')}}"
+                                <a href="shop-product-right.html"><img
+                                        src="{{ asset('assets/client/assets/imgs/shop/thumbnail-4.jpg') }}"
                                         alt="" /></a>
                             </figure>
                             <div class="col-md-8 mb-0">
@@ -3112,7 +3126,8 @@
                         </article>
                         <article class="row align-items-center hover-up">
                             <figure class="col-md-4 mb-0">
-                                <a href="shop-product-right.html"><img src="{{asset('assets/client/assets/imgs/shop/thumbnail-5.jpg')}}"
+                                <a href="shop-product-right.html"><img
+                                        src="{{ asset('assets/client/assets/imgs/shop/thumbnail-5.jpg') }}"
                                         alt="" /></a>
                             </figure>
                             <div class="col-md-8 mb-0">
@@ -3134,7 +3149,8 @@
                         </article>
                         <article class="row align-items-center hover-up">
                             <figure class="col-md-4 mb-0">
-                                <a href="shop-product-right.html"><img src="{{asset('assets/client/assets/imgs/shop/thumbnail-6.jpg')}}"
+                                <a href="shop-product-right.html"><img
+                                        src="{{ asset('assets/client/assets/imgs/shop/thumbnail-6.jpg') }}"
                                         alt="" /></a>
                             </figure>
                             <div class="col-md-8 mb-0">
@@ -3162,7 +3178,8 @@
                     <div class="product-list-small animated animated">
                         <article class="row align-items-center hover-up">
                             <figure class="col-md-4 mb-0">
-                                <a href="shop-product-right.html"><img src="{{asset('assets/client/assets/imgs/shop/thumbnail-7.jpg')}}"
+                                <a href="shop-product-right.html"><img
+                                        src="{{ asset('assets/client/assets/imgs/shop/thumbnail-7.jpg') }}"
                                         alt="" /></a>
                             </figure>
                             <div class="col-md-8 mb-0">
@@ -3183,7 +3200,8 @@
                         </article>
                         <article class="row align-items-center hover-up">
                             <figure class="col-md-4 mb-0">
-                                <a href="shop-product-right.html"><img src="{{asset('assets/client/assets/imgs/shop/thumbnail-8.jpg')}}"
+                                <a href="shop-product-right.html"><img
+                                        src="{{ asset('assets/client/assets/imgs/shop/thumbnail-8.jpg') }}"
                                         alt="" /></a>
                             </figure>
                             <div class="col-md-8 mb-0">
@@ -3204,7 +3222,8 @@
                         </article>
                         <article class="row align-items-center hover-up">
                             <figure class="col-md-4 mb-0">
-                                <a href="shop-product-right.html"><img src="{{asset('assets/client/assets/imgs/shop/thumbnail-9.jpg')}}"
+                                <a href="shop-product-right.html"><img
+                                        src="{{ asset('assets/client/assets/imgs/shop/thumbnail-9.jpg') }}"
                                         alt="" /></a>
                             </figure>
                             <div class="col-md-8 mb-0">
@@ -3231,7 +3250,8 @@
                     <div class="product-list-small animated animated">
                         <article class="row align-items-center hover-up">
                             <figure class="col-md-4 mb-0">
-                                <a href="shop-product-right.html"><img src="{{asset('assets/client/assets/imgs/shop/thumbnail-10.jpg')}}"
+                                <a href="shop-product-right.html"><img
+                                        src="{{ asset('assets/client/assets/imgs/shop/thumbnail-10.jpg') }}"
                                         alt="" /></a>
                             </figure>
                             <div class="col-md-8 mb-0">
@@ -3253,7 +3273,8 @@
                         </article>
                         <article class="row align-items-center hover-up">
                             <figure class="col-md-4 mb-0">
-                                <a href="shop-product-right.html"><img src="{{asset('assets/client/assets/imgs/shop/thumbnail-11.jpg')}}"
+                                <a href="shop-product-right.html"><img
+                                        src="{{ asset('assets/client/assets/imgs/shop/thumbnail-11.jpg') }}"
                                         alt="" /></a>
                             </figure>
                             <div class="col-md-8 mb-0">
@@ -3274,7 +3295,8 @@
                         </article>
                         <article class="row align-items-center hover-up">
                             <figure class="col-md-4 mb-0">
-                                <a href="shop-product-right.html"><img src="{{asset('assets/client/assets/imgs/shop/thumbnail-12.jpg')}}"
+                                <a href="shop-product-right.html"><img
+                                        src="{{ asset('assets/client/assets/imgs/shop/thumbnail-12.jpg') }}"
                                         alt="" /></a>
                             </figure>
                             <div class="col-md-8 mb-0">
