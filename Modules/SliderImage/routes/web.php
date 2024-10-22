@@ -14,8 +14,8 @@ use Modules\SliderImage\Http\Controllers\SliderImageController;
 |
 */
 
-Route::middleware(['auth:employee'])->prefix('slider-image')->name('sliderImage.')->group(function () {
-    Route::get('/',[ SliderImageController::class, 'getSliderImage'])->name('index');
-    Route::post('/',[ SliderImageController::class, 'createSliderImage'])->name('store');
-    Route::delete('/{id}',[ SliderImageController::class, 'destroySliderImage'])->name('destroy');
+Route::middleware(['auth:employee'])->group(function () {
+    Route::get('/slider-image', [SliderImageController::class, 'getSliderImage'])->name('slider.index');
+    Route::post('/slider-image', [SliderImageController::class, 'createSliderImage'])->name('slider.store');
+    Route::delete('/slider-image/{id}', [SliderImageController::class, 'destroySliderImage'])->name('slider.destroy');
 });

@@ -24,6 +24,8 @@ return new class extends Migration
             $table->integer('price')->nullable();
             $table->integer('quantity')->default(1);
             $table->integer('status')->default(1);
+            $table->integer('dealsOfTheDay')->default(0);
+            $table->string('expiryDate')->nullable();
             $table->timestamps();
         });
     }

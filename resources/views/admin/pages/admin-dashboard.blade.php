@@ -81,15 +81,15 @@
                                         class="shrink-0 mt-0.5 border-gray-200 rounded text-blue-600 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-800 dark:border-neutral-700 dark:checked:bg-blue-500 dark:checked:border-blue-500 dark:focus:ring-offset-gray-800"
                                         id="hs-default-checkbox">
                                 </th>
-                                <th scope="col" class="p-3 text-left text-xs font-medium text-gray-700">Order ID</th>
-                                <th scope="col" class="p-3 text-left text-xs font-medium text-gray-700">Billing Name</th>
-                                <th scope="col" class="p-3 text-left text-xs font-medium text-gray-700">Date</th>
-                                <th scope="col" class="p-3 text-left text-xs font-medium text-gray-700">Total</th>
-                                <th scope="col" class="p-3 text-left text-xs font-medium text-gray-700">Payment Status
+                                <th scope="col" class="p-3 text-left text-sm font-bold text-gray-700">Order ID</th>
+                                <th scope="col" class="p-3 text-left text-sm font-bold text-gray-700">Billing Name</th>
+                                <th scope="col" class="p-3 text-left text-sm font-bold text-gray-700">Date</th>
+                                <th scope="col" class="p-3 text-left text-sm font-bold text-gray-700">Total</th>
+                                <th scope="col" class="p-3 text-left text-sm font-bold text-gray-700">Payment Status
                                 </th>
-                                <th scope="col" class="p-3 text-left text-xs font-medium text-gray-700">Payment Method
+                                <th scope="col" class="p-3 text-left text-sm font-bold text-gray-700">Payment Method
                                 </th>
-                                <th scope="col" class="p-3 text-center text-xs font-medium text-gray-700">View Details
+                                <th scope="col" class="p-3 text-center text-sm font-bold text-gray-700">View Details
                                 </th>
                             </tr>
                         </thead>
@@ -124,17 +124,6 @@
                 </div>
             </div>
         </div>
-
-
-    <div
-        class="md:w-6/12 mt-6 shadow-md shadow-gray-200 p-2 relative z-10 bg-white border rounded-xl md:p-5 dark:bg-neutral-900 dark:border-neutral-800 dark:shadow-gray-900/20">
-        <div class="flex justify-between items-center px-6">
-            <h1 class="font-bold text-2xl mb-4">Total Sale <span> <i
-                        class="fa-solid fa-arrow-trend-up text-green-500 me-2"></i>
-                    <span class="text-sm font-semibold text-gray-600">+30%</span></span></h1>
-        </div>
-        <div id="totalSale"></div>
-    </div>
 </div>
     </div>
 @endsection

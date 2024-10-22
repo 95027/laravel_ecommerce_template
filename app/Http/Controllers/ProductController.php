@@ -3,16 +3,19 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Modules\Product\Models\Product;
 
 class ProductController extends Controller
 {
-    public function products(){
+    public function products()
+    {
         return view('client.pages.products');
     }
 
-    public function productDetails()
+    public function productDetails($id)
     {
-        return view('client.pages.single-product-details');
+        $product = Product::with('media')->find($id);
+        return view('client.pages.single-product-details', ['product' => $product]);
     }
 
 }

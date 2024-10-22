@@ -26,7 +26,7 @@ class Product extends Model
 
     public function media()
     {
-        return $this->hasMany(Media::class, 'mediable_id');
+        return $this->morphMany(Media::class, 'mediable');
     }
 
     public function brand()

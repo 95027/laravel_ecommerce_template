@@ -183,11 +183,11 @@
                                 @can('slider management')
                                 <div class="mb-2">
                                     <div class="text-xs font-semibold  text-gray-400">Slider Images </div>
-                                    <li class="relative m-1 {{ request()->routeIs('sliderImage.index') ? 'rounded-br-md rounded-se-md bg-gray-800 text-white shadow-2xl font-bold active-tab' : 'text-gray-400' }}">
+{{--                                     <li class="relative m-1 {{ request()->routeIs('sliderImage.index') ? 'rounded-br-md rounded-se-md bg-gray-800 text-white shadow-2xl font-bold active-tab' : 'text-gray-400' }}">
                                         <a href="{{ route('sliderImage.index') }}" class="group flex gap-x-3 p-2 text-sm font-semibold  {{ request()->routeIs('sliderImage.index') ? 'text-white' : 'text-gray-400 hover:text-white' }}">
                                             <i class='bx bxs-star-half text-2xl'></i>Sliders
                                         </a>
-                                    </li>
+                                    </li> --}}
                                 </div>
                                 @endcan
 

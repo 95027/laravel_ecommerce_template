@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Ecommerce</title>
     @notifyCss
     {{-- @vite(['resources/sass/app.scss', 'resources/js/app.js', 'resources/css/app.css']) --}}
     @yield('styles')
@@ -15,12 +15,14 @@
     <link rel="stylesheet" href="{{ asset('assets/client/assets/css/plugins/animate.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/client/assets/css/main.css?v=6.0') }}" />
     <link rel="stylesheet" href="{{ asset('assets/client/assets/css/plugins/slider-range.css') }}" />
+    <link rel="stylesheet" href="{{ asset('assets/client/assets/css/custom.css') }}">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
         integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
         crossorigin="" />
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
         integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
         crossorigin=""></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 </head>
 
 <body>
@@ -29,7 +31,7 @@
         <div class="preloader d-flex align-items-center justify-content-center">
             <div class="preloader-inner position-relative">
                 <div class="text-center">
-                    <img src="{{asset('assets/client/assets/imgs/theme/loading.gif')}}" alt="" />
+                    <img src="{{ asset('assets/client/assets/imgs/theme/loading.gif') }}" alt="" />
                 </div>
             </div>
         </div>

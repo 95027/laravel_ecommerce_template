@@ -35,12 +35,11 @@
         </div>
 
 
-        <div
-            class="shadow-md shadow-gray-200 p-2 relative z-10 bg-white border rounded-xl md:p-5 dark:bg-neutral-900 dark:border-neutral-800 dark:shadow-gray-900/20">
-            <form id="add-product" data-parsley-validate action="{{ route('product.store') }}" method="POST"
-                onsubmit="jsValidator('add-product')" enctype="multipart/form-data">
-                @csrf
-                @livewire('admin.product.category-change')
+        <form id="add-product" data-parsley-validate action="{{ route('product.store') }}" method="POST"
+            onsubmit="jsValidator('add-product')" enctype="multipart/form-data">
+            @csrf
+            @livewire('admin.product.category-change')
+            <div class="shadow-md shadow-gray-200 p-2 relative z-10 bg-white border rounded-xl md:p-5 mb-5">
                 <div>
                     <div class="mb-4">
                         <label for="input-label" class="block text-sm font-medium mb-2 dark:text-white">Product
@@ -152,42 +151,66 @@
                         </div>
                     </div>
                 </div>
-                <div class="grid grid-cols-2 gap-2">
-                    <div class="max-w-full mb-4">
-                        <label for="input-label" class="block text-sm font-medium mb-2 dark:text-white">SKU
-                            <abbr class="text-red-600">*</abbr></label>
-                        <input type="text" id="input-label" required
-                            class="py-3 px-4 block w-full border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-0"
-                            placeholder="SKU123" name="sku">
+            </div>
+
+            <div class="grid grid-cols-2 gap-1">
+                <div class="shadow-md shadow-gray-200 p-2 relative z-10 bg-white border rounded-xl md:p-5 mb-5">
+                    <div class="grid grid-cols-1 gap-2">
+                        <div class="max-w-full mb-4">
+                            <label for="input-label" class="block text-sm font-medium mb-2 dark:text-white">SKU
+                                <abbr class="text-red-600">*</abbr></label>
+                            <input type="text" id="input-label" required
+                                class="py-3 px-4 block w-full border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-0"
+                                placeholder="SKU123" name="sku">
+                        </div>
+                        <div class="max-w-full mb-4">
+                            <label for="input-label" class="block text-sm font-medium mb-2 dark:text-white">Stock
+                                <abbr class="text-red-600">*</abbr></label>
+                            <input type="number" id="input-label" required
+                                class="py-3 px-4 block w-full border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-0"
+                                placeholder="10" name="quantity">
+                        </div>
                     </div>
-                    <div class="max-w-full mb-4">
-                        <label for="input-label" class="block text-sm font-medium mb-2 dark:text-white">Stock
-                            <abbr class="text-red-600">*</abbr></label>
-                        <input type="number" id="input-label" required
-                            class="py-3 px-4 block w-full border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-0"
-                            placeholder="10" name="quantity">
+                </div>
+
+                <div class="shadow-md shadow-gray-200 p-2 relative z-10 bg-white border rounded-xl md:p-5 mb-5">
+                    <div class="grid grid-cols-1 gap-2">
+                        <div class="max-w-full mb-4">
+                            <label for="input-label" class="block text-sm font-medium mb-2 dark:text-white">Price
+                                <abbr class="text-red-600">*</abbr></label>
+                            <input type="number" name="mrp" id="input-label" required
+                                class="py-3 px-4 block w-full border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-0"
+                                placeholder="999">
+                        </div>
+                        <div class="max-w-full">
+                            <label for="textarea-label" class="block text-sm font-medium mb-2 dark:text-white">Sale
+                                Price</label>
+                            <input type="number" name="price" id="input-label"
+                                class="py-3 px-4 block w-full border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-0"
+                                placeholder="799">
+                        </div>
                     </div>
-                    {{-- <div class="max-w-full">
-                        <label for="textarea-label" class="block text-sm font-medium mb-2 dark:text-white">Sale
-                            Price</label>
-                        <input type="number" id="input-label"
-                            class="py-3 px-4 block w-full border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-0"
-                            placeholder="799">
-                    </div> --}}
+                </div>
+            </div>
+
+
+            <div class="grid grid-cols-2 gap-2">
+                <div class="shadow-md shadow-gray-200 p-2 relative z-10 bg-white border rounded-xl md:p-5 mb-5">
                     <div class="max-w-full mb-4">
-                        <label for="input-label" class="block text-sm font-medium mb-2 dark:text-white">Price
-                            <abbr class="text-red-600">*</abbr></label>
-                        <input type="number" name="mrp" id="input-label" required
+                        <label for="input-label" class="block text-sm font-medium mb-2 dark:text-white">Varients</label>
+                        <input type="text" id="input-label"
                             class="py-3 px-4 block w-full border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-0"
-                            placeholder="999">
+                            placeholder="Product Meta Title" name="product_meta_title">
                     </div>
                     <div class="max-w-full">
-                        <label for="textarea-label" class="block text-sm font-medium mb-2 dark:text-white">Sale
-                            Price</label>
-                        <input type="number" name="price" id="input-label"
+                        <label for="textarea-label" class="block text-sm font-medium mb-2 dark:text-white">Comment</label>
+                        <textarea id="textarea-label"
                             class="py-3 px-4 block w-full border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-0"
-                            placeholder="799">
+                            placeholder="Say hi..." name="product_meta_description"></textarea>
                     </div>
+
+                </div>
+                <div class="shadow-md shadow-gray-200 p-2 relative z-10 bg-white border rounded-xl md:p-5 mb-5">
                     <div class="max-w-full mb-4">
                         <label for="input-label" class="block text-sm font-medium mb-2 dark:text-white">Meta
                             Title</label>
@@ -201,16 +224,18 @@
                             class="py-3 px-4 block w-full border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-0"
                             placeholder="Say hi..." name="product_meta_description"></textarea>
                     </div>
-                </div>
 
-                <div class="flex justify-end mt-4">
-                    <button type="submit" id="submit-btn"
-                        class="py-2 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-blue-100 text-blue-800 hover:bg-blue-200 focus:outline-none focus:bg-blue-200 disabled:opacity-50 disabled:pointer-events-none dark:text-blue-400 dark:bg-blue-800/30 dark:hover:bg-blue-800/20 dark:focus:bg-blue-800/20">
-                        Add Product
-                    </button>
                 </div>
-            </form>
-        </div>
+            </div>
+
+            <div class="flex justify-end mt-4">
+                <button type="submit" id="submit-btn"
+                    class="py-2 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-blue-100 text-blue-800 hover:bg-blue-200 focus:outline-none focus:bg-blue-200 disabled:opacity-50 disabled:pointer-events-none dark:text-blue-400 dark:bg-blue-800/30 dark:hover:bg-blue-800/20 dark:focus:bg-blue-800/20">
+                    Add Product
+                </button>
+            </div>
+    </div>
+    </form>
 
     </div>
 @endsection

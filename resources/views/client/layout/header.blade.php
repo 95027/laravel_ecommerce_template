@@ -347,8 +347,8 @@
                                         href="{{ route('web.about-us') }}">About</a>
                                 </li>
                                 <li class="position-static">
-                                    <a class="{{ request()->routeIs('web.products') ? 'active' : '' }}"
-                                        href="{{ route('web.products') }}">Prodcuts <i
+                                    <a class="{{ request()->routeIs('web.product.index') ? 'active' : '' }}"
+                                        href="{{ route('web.product.index') }}">Prodcuts <i
                                             class="fi-rs-angle-down"></i></a>
                                     <ul class="mega-menu">
                                         <li class="sub-mega-menu sub-mega-menu-width-22">
@@ -527,7 +527,7 @@
                                 <a href="{{ route('web.about-us') }}">About</a>
                             </li>
                             <li class="menu-item-has-children">
-                                <a href="{{ route('web.products') }}">Products</a>
+                                <a href="{{ route('web.product.index') }}">Products</a>
                                 <ul class="dropdown">
                                     <li class="menu-item-has-children">
                                         <a href="#">Women's Fashion</a>
@@ -559,7 +559,7 @@
                                 </ul>
                             </li>
                             <li class="menu-item-has-children">
-                                <a href="blog-category-fullwidth.html">Blog</a>
+                                <a href="#">Blog</a>
                             </li>
                             <li class="menu-item-has-children">
                                 <a href="#">Contact</a>

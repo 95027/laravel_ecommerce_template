@@ -27,20 +27,22 @@ Route::prefix('web')->name('web.')->group(function () {
     Route::get('/about-us', [PageController::class, 'aboutUs'])->name('about-us');
     Route::get('/cart', [PageController::class, 'cartPage'])->name('cart-page');
     Route::get('/checkout', [PageController::class, 'checkoutPage'])->name('checkout-page');
-    Route::get('/not-found',[PageController::class, 'notFoundPage'])->name('notFoundPage');
-    Route::get('/contact-us',[PageController::class, 'contactUs'])->name('contact-us');
-    Route::get('my-account',[PageController::class, 'myAccount'])->name('my-account');
+    Route::get('/not-found', [PageController::class, 'notFoundPage'])->name('notFoundPage');
+    Route::get('/contact-us', [PageController::class, 'contactUs'])->name('contact-us');
+    Route::get('my-account', [PageController::class, 'myAccount'])->name('my-account');
 
     // Products
-    Route::get('/all-products',[ProductController::class, 'products'])->name('products');
-    Route::get('/product-deatils',[ProductController::class,'productDetails'])->name('product-deatils');
-    
+    Route::prefix('product')->name('product.')->group(function () {
+        Route::get('/', [ProductController::class, 'products'])->name('index');
+        Route::get('/{id}', [ProductController::class, 'productDetails'])->name('details');
+    });
+
 
     // Privacy Policy
-    Route::get('/privacy-policy',[PageController::class,'privacyPolicy'])->name('privacy-policy');
+    Route::get('/privacy-policy', [PageController::class, 'privacyPolicy'])->name('privacy-policy');
 
     // Terms & Conditions
-    Route::get('/terms-conditions',[PageController::class,'termsConditions'])->name('terms-conditions');
+    Route::get('/terms-conditions', [PageController::class, 'termsConditions'])->name('terms-conditions');
 });
 
 

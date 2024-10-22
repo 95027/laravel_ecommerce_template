@@ -11,6 +11,8 @@ class HomeController extends Controller
 {
     public function home()
     {
-        return view('client.pages.home');
+        $data['products'] = Product::with('media')->latest()->get();
+        // dd($data);
+        return view('client.pages.home', $data);
     }
 }

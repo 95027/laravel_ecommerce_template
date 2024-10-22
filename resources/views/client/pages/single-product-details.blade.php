@@ -1,6 +1,6 @@
 @extends('client.layout.master')
 @section('content')
-<x-breadcrumb section="Pages" page="Product Details" />
+    <x-breadcrumb section="Pages" page="Product Details" />
     <div class="container mb-30">
         <div class="row">
             <div class="col-xl-10 col-lg-12 m-auto">
@@ -9,13 +9,16 @@
                         <div class="col-md-6 col-sm-12 col-xs-12 mb-md-0 mb-sm-5">
                             <div class="detail-gallery">
                                 <span class="zoom-icon"><i class="fi-rs-search"></i></span>
+
                                 <!-- MAIN SLIDES -->
                                 <div class="product-image-slider">
-                                    <figure class="border-radius-10">
-                                        <img src="{{ asset('assets/client/assets/imgs/shop/product-16-2.jpg') }}"
-                                            alt="product image" />
-                                    </figure>
-                                    <figure class="border-radius-10">
+                                    @foreach ($product->media as $media)
+                                        <figure class="border-radius-10">
+                                            <img src="{{ asset('storage/products/' . $product->media->where('featured', 1)->first()->file_name) }}"
+                                                alt="{{ $product->id }}">
+                                        </figure>
+                                    @endforeach
+                                    {{-- <figure class="border-radius-10">
                                         <img src="{{ asset('assets/client/assets/imgs/shop/product-16-1.jpg') }}"
                                             alt="product image" />
                                     </figure>
@@ -38,13 +41,16 @@
                                     <figure class="border-radius-10">
                                         <img src="{{ asset('assets/client/assets/imgs/shop/product-16-7.jpg') }}"
                                             alt="product image" />
-                                    </figure>
+                                    </figure> --}}
                                 </div>
                                 <!-- THUMBNAILS -->
                                 <div class="slider-nav-thumbnails">
-                                    <div><img src="{{ asset('assets/client/assets/imgs/shop/thumbnail-3.jpg') }}"
+                                    {{-- @foreach ($product->media as $media)                                         --}}
+                                    <div><img
+                                            src="{{ asset('storage/products/' . $product->media->where('featured', 1)->first()->file_name) }}"
                                             alt="product image" /></div>
-                                    <div><img src="{{ asset('assets/client/assets/imgs/shop/thumbnail-4.jpg') }}"
+                                    {{-- @endforeach --}}
+                                    {{-- <div><img src="{{ asset('assets/client/assets/imgs/shop/thumbnail-4.jpg') }}"
                                             alt="product image" /></div>
                                     <div><img src="{{ asset('assets/client/assets/imgs/shop/thumbnail-5.jpg') }}"
                                             alt="product image" /></div>
@@ -55,7 +61,7 @@
                                     <div><img src="{{ asset('assets/client/assets/imgs/shop/thumbnail-8.jpg') }}"
                                             alt="product image" /></div>
                                     <div><img src="{{ asset('assets/client/assets/imgs/shop/thumbnail-9.jpg') }}"
-                                            alt="product image" /></div>
+                                            alt="product image" /></div> --}}
                                 </div>
                             </div>
                             <!-- End Gallery -->
@@ -63,7 +69,7 @@
                         <div class="col-md-6 col-sm-12 col-xs-12">
                             <div class="detail-info pr-30 pl-30">
                                 <span class="stock-status out-stock"> Sale Off </span>
-                                <h2 class="title-detail">Seeds of Change Organic Quinoa, Brown</h2>
+                                <h2 class="title-detail">{{ $product->title }}</h2>
                                 <div class="product-detail-rating">
                                     <div class="product-rate-cover text-end">
                                         <div class="product-rate d-inline-block">
@@ -74,20 +80,29 @@
                                 </div>
                                 <div class="clearfix product-price-cover">
                                     <div class="product-price primary-color float-left">
-                                        <span class="current-price text-brand">$38</span>
-                                        <span>
-                                            <span class="save-price font-md color3 ml-15">26% Off</span>
-                                            <span class="old-price font-md ml-15">$52</span>
-                                        </span>
+                                        @if ($product->price > 0 && $product->price < $product->mrp)
+                                            <span class="current-price text-brand">₹ {{ $product->price }}</span>
+                                            <span>
+                                                @php
+                                                    $discount = round(
+                                                        (($product->mrp - $product->price) / $product->mrp) * 100,
+                                                    );
+                                                @endphp
+                                                <span class="save-price font-md color3 ml-15">{{ $discount }}%
+                                                    Off</span>
+                                                <span class="old-price font-md ml-15">₹ {{ $product->mrp }}</span>
+                                            </span>
+                                        @else
+                                            <span class="current-price text-brand">₹ {{ $product->mrp }}</span>
+                                        @endif
                                     </div>
+
                                 </div>
                                 <div class="short-desc mb-30">
-                                    <p class="font-lg">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aliquam rem
-                                        officia, corrupti reiciendis minima nisi modi, quasi, odio minus dolore impedit fuga
-                                        eum eligendi.</p>
+                                    <p class="font-lg">{{ $product->short_description }}</p>
                                 </div>
                                 <div class="attr-detail attr-size mb-30">
-                                    <strong class="mr-10">Size / Weight: </strong>
+                                    <strong class="mr-10">Size / Weight:</strong>
                                     <ul class="list-filter size-filter font-small">
                                         <li><a href="#">50g</a></li>
                                         <li class="active"><a href="#">60g</a></li>
@@ -118,7 +133,7 @@
                                         <li>LIFE: <span class="text-brand">70 days</span></li>
                                     </ul>
                                     <ul class="float-start">
-                                        <li class="mb-5">SKU: <a href="#">FWM15VKT</a></li>
+                                        <li class="mb-5">SKU: <a href="#">{{ $product->sku }}</a></li>
                                         <li class="mb-5">Tags: <a href="#" rel="tag">Snack</a>, <a
                                                 href="#" rel="tag">Organic</a>, <a href="#"
                                                 rel="tag">Brown</a></li>
@@ -476,7 +491,17 @@
                                     <!--comment form-->
                                     <div class="comment-form">
                                         <h4 class="mb-15">Add a review</h4>
-                                        <div class="product-rate d-inline-block mb-30"></div>
+                                        {{-- <div class="product-rate d-inline-block mb-30"></div> --}}
+                                        <div class="mb-3">
+                                            <div class="stars">
+                                                <i class="bi bi-star-fill" data-value="1"></i>
+                                                <i class="bi bi-star-fill" data-value="2"></i>
+                                                <i class="bi bi-star-fill" data-value="3"></i>
+                                                <i class="bi bi-star-fill" data-value="4"></i>
+                                                <i class="bi bi-star-fill" data-value="5"></i>
+                                            </div>
+                                            <input type="hidden" name="rating" id="rating">
+                                        </div>
                                         <div class="row">
                                             <div class="col-lg-8 col-md-12">
                                                 <form class="form-contact comment_form" action="#" id="commentForm">
@@ -686,4 +711,25 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('script')
+    <script>
+        const stars = document.querySelectorAll('.stars i');
+        const ratingInput = document.getElementById('rating');
+
+        stars.forEach((star, index1) => {
+            star.addEventListener('click', () => {
+                stars.forEach((star, index2) => {
+                    if (index1 >= index2) {
+                        star.classList.add('active');
+                    } else {
+                        star.classList.remove('active');
+                    }
+                });
+                // Update the hidden input with the selected rating
+                ratingInput.value = index1 + 1;
+            });
+        });
+    </script>
 @endsection
